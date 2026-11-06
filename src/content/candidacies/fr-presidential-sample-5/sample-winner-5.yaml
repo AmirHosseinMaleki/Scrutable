@@ -1,0 +1,35 @@
+# SAMPLE DATA: fictional winner and promises.
+election: fr-presidential-sample-5
+person: sample-winner-5
+sample: true
+status: official
+profile:
+  party: "Sample Party W5"
+  family: "Family Y"
+  one_line: "Sample text: one plain line about Sample Winner 5."
+  background: "Sample background: placeholder."
+  source_url: https://example.com/sample/past-5/profile
+  source_date: "2026-10-15"
+  last_checked: "2026-11-06"
+promises:
+  - status: found
+    text: "Sample promise 5.1: placeholder text."
+    outcome: partly_kept
+    rated_by: "Sample tracker"
+    source_url: https://example.com/sample/past-5/promise-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - status: found
+    text: "Sample promise 5.2: placeholder text."
+    outcome: broken
+    rated_by: "Sample tracker"
+    source_url: https://example.com/sample/past-5/promise-2
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - status: found
+    text: "Sample promise 5.3: placeholder text."
+    outcome: blocked
+    rated_by: "Sample tracker"
+    source_url: https://example.com/sample/past-5/promise-3
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"

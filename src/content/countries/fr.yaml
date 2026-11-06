@@ -1,0 +1,48 @@
+# SAMPLE DATA. Placeholder text only; real content arrives in a separate, sourced pull request.
+name: France
+sample: true
+intro: "Sample text: a short introduction to the election will go here."
+how_it_works:
+  - title: "What the president controls (sample)"
+    summary: "Sample text: this card will explain what the office decides."
+    detail: "Sample detail: a longer explanation will go here, written in plain words."
+    source_url: https://example.com/sample/fr/office
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - title: "How the two rounds work (sample)"
+    summary: "Sample text: this card will explain the first and second round."
+    detail: "Sample detail: how many candidates move on, and why."
+    source_url: https://example.com/sample/fr/rounds
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - title: "How candidates qualify (sample)"
+    summary: "Sample text: this card will explain how a person gets on the ballot."
+    detail: "Sample detail: the requirements, in plain words."
+    source_url: https://example.com/sample/fr/qualify
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - title: "Words you may meet (sample)"
+    summary: "Sample text: this card will explain jargon in plain words."
+    detail: "Sample detail: a short glossary will go here."
+    source_url: https://example.com/sample/fr/glossary
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+how_to_vote:
+  - title: "Check you are registered (sample)"
+    summary: "Sample text: this step will explain how to check your registration."
+    detail: "Sample detail: where to check, and by when."
+    source_url: https://example.com/sample/fr/register
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - title: "Decide how to vote (sample)"
+    summary: "Sample text: this step will explain voting in person, by proxy or from abroad."
+    detail: "Sample detail: what each option needs."
+    source_url: https://example.com/sample/fr/options
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - title: "On the day (sample)"
+    summary: "Sample text: this step will explain what to bring and where to go."
+    detail: "Sample detail: opening hours and documents."
+    source_url: https://example.com/sample/fr/election-day
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"

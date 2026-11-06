@@ -1,0 +1,49 @@
+# SAMPLE DATA: fictional candidacy.
+election: fr-presidential-2027
+person: candidate-a
+sample: true
+status: declared
+profile:
+  party: "Sample Party A"
+  family: "Family X"
+  one_line: "Sample text: one plain line about Candidate A will go here."
+  background: "Sample background: a short, sourced biography will go here. No real biography has been added."
+  source_url: https://example.com/sample/candidate-a/profile
+  source_date: "2026-10-15"
+  last_checked: "2026-11-06"
+positions:
+  - topic: topic-1
+    status: found
+    summary: "Sample position: Candidate A on topic 1 goes here."
+    quote: "Sample quote: placeholder words from Candidate A on topic 1."
+    source_url: https://example.com/sample/candidate-a/topic-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-2
+    status: found
+    summary: "Sample position: Candidate A on topic 2 goes here."
+    quote: "Sample quote: placeholder words from Candidate A on topic 2."
+    source_url: https://example.com/sample/candidate-a/topic-2
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-3
+    status: found
+    summary: "Sample position: Candidate A on topic 3 goes here."
+    quote: "Sample quote: placeholder words from Candidate A on topic 3."
+    source_url: https://example.com/sample/candidate-a/topic-3
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-4
+    status: found
+    summary: "Sample position: Candidate A on topic 4 goes here."
+    quote: "Sample quote: placeholder words from Candidate A on topic 4."
+    source_url: https://example.com/sample/candidate-a/topic-4
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-5
+    status: found
+    summary: "Sample position: Candidate A on topic 5 goes here."
+    quote: "Sample quote: placeholder words from Candidate A on topic 5."
+    source_url: https://example.com/sample/candidate-a/topic-5
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"

@@ -1,0 +1,46 @@
+# SAMPLE DATA: fictional candidacy.
+election: fr-presidential-2027
+person: candidate-c
+sample: true
+status: official
+profile:
+  party: "Sample Party C"
+  family: "Family Z"
+  one_line: "Sample text: one plain line about Candidate C will go here."
+  background: "Sample background: a short, sourced biography will go here. No real biography has been added."
+  source_url: https://example.com/sample/candidate-c/profile
+  source_date: "2026-10-15"
+  last_checked: "2026-11-06"
+positions:
+  - topic: topic-1
+    status: found
+    summary: "Sample position: Candidate C on topic 1 goes here."
+    quote: "Sample quote: placeholder words from Candidate C on topic 1."
+    source_url: https://example.com/sample/candidate-c/topic-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-2
+    status: found
+    summary: "Sample position: Candidate C on topic 2 goes here."
+    quote: "Sample quote: placeholder words from Candidate C on topic 2."
+    source_url: https://example.com/sample/candidate-c/topic-2
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-3
+    status: found
+    summary: "Sample position: Candidate C on topic 3 goes here."
+    source_url: https://example.com/sample/candidate-c/topic-3
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-4
+    status: found
+    summary: "Sample position: Candidate C on topic 4 goes here."
+    source_url: https://example.com/sample/candidate-c/topic-4
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-5
+    status: found
+    summary: "Sample position: Candidate C on topic 5 goes here."
+    source_url: https://example.com/sample/candidate-c/topic-5
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"

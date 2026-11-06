@@ -1,0 +1,48 @@
+# SAMPLE DATA: a placeholder election. Not a real result.
+country: fr
+kind: presidential
+name: "Sample election 2"
+status: past
+sample: true
+date: "2006-04-01"
+rounds:
+  - round: 1
+    date: "2006-04-01"
+    turnout: 68.4
+    results:
+      - name: "Sample Winner 2"
+        person: sample-winner-2
+        family: "Family Y"
+        share: 29.5
+      - name: "Sample Runner-up 2a"
+        family: "Family Z"
+        share: 23.5
+      - name: "Sample Runner-up 2b"
+        family: "Family Z"
+        share: 19
+    source_url: https://example.com/sample/past-2/round-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - round: 2
+    date: "2006-04-15"
+    turnout: 66.9
+    results:
+      - name: "Sample Winner 2"
+        person: sample-winner-2
+        family: "Family Y"
+        share: 56
+      - name: "Sample Runner-up 2a"
+        family: "Family Z"
+        share: 44
+    source_url: https://example.com/sample/past-2/round-2
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+winner:
+  name: "Sample Winner 2"
+  person: sample-winner-2
+  family: "Family Y"
+defining_event:
+  text: "Sample event: a placeholder for what defined this term."
+  source_url: https://example.com/sample/past-2/event
+  source_date: "2026-10-15"
+  last_checked: "2026-11-06"
