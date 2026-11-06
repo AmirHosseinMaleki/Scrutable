@@ -19,7 +19,7 @@ const Heading = `h${level}` as 'h2' | 'h3';
 <Card>
   <Heading class="text-lg font-semibold leading-snug">{title}</Heading>
   <p class="mt-1">{summary}</p>
-  <Expandable label="More detail and source">
+  <Expandable label="More detail and source" context={`about ${title}`}>
     {detail && <p class="mb-2">{detail}</p>}
     <SourceLink {...source} />
   </Expandable>

@@ -1,0 +1,44 @@
+---
+import Expandable from './Expandable.astro';
+import SourceLink from './SourceLink.astro';
+
+interface Step {
+  title: string;
+  summary: string;
+  detail?: string;
+  source_url: string;
+  source_date: string;
+  last_checked: string;
+}
+const { steps } = Astro.props as { steps: Step[] };
+---
+
+<!-- One compact numbered list; details and sources for every step sit behind a single toggle. -->
+<ol class="space-y-5">
+  {
+    steps.map((s, i) => (
+      <li class="flex gap-4">
+        <span aria-hidden="true" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white">{i + 1}</span>
+        <div>
+          <h3 class="font-semibold leading-snug">{s.title}</h3>
+          <p>{s.summary}</p>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+<div class="mt-2">
+  <Expandable label="Details and sources" context="for these steps">
+    <ul class="space-y-4">
+      {
+        steps.map((s) => (
+          <li>
+            <p class="font-medium">{s.title}</p>
+            {s.detail && <p>{s.detail}</p>}
+            <SourceLink source_url={s.source_url} source_date={s.source_date} last_checked={s.last_checked} />
+          </li>
+        ))
+      }
+    </ul>
+  </Expandable>
+</div>

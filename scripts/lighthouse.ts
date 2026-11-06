@@ -57,7 +57,7 @@ for (const profile of ['mobile', 'desktop'] as const) {
   }
 }
 
-await chrome.kill();
+chrome.kill();
 server.close();
 console.log(failures === 0 ? '\nNo accessibility errors.' : `\n${failures} accessibility audit(s) failed.`);
 process.exit(failures === 0 ? 0 : 1);

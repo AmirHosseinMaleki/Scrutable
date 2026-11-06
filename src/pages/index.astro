@@ -3,6 +3,11 @@ import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 import { getCountries, getUpcomingElection, siteLastChecked } from '../lib/content';
 
+const steps = [
+  { title: 'How it works', text: 'The rounds, the dates and how to vote.' },
+  { title: 'Who is running', text: 'Every candidate, with one plain line per topic.' },
+  { title: 'The story so far', text: 'The last five elections, and what the winners promised.' },
+];
 const countries = await Promise.all(
   (await getCountries()).map(async (c) => ({ ...c, election: await getUpcomingElection(c.slug) })),
 );
@@ -29,4 +34,19 @@ const countries = await Promise.all(
       ))
     }
   </ul>
+
+  <section class="mt-14" aria-labelledby="steps-heading">
+    <h2 id="steps-heading" class="text-xl font-semibold">What you will find</h2>
+    <ol class="mt-4 grid gap-4 sm:grid-cols-3">
+      {
+        steps.map((s, i) => (
+          <li class="rounded-xl bg-accent-soft p-5">
+            <span aria-hidden="true" class="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white">{i + 1}</span>
+            <h3 class="mt-3 font-semibold leading-snug">{s.title}</h3>
+            <p class="mt-1">{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Base>
