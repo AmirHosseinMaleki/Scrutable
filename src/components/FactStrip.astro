@@ -1,0 +1,19 @@
+---
+import type { StoryFact } from '../lib/story';
+const { facts } = Astro.props as { facts: StoryFact[] };
+---
+
+<section aria-labelledby="strip-heading">
+  <h2 id="strip-heading" class="sr-only">Three facts across all five elections</h2>
+  <ul class="grid gap-3 sm:grid-cols-3">
+    {
+      facts.map((f) => (
+        <li class="rounded-xl bg-accent-soft p-4">
+          <p class="text-sm font-medium text-accent">{f.label}</p>
+          <p class="mt-1 text-ink">{f.text}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mt-2 text-sm text-muted">Calculated from the five election cards below.</p>
+</section>

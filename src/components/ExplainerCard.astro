@@ -1,0 +1,26 @@
+---
+import Card from './Card.astro';
+import Expandable from './Expandable.astro';
+import SourceLink from './SourceLink.astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  detail?: string;
+  source_url: string;
+  source_date: string;
+  last_checked: string;
+  level?: 2 | 3;
+}
+const { title, summary, detail, level = 3, ...source } = Astro.props;
+const Heading = `h${level}` as 'h2' | 'h3';
+---
+
+<Card>
+  <Heading class="text-lg font-semibold leading-snug">{title}</Heading>
+  <p class="mt-1">{summary}</p>
+  <Expandable label="More detail and source">
+    {detail && <p class="mb-2">{detail}</p>}
+    <SourceLink {...source} />
+  </Expandable>
+</Card>

@@ -1,0 +1,22 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CandidateCard from '../../../components/CandidateCard.astro';
+import { oldestChecked } from '../../../lib/sources';
+import { getCandidates, getCountries, getUpcomingElection } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
+}
+
+const slug = Astro.params.country!;
+const election = await getUpcomingElection(slug);
+const candidates = await getCandidates(election.slug);
+---
+
+<Base title="Candidates" country={slug} lastChecked={oldestChecked(...candidates.map((c) => c.candidacy))}>
+  <h1 class="text-3xl font-semibold tracking-tight">Candidates</h1>
+  <p class="mt-3 max-w-prose text-muted">Everyone who has declared or is official, in alphabetical order. The order says nothing about who is ahead.</p>
+  <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+    {candidates.map((c) => <CandidateCard candidate={c} country={slug} />)}
+  </ul>
+</Base>

@@ -1,0 +1,6 @@
+---
+import { formatDate } from '../lib/dates';
+const { date } = Astro.props as { date?: string };
+---
+
+{date && <p class="text-sm text-muted">Last checked: <time datetime={date}>{formatDate(date)}</time></p>}

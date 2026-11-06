@@ -1,0 +1,97 @@
+---
+import Base from '../../layouts/Base.astro';
+import Expandable from '../../components/Expandable.astro';
+import SourceLink from '../../components/SourceLink.astro';
+import { formatDate } from '../../lib/dates';
+import { oldestChecked } from '../../lib/sources';
+import { getCandidates, getCountries, getTopics, getUpcomingElection } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
+}
+
+const slug = Astro.params.country!;
+const election = await getUpcomingElection(slug);
+const candidates = await getCandidates(election.slug);
+const topics = await getTopics(slug);
+---
+
+<Base title="Compare" country={slug} lastChecked={oldestChecked(...candidates.map((c) => c.candidacy))}>
+  <h1 class="text-3xl font-semibold tracking-tight">Compare</h1>
+  <p class="mt-3 max-w-prose text-muted">Pick a topic to see one line per candidate. Candidates are in alphabetical order.</p>
+
+  <nav aria-label="Topics" class="mt-6">
+    <ul class="flex flex-wrap gap-2" id="topic-picker">
+      {
+        topics.map((t, i) => (
+          <li>
+            <a
+              href={`#topic-${t.slug}`}
+              data-topic-link={t.slug}
+              aria-current={i === 0 ? 'true' : undefined}
+              class="inline-flex min-h-11 items-center rounded-full border border-line px-4 text-accent hover:bg-accent-soft aria-[current=true]:border-accent aria-[current=true]:bg-accent aria-[current=true]:text-white"
+            >
+              {t.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="mt-8 space-y-12">
+    {
+      topics.map((t) => (
+        <section id={`topic-${t.slug}`} data-topic-section={t.slug} aria-labelledby={`h-${t.slug}`} class="scroll-mt-4">
+          <h2 id={`h-${t.slug}`} class="text-2xl font-semibold">{t.name}</h2>
+          <p class="mt-1 text-muted">{t.description}</p>
+          <ul class="mt-4 divide-y divide-line rounded-xl border border-line">
+            {candidates.map((c) => {
+              const p = c.candidacy.positions.find((x) => x.topic === t.slug);
+              return (
+                <li class="p-4">
+                  <p class="font-semibold">
+                    <a href={`/${slug}/candidates/${c.slug}/`} class="text-ink underline-offset-4 hover:text-accent hover:underline">{c.person.name}</a>
+                  </p>
+                  {p?.status === 'found' ? (
+                    <>
+                      <p class="mt-1">{p.summary}</p>
+                      <Expandable label="Source and quote">
+                        {p.quote && <blockquote class="mb-2 border-l-4 border-line pl-3 italic">{p.quote}</blockquote>}
+                        <SourceLink source_url={p.source_url} source_date={p.source_date} last_checked={p.last_checked} />
+                      </Expandable>
+                    </>
+                  ) : (
+                    <p class="mt-1 text-muted">
+                      No clear position found as of <time datetime={p?.status === 'not_found' ? p.checked_on : ''}>{p?.status === 'not_found' ? formatDate(p.checked_on) : ''}</time>.
+                    </p>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<script>
+  // Progressive enhancement: with JavaScript, show one topic at a time. Without it, every topic is listed.
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-topic-section]')];
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-topic-link]')];
+
+  function show(topic: string | undefined) {
+    const first = sections[0]?.dataset.topicSection;
+    const target = sections.some((s) => s.dataset.topicSection === topic) ? topic : first;
+    for (const s of sections) s.hidden = s.dataset.topicSection !== target;
+    for (const a of links) {
+      if (a.dataset.topicLink === target) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    }
+  }
+
+  const fromHash = () => show(location.hash.replace(/^#topic-/, '') || undefined);
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+</script>

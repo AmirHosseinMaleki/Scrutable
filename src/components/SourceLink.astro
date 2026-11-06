@@ -1,0 +1,17 @@
+---
+import { formatDate } from '../lib/dates';
+
+interface Props {
+  source_url: string;
+  source_date: string;
+  last_checked: string;
+}
+const { source_url, source_date, last_checked } = Astro.props;
+const host = new URL(source_url).hostname.replace(/^www\./, '');
+---
+
+<p class="text-sm text-muted">
+  Source:{' '}<a href={source_url} rel="noopener noreferrer" class="text-accent underline underline-offset-2">{host}</a>
+  {' '}· published <time datetime={source_date}>{formatDate(source_date)}</time>
+  {' '}· checked <time datetime={last_checked}>{formatDate(last_checked)}</time>
+</p>

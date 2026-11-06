@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import { formatDate } from '../lib/dates';
+import { siteHasSample } from '../lib/content';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Set on country pages to show the country navigation. */
+  country?: string;
+  /** Oldest last_checked date of the facts on the page. */
+  lastChecked?: string;
+}
+
+const { title, description = 'Scrutable explains elections: how they work, who is running, what they stand for. Every fact has a source.', country, lastChecked } = Astro.props;
+const sample = await siteHasSample();
+const path = Astro.url.pathname;
+const nav = country
+  ? [
+      { href: `/${country}/`, label: 'Overview' },
+      { href: `/${country}/candidates/`, label: 'Candidates' },
+      { href: `/${country}/compare/`, label: 'Compare' },
+      { href: `/${country}/story/`, label: 'The story so far' },
+    ]
+  : [];
+const isCurrent = (href: string) => (href === `/${country}/` ? path === href : path.startsWith(href));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title === 'Scrutable' ? title : `${title} · Scrutable`}</title>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-10 focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:text-accent focus:shadow"
+    >
+      Skip to main content
+    </a>
+
+    {
+      sample && (
+        <div class="bg-accent-soft text-sm text-ink">
+          <p class="mx-auto max-w-3xl px-4 py-2">
+            <strong>Sample data.</strong> People, results and sources on this site are fictional placeholders.
+          </p>
+        </div>
+      )
+    }
+
+    <header class="border-b border-line">
+      <div class="mx-auto flex max-w-3xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="/" class="text-lg font-semibold tracking-tight text-ink no-underline">Scrutable</a>
+        {
+          nav.length > 0 && (
+            <nav aria-label="Main">
+              <ul class="flex flex-wrap gap-x-5 gap-y-1">
+                {nav.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      aria-current={isCurrent(item.href) ? 'page' : undefined}
+                      class="inline-block py-1 text-accent underline-offset-4 hover:underline aria-[current=page]:font-semibold aria-[current=page]:underline"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
+      </div>
+    </header>
+
+    <main id="main" class="mx-auto w-full max-w-3xl flex-1 px-4 py-8 sm:py-12">
+      <slot />
+    </main>
+
+    <footer class="border-t border-line bg-surface">
+      <div class="mx-auto flex max-w-3xl flex-col gap-3 px-4 py-6 text-sm text-muted">
+        <nav aria-label="About Scrutable">
+          <ul class="flex flex-wrap gap-x-5 gap-y-1">
+            <li><a href="/about/" class="inline-block py-1 text-accent underline-offset-4 hover:underline">About</a></li>
+            <li><a href="/methodology/" class="inline-block py-1 text-accent underline-offset-4 hover:underline">Methodology</a></li>
+          </ul>
+        </nav>
+        {lastChecked && <p>Last checked: <time datetime={lastChecked}>{formatDate(lastChecked)}</time></p>}
+        <p>No cookies, no trackers, no accounts.</p>
+      </div>
+    </footer>
+  </body>
+</html>

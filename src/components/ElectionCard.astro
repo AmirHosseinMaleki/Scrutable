@@ -1,0 +1,109 @@
+---
+import Card from './Card.astro';
+import Badge from './Badge.astro';
+import Expandable from './Expandable.astro';
+import SourceLink from './SourceLink.astro';
+import type { Candidacy, Election } from '../content/schemas';
+import { formatDate } from '../lib/dates';
+
+interface Props {
+  election: Election & { slug: string };
+  /** The winner's candidacy, which holds the 3 headline promises. */
+  winner?: Candidacy;
+  /** Slugs of people who are candidates today: their names link to their page. */
+  currentCandidates: Set<string>;
+  country: string;
+}
+const { election, winner, currentCandidates, country } = Astro.props;
+
+const OUTCOME = { kept: 'Kept', partly_kept: 'Partly kept', broken: 'Broken', blocked: 'Blocked', unclear: 'Unclear' } as const;
+const firstRound = election.rounds.find((r) => r.round === 1);
+const rounds = [...election.rounds].sort((a, b) => a.round - b.round);
+const year = election.date.slice(0, 4);
+---
+
+<Card>
+  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+    <h2 id={election.slug} class="scroll-mt-4 text-lg font-semibold leading-snug">{election.name} <span class="font-normal text-muted">· {year}</span></h2>
+    {election.sample && <Badge>Sample</Badge>}
+  </div>
+  <p class="mt-1">
+    Winner: {election.winner?.name} ({election.winner?.family}).
+    {firstRound && ` Turnout in round 1: ${firstRound.turnout}%.`}
+  </p>
+
+  <Expandable label="Results, promises and sources">
+    <div class="space-y-6">
+      {
+        rounds.map((r) => (
+          <div>
+            <table class="w-full text-left text-sm">
+              <caption class="mb-1 text-left font-medium">
+                Round {r.round} · {formatDate(r.date)} · turnout {r.turnout}%
+              </caption>
+              <thead class="text-muted">
+                <tr>
+                  <th scope="col" class="py-1 pr-3 font-medium">Candidate</th>
+                  <th scope="col" class="py-1 pr-3 font-medium">Political family</th>
+                  <th scope="col" class="py-1 text-right font-medium">Share</th>
+                </tr>
+              </thead>
+              <tbody>
+                {r.results.map((line) => (
+                  <tr class="border-t border-line">
+                    <th scope="row" class="py-1.5 pr-3 font-normal">
+                      {line.person && currentCandidates.has(line.person) ? (
+                        <a href={`/${country}/candidates/${line.person}/`} class="text-accent underline underline-offset-2">{line.name}</a>
+                      ) : (
+                        line.name
+                      )}
+                    </th>
+                    <td class="py-1.5 pr-3">{line.family}</td>
+                    <td class="py-1.5 text-right tabular-nums">{line.share}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div class="mt-1"><SourceLink source_url={r.source_url} source_date={r.source_date} last_checked={r.last_checked} /></div>
+          </div>
+        ))
+      }
+
+      {
+        election.defining_event && (
+          <div>
+            <h3 class="font-semibold">What defined the term</h3>
+            <p>{election.defining_event.text}</p>
+            <SourceLink source_url={election.defining_event.source_url} source_date={election.defining_event.source_date} last_checked={election.defining_event.last_checked} />
+          </div>
+        )
+      }
+
+      {
+        winner && (
+          <div>
+            <h3 class="font-semibold">Headline promises of the winner</h3>
+            <ol class="mt-2 space-y-4">
+              {winner.promises.map((p) =>
+                p.status === 'found' ? (
+                  <li>
+                    <p>{p.text}</p>
+                    <p class="mt-1 flex flex-wrap items-center gap-2 text-sm">
+                      <Badge>{OUTCOME[p.outcome]}</Badge>
+                      <span class="text-muted">Rated by {p.rated_by}</span>
+                    </p>
+                    <SourceLink source_url={p.source_url} source_date={p.source_date} last_checked={p.last_checked} />
+                  </li>
+                ) : (
+                  <li class="text-muted">
+                    No promise found as of <time datetime={p.checked_on}>{formatDate(p.checked_on)}</time>.
+                  </li>
+                ),
+              )}
+            </ol>
+          </div>
+        )
+      }
+    </div>
+  </Expandable>
+</Card>

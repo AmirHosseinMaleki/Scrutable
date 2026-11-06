@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteLastChecked } from '../lib/content';
+
+const rules = [
+  ['Same template for everyone', 'Every candidate has the same topics, the same number of positions and the same layout.'],
+  ['Neutral order', 'Candidates are listed alphabetically, never by polls or by our view of who matters.'],
+  ['Plain words', 'We describe what a candidate would do, not how it sounds. No adjectives that take a side.'],
+  ['Gaps stay visible', 'When we find no clear position, the page says "No clear position found as of" a date. We never guess.'],
+  ['No polls, predictions or scores', 'None appear anywhere on the site.'],
+  ['A source for every fact', 'Each position, promise, result and event links to its source and shows when the source was published and when we last checked it.'],
+];
+---
+
+<Base title="Methodology" lastChecked={await siteLastChecked()}>
+  <h1 class="text-3xl font-semibold tracking-tight">Methodology</h1>
+  <div class="mt-6 max-w-prose space-y-4">
+    <p>These are the rules every page follows.</p>
+    <ul class="space-y-4">
+      {rules.map(([title, text]) => <li><h2 class="font-semibold">{title}</h2><p>{text}</p></li>)}
+    </ul>
+    <h2 class="pt-4 text-xl font-semibold">Where facts come from</h2>
+    <p>In order of preference: official sources such as manifestos and electoral bodies, then established media and fact-checkers, then a candidate's own verified accounts for their own words. Never anonymous sites and never AI output.</p>
+    <h2 class="pt-4 text-xl font-semibold">Past promises</h2>
+    <p>Promises are picked by a fixed rule, not by taste. Outcomes come from a named tracker or fact-checker, and we never rate a promise without one.</p>
+    <h2 class="pt-4 text-xl font-semibold">How content is made</h2>
+    <p>AI drafts, people verify. Once real content is added, nothing will go live without a second reviewer. This build contains sample data only.</p>
+  </div>
+</Base>
