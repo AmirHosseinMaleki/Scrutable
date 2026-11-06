@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import { getCountries, getUpcomingElection, siteLastChecked } from '../lib/content';
+
+const countries = await Promise.all(
+  (await getCountries()).map(async (c) => ({ ...c, election: await getUpcomingElection(c.slug) })),
+);
+---
+
+<Base title="Scrutable" lastChecked={await siteLastChecked()}>
+  <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Understand an election in about ten minutes.</h1>
+  <p class="mt-4 max-w-prose text-lg text-muted">
+    How the vote works, who is running and what they stand for. Every fact has a source. We do not tell you who to pick.
+  </p>
+
+  <h2 class="mt-12 text-xl font-semibold">Pick a country</h2>
+  <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+    {
+      countries.map((c) => (
+        <Card as="li">
+          <div class="relative">
+            <h3 class="text-lg font-semibold">
+              <a href={`/${c.slug}/`} class="text-ink no-underline after:absolute after:inset-0 hover:text-accent hover:underline">{c.name}</a>
+            </h3>
+            <p class="mt-1 text-muted">{c.election.name}</p>
+          </div>
+        </Card>
+      ))
+    }
+  </ul>
+</Base>

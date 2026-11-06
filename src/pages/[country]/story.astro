@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import ElectionCard from '../../components/ElectionCard.astro';
+import FactStrip from '../../components/FactStrip.astro';
+import { oldestChecked } from '../../lib/sources';
+import { byDateDesc, storyFacts } from '../../lib/story';
+import { getCandidates, getCountries, getElections, getUpcomingElection, getWinnerCandidacy } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
+}
+
+const slug = Astro.params.country!;
+const past = byDateDesc((await getElections(slug)).filter((e) => e.status === 'past'));
+const facts = storyFacts(past);
+const upcoming = await getUpcomingElection(slug);
+const currentCandidates = new Set((await getCandidates(upcoming.slug)).map((c) => c.slug));
+const cards = await Promise.all(
+  past.map(async (election) => ({
+    election,
+    winner: election.winner?.person ? await getWinnerCandidacy(election.slug, election.winner.person) : undefined,
+  })),
+);
+---
+
+<Base title="The story so far" country={slug} lastChecked={oldestChecked(...past, ...cards.map((c) => c.winner))}>
+  <h1 class="text-3xl font-semibold tracking-tight">The story so far</h1>
+  <p class="mt-3 max-w-prose text-muted">The last {past.length} presidential elections, newest first. Open a card for results, the winner's promises and what became of them.</p>
+
+  <div class="mt-8"><FactStrip facts={facts} /></div>
+
+  <ul class="mt-8 space-y-4">
+    {cards.map(({ election, winner }) => <li><ElectionCard {election} {winner} {currentCandidates} country={slug} /></li>)}
+  </ul>
+</Base>

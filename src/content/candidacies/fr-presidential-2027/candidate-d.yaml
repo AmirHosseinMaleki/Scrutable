@@ -1,0 +1,41 @@
+# SAMPLE DATA: fictional candidacy.
+election: fr-presidential-2027
+person: candidate-d
+sample: true
+status: declared
+profile:
+  party: "Sample Party D"
+  family: "Family X"
+  one_line: "Sample text: one plain line about Candidate D will go here."
+  background: "Sample background: a short, sourced biography will go here. No real biography has been added."
+  source_url: https://example.com/sample/candidate-d/profile
+  source_date: "2026-10-15"
+  last_checked: "2026-11-06"
+positions:
+  - topic: topic-1
+    status: found
+    summary: "Sample position: Candidate D on topic 1 goes here."
+    source_url: https://example.com/sample/candidate-d/topic-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-2
+    status: found
+    summary: "Sample position: Candidate D on topic 2 goes here."
+    source_url: https://example.com/sample/candidate-d/topic-2
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-3
+    status: found
+    summary: "Sample position: Candidate D on topic 3 goes here."
+    source_url: https://example.com/sample/candidate-d/topic-3
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-4
+    status: found
+    summary: "Sample position: Candidate D on topic 4 goes here."
+    source_url: https://example.com/sample/candidate-d/topic-4
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - topic: topic-5
+    status: not_found
+    checked_on: "2026-11-06"

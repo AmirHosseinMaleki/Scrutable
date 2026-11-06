@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteLastChecked } from '../lib/content';
+---
+
+<Base title="About" lastChecked={await siteLastChecked()}>
+  <h1 class="text-3xl font-semibold tracking-tight">About Scrutable</h1>
+  <div class="mt-6 max-w-prose space-y-4">
+    <p>Scrutable is a free site for people who will vote but have not followed a country's politics. It explains how the election works, who is running, what they stand for and what happened in the last five elections.</p>
+    <p>It does not tell you who to vote for. There is no quiz, no ranking and no poll.</p>
+    <h2 class="pt-4 text-xl font-semibold">What is on the site today</h2>
+    <p>This is an early build with sample data only. Every person, result and source you see is a fictional placeholder, and the site says so on every page.</p>
+    <h2 class="pt-4 text-xl font-semibold">Who runs it and how it is funded</h2>
+    <p>This section will be completed before public launch.</p>
+    <h2 class="pt-4 text-xl font-semibold">Your privacy</h2>
+    <p>No cookies, no trackers, no accounts. We store nothing about you.</p>
+  </div>
+</Base>

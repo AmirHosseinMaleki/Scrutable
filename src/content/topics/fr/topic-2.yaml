@@ -1,0 +1,5 @@
+country: fr
+name: "Topic 2 (sample)"
+description: "Placeholder topic. The real topics for France are still to be decided."
+order: 2
+sample: true

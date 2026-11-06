@@ -1,0 +1,19 @@
+---
+import Chevron from './Chevron.astro';
+
+interface Props {
+  /** The always-visible label of the toggle. */
+  label: string;
+  open?: boolean;
+}
+const { label, open = false } = Astro.props;
+---
+
+<!-- Native <details>: keyboard and screen-reader friendly, works without JavaScript. -->
+<details class="group" open={open}>
+  <summary class="flex min-h-11 items-center gap-2 py-2 text-sm font-medium text-accent">
+    <span class="underline underline-offset-4">{label}</span>
+    <Chevron />
+  </summary>
+  <div class="pb-2 pt-1"><slot /></div>
+</details>

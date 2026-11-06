@@ -1,0 +1,6 @@
+---
+// A card: at most 2 sentences visible, details on expand (see Expandable).
+const { as: Tag = 'article' } = Astro.props as { as?: 'article' | 'li' | 'section' };
+---
+
+<Tag class="rounded-xl border border-line bg-white p-5"><slot /></Tag>

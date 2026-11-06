@@ -1,0 +1,34 @@
+# SAMPLE DATA: a placeholder election. Not a real result.
+country: fr
+kind: presidential
+name: "Sample election 4"
+status: past
+sample: true
+date: "2016-04-01"
+rounds:
+  - round: 1
+    date: "2016-04-01"
+    turnout: 64
+    results:
+      - name: "Sample Winner 4"
+        person: sample-winner-4
+        family: "Family Z"
+        share: 52.3
+      - name: "Sample Runner-up 4a"
+        family: "Family X"
+        share: 31
+      - name: "Sample Runner-up 4b"
+        family: "Family Z"
+        share: 16.7
+    source_url: https://example.com/sample/past-4/round-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+winner:
+  name: "Sample Winner 4"
+  person: sample-winner-4
+  family: "Family Z"
+defining_event:
+  text: "Sample event: a placeholder for what defined this term."
+  source_url: https://example.com/sample/past-4/event
+  source_date: "2026-10-15"
+  last_checked: "2026-11-06"

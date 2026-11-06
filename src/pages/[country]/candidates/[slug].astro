@@ -1,0 +1,90 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Badge from '../../../components/Badge.astro';
+import Card from '../../../components/Card.astro';
+import Expandable from '../../../components/Expandable.astro';
+import SourceLink from '../../../components/SourceLink.astro';
+import { formatDate } from '../../../lib/dates';
+import { oldestChecked } from '../../../lib/sources';
+import { earlierRuns } from '../../../lib/story';
+import { getCandidates, getCountries, getElections, getTopics, getUpcomingElection } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const c of await getCountries()) {
+    const election = await getUpcomingElection(c.slug);
+    for (const cand of await getCandidates(election.slug)) paths.push({ params: { country: c.slug, slug: cand.slug }, props: { candidate: cand } });
+  }
+  return paths;
+}
+
+const { candidate } = Astro.props;
+const country = Astro.params.country!;
+const { person, candidacy } = candidate;
+const topics = await getTopics(country);
+const byTopic = new Map(candidacy.positions.map((p) => [p.topic, p]));
+const runs = earlierRuns(candidate.slug, await getElections(country));
+---
+
+<Base title={person.name} country={country} lastChecked={oldestChecked(candidacy)}>
+  <p class="text-sm"><a href={`/${country}/candidates/`} class="text-accent underline underline-offset-4">All candidates</a></p>
+  <h1 class="mt-2 text-3xl font-semibold tracking-tight">{person.name}</h1>
+  <p class="mt-2 flex flex-wrap items-center gap-2 text-muted">
+    <span>{candidacy.profile.party} · {candidacy.profile.family}</span>
+    <Badge>{candidacy.status === 'official' ? 'Official candidate' : 'Declared candidate'}</Badge>
+  </p>
+  <p class="mt-4 text-lg">{candidacy.profile.one_line}</p>
+
+  <Expandable label="Background and source">
+    <p class="mb-2">{candidacy.profile.background}</p>
+    <SourceLink source_url={candidacy.profile.source_url} source_date={candidacy.profile.source_date} last_checked={candidacy.profile.last_checked} />
+  </Expandable>
+
+  <section class="mt-10" aria-labelledby="positions-heading">
+    <h2 id="positions-heading" class="text-2xl font-semibold">Where they stand</h2>
+    <p class="mt-1 text-muted">One line per topic. Open a line to see the source and, where we have it, the original quote.</p>
+    <ul class="mt-4 space-y-4">
+      {
+        topics.map((t) => {
+          const p = byTopic.get(t.slug);
+          return (
+            <Card as="li">
+              <h3 class="font-semibold">{t.name}</h3>
+              {p?.status === 'found' ? (
+                <>
+                  <p class="mt-1">{p.summary}</p>
+                  <Expandable label="Source and quote">
+                    {p.quote && <blockquote class="mb-2 border-l-4 border-line pl-3 italic">{p.quote}</blockquote>}
+                    <SourceLink source_url={p.source_url} source_date={p.source_date} last_checked={p.last_checked} />
+                  </Expandable>
+                </>
+              ) : (
+                <p class="mt-1 text-muted">
+                  No clear position found as of <time datetime={p?.status === 'not_found' ? p.checked_on : ''}>{p?.status === 'not_found' ? formatDate(p.checked_on) : ''}</time>.
+                </p>
+              )}
+            </Card>
+          );
+        })
+      }
+    </ul>
+  </section>
+
+  <section class="mt-10" aria-labelledby="history-heading">
+    <h2 id="history-heading" class="text-2xl font-semibold">Earlier runs</h2>
+    {
+      runs.length === 0 ? (
+        <p class="mt-2 text-muted">No earlier presidential run recorded on this site.</p>
+      ) : (
+        <ul class="mt-3 space-y-2">
+          {runs.map((r) => (
+            <li>
+              <a href={`/${country}/story/#${r.election.slug}`} class="text-accent underline underline-offset-4">{r.election.name}</a>
+              {` (${r.election.date.slice(0, 4)}): ${r.share}% in round ${r.round}${r.won ? ', won' : ''}.`}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</Base>

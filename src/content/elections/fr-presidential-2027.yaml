@@ -1,0 +1,23 @@
+# SAMPLE DATA. Dates below are placeholders, not the real calendar.
+country: fr
+kind: presidential
+name: French presidential election 2027
+status: upcoming
+sample: true
+date: "2027-04-01"
+key_dates:
+  - label: "Sample date: last day to register"
+    date: "2027-03-01"
+    source_url: https://example.com/sample/fr/2027/register
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - label: "Sample date: first round"
+    date: "2027-04-01"
+    source_url: https://example.com/sample/fr/2027/round-1
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
+  - label: "Sample date: second round"
+    date: "2027-04-15"
+    source_url: https://example.com/sample/fr/2027/round-2
+    source_date: "2026-10-15"
+    last_checked: "2026-11-06"
