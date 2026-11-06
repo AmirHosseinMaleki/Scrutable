@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ExplainerCard from '../../components/ExplainerCard.astro';
 import SourceLink from '../../components/SourceLink.astro';
+import StepList from '../../components/StepList.astro';
 import { formatDate } from '../../lib/dates';
 import { oldestChecked } from '../../lib/sources';
 import { getCountries, getCountry, getUpcomingElection } from '../../lib/content';
@@ -25,13 +26,6 @@ const links = [
   <h1 class="text-3xl font-semibold tracking-tight">{election.name}</h1>
   <p class="mt-3 max-w-prose text-lg text-muted">{country.intro}</p>
 
-  <section class="mt-12" aria-labelledby="how-heading">
-    <h2 id="how-heading" class="text-2xl font-semibold">How it works</h2>
-    <ul class="mt-4 space-y-4">
-      {country.how_it_works.map((card) => <li><ExplainerCard {...card} /></li>)}
-    </ul>
-  </section>
-
   <section class="mt-12" aria-labelledby="dates-heading">
     <h2 id="dates-heading" class="text-2xl font-semibold">Key dates</h2>
     <ol class="mt-4 divide-y divide-line rounded-xl border border-line">
@@ -47,11 +41,16 @@ const links = [
     </ol>
   </section>
 
+  <section class="mt-12" aria-labelledby="how-heading">
+    <h2 id="how-heading" class="text-2xl font-semibold">How it works</h2>
+    <ul class="mt-4 space-y-4">
+      {country.how_it_works.map((card) => <li><ExplainerCard {...card} /></li>)}
+    </ul>
+  </section>
+
   <section class="mt-12" aria-labelledby="vote-heading">
     <h2 id="vote-heading" class="text-2xl font-semibold">How to vote</h2>
-    <ol class="mt-4 space-y-4">
-      {country.how_to_vote.map((step) => <li><ExplainerCard {...step} /></li>)}
-    </ol>
+    <div class="mt-4 rounded-xl border border-line p-5"><StepList steps={country.how_to_vote} /></div>
   </section>
 
   <nav class="mt-12" aria-label="Next steps">

@@ -3,4 +3,4 @@
 const { as: Tag = 'article' } = Astro.props as { as?: 'article' | 'li' | 'section' };
 ---
 
-<Tag class="rounded-xl border border-line bg-white p-5"><slot /></Tag>
+<Tag class="rounded-xl border border-line bg-white p-5 has-[details]:pb-2"><slot /></Tag>
