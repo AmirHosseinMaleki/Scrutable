@@ -60,6 +60,14 @@ export async function siteLastChecked(): Promise<string | undefined> {
   return oldestChecked(...all.flat());
 }
 
+/** People who have a photo, alphabetical: used for the photo credits on the About page. */
+export async function getPhotoCredits() {
+  return (await getCollection('people'))
+    .filter((p) => p.data.photo)
+    .map((p) => ({ slug: p.id, name: p.data.name, photo: p.data.photo! }))
+    .sort((a, b) => a.name.localeCompare(b.name, 'en'));
+}
+
 export async function siteHasSample(): Promise<boolean> {
   return (await getCountries()).some((c) => c.sample);
 }

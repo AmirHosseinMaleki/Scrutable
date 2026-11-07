@@ -1,0 +1,13 @@
+---
+import { licenseLabel } from '../lib/display';
+
+interface Props {
+  photo: { author: string; license: string; license_url: string; source_url: string };
+}
+const { photo } = Astro.props;
+const host = new URL(photo.source_url).hostname.replace(/^www\./, '');
+---
+
+<p class="text-xs text-muted">
+  Photo: {photo.author},{' '}<a href={photo.license_url} rel="noopener noreferrer" class="text-accent underline underline-offset-2">{licenseLabel(photo.license)}</a>,{' '}via{' '}<a href={photo.source_url} rel="noopener noreferrer" class="text-accent underline underline-offset-2">{host}</a>
+</p>

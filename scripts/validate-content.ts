@@ -3,7 +3,7 @@
  * Fails (exit 1) on schema errors, missing sources and broken references.
  * Warns when a fact was last checked more than 30 days ago.
  */
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'yaml';
@@ -37,7 +37,8 @@ for (const name of Object.keys(collections) as CollectionName[]) {
   }
 }
 
-issues.push(...validateContent(loaded, process.env.VALIDATE_TODAY ?? todayIso()));
+const publicPeople = fileURLToPath(new URL('../public/people', import.meta.url));
+issues.push(...validateContent(loaded, process.env.VALIDATE_TODAY ?? todayIso(), { photoExists: (f) => existsSync(join(publicPeople, f)) }));
 
 const errors = issues.filter((i) => i.level === 'error');
 const warnings = issues.filter((i) => i.level === 'warning');

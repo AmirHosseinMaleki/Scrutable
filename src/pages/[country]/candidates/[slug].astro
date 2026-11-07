@@ -1,10 +1,13 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import Avatar from '../../../components/Avatar.astro';
 import Badge from '../../../components/Badge.astro';
+import PhotoCredit from '../../../components/PhotoCredit.astro';
 import Card from '../../../components/Card.astro';
 import Expandable from '../../../components/Expandable.astro';
 import SourceLink from '../../../components/SourceLink.astro';
 import { formatDate } from '../../../lib/dates';
+import { quoteLabel } from '../../../lib/display';
 import { oldestChecked } from '../../../lib/sources';
 import { earlierRuns } from '../../../lib/story';
 import { getCandidates, getCountries, getElections, getTopics, getUpcomingElection } from '../../../lib/content';
@@ -28,11 +31,17 @@ const runs = earlierRuns(candidate.slug, await getElections(country));
 
 <Base title={person.name} country={country} lastChecked={oldestChecked(candidacy)}>
   <p class="text-sm"><a href={`/${country}/candidates/`} class="text-accent underline underline-offset-4">All candidates</a></p>
-  <h1 class="mt-2 text-3xl font-semibold tracking-tight">{person.name}</h1>
-  <p class="mt-2 flex flex-wrap items-center gap-2 text-muted">
-    <span>{candidacy.profile.party} · {candidacy.profile.family}</span>
-    <Badge>{candidacy.status === 'official' ? 'Official candidate' : 'Declared candidate'}</Badge>
-  </p>
+  <div class="mt-4 flex items-center gap-5">
+    <Avatar name={person.name} photo={person.photo?.file} size="lg" />
+    <div>
+      <h1 class="text-3xl font-semibold tracking-tight">{person.name}</h1>
+      <p class="mt-2 flex flex-wrap items-center gap-2 text-muted">
+        <span>{candidacy.profile.party} · {candidacy.profile.family}</span>
+        <Badge>{candidacy.status === 'official' ? 'Official candidate' : 'Declared candidate'}</Badge>
+      </p>
+    </div>
+  </div>
+  {person.photo && <div class="mt-2"><PhotoCredit photo={person.photo} /></div>}
   <p class="mt-4 text-lg">{candidacy.profile.one_line}</p>
 
   <Expandable label="Background and source">
@@ -54,7 +63,12 @@ const runs = earlierRuns(candidate.slug, await getElections(country));
                 <>
                   <p class="mt-1">{p.summary}</p>
                   <Expandable label="Source and quote">
-                    {p.quote && <blockquote class="mb-2 border-l-4 border-line pl-3 italic">{p.quote}</blockquote>}
+                    {p.quote && (
+                      <figure class="mb-2">
+                        <figcaption class="text-sm text-muted">{quoteLabel(p.quote_lang)}</figcaption>
+                        <blockquote lang={p.quote_lang} class="border-l-4 border-line pl-3 italic">{p.quote}</blockquote>
+                      </figure>
+                    )}
                     <SourceLink source_url={p.source_url} source_date={p.source_date} last_checked={p.last_checked} />
                   </Expandable>
                 </>

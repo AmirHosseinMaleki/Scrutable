@@ -16,6 +16,7 @@ positions:
     status: found
     summary: "Sample position: Candidate A on topic 1 goes here."
     quote: "Sample quote: placeholder words from Candidate A on topic 1."
+    quote_lang: en
     source_url: https://example.com/sample/candidate-a/topic-1
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
@@ -23,6 +24,7 @@ positions:
     status: found
     summary: "Sample position: Candidate A on topic 2 goes here."
     quote: "Sample quote: placeholder words from Candidate A on topic 2."
+    quote_lang: en
     source_url: https://example.com/sample/candidate-a/topic-2
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
@@ -30,6 +32,7 @@ positions:
     status: found
     summary: "Sample position: Candidate A on topic 3 goes here."
     quote: "Sample quote: placeholder words from Candidate A on topic 3."
+    quote_lang: en
     source_url: https://example.com/sample/candidate-a/topic-3
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
@@ -37,6 +40,7 @@ positions:
     status: found
     summary: "Sample position: Candidate A on topic 4 goes here."
     quote: "Sample quote: placeholder words from Candidate A on topic 4."
+    quote_lang: en
     source_url: https://example.com/sample/candidate-a/topic-4
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
@@ -44,6 +48,7 @@ positions:
     status: found
     summary: "Sample position: Candidate A on topic 5 goes here."
     quote: "Sample quote: placeholder words from Candidate A on topic 5."
+    quote_lang: en
     source_url: https://example.com/sample/candidate-a/topic-5
     source_date: "2026-10-15"
     last_checked: "2026-11-06"

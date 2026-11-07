@@ -19,11 +19,12 @@ const topics: CompareTopic[] = (await getTopics(slug)).map((t) => ({ slug: t.slu
 const candidates: CompareCandidate[] = people.map((c) => ({
   slug: c.slug,
   name: c.person.name,
+  photo: c.person.photo?.file,
   lines: Object.fromEntries(
     c.candidacy.positions.map((p): [string, CompareLine] => [
       p.topic,
       p.status === 'found'
-        ? { status: 'found', summary: p.summary, quote: p.quote, source_url: p.source_url, source_date: p.source_date, last_checked: p.last_checked }
+        ? { status: 'found', summary: p.summary, quote: p.quote, quote_lang: p.quote_lang, source_url: p.source_url, source_date: p.source_date, last_checked: p.last_checked }
         : { status: 'not_found', checked_on: p.checked_on },
     ]),
   ),

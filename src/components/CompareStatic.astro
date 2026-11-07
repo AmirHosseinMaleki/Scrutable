@@ -1,8 +1,10 @@
 ---
 // No-JavaScript fallback for the Compare island: every topic listed one after another.
+import Avatar from './Avatar.astro';
 import Expandable from './Expandable.astro';
 import SourceLink from './SourceLink.astro';
 import { formatDate } from '../lib/dates';
+import { quoteLabel } from '../lib/display';
 import type { CompareCandidate, CompareTopic } from '../lib/compare';
 
 interface Props {
@@ -36,14 +38,20 @@ const { country, topics, candidates } = Astro.props;
             const line = c.lines[t.slug];
             return (
               <li class="p-4">
-                <p class="font-semibold">
+                <p class="flex items-center gap-3 font-semibold">
+                  <Avatar name={c.name} photo={c.photo} size="sm" />
                   <a href={`/${country}/candidates/${c.slug}/`} class="text-ink underline-offset-4 hover:text-accent hover:underline">{c.name}</a>
                 </p>
                 {line?.status === 'found' ? (
                   <>
                     <p class="mt-1">{line.summary}</p>
                     <Expandable label="Source and quote" context={`for ${c.name}`}>
-                      {line.quote && <blockquote class="mb-2 border-l-4 border-line pl-3 italic">{line.quote}</blockquote>}
+                      {line.quote && (
+                        <figure class="mb-2">
+                          <figcaption class="text-sm text-muted">{quoteLabel(line.quote_lang)}</figcaption>
+                          <blockquote lang={line.quote_lang} class="border-l-4 border-line pl-3 italic">{line.quote}</blockquote>
+                        </figure>
+                      )}
                       <SourceLink source_url={line.source_url} source_date={line.source_date} last_checked={line.last_checked} />
                     </Expandable>
                   </>

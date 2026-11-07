@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { siteLastChecked } from '../lib/content';
+import PhotoCredit from '../components/PhotoCredit.astro';
+import { getPhotoCredits, siteLastChecked } from '../lib/content';
+
+const credits = await getPhotoCredits();
 ---
 
 <Base title="About" lastChecked={await siteLastChecked()}>
@@ -12,6 +15,13 @@ import { siteLastChecked } from '../lib/content';
     <p>This is an early build with sample data only. Every person, result and source you see is a fictional placeholder, and the site says so on every page.</p>
     <h2 class="pt-4 text-xl font-semibold">Who runs it and how it is funded</h2>
     <p>This section will be completed before public launch.</p>
+    <h2 class="pt-4 text-xl font-semibold">Photo credits</h2>
+    <p>Portraits are stored on this site, not loaded from other sites. Each one is used under its licence, with credit.</p>
+    {credits.length === 0 ? <p class="text-muted">No photos yet.</p> : (
+      <ul class="space-y-2">
+        {credits.map((c) => <li><span class="font-medium">{c.name}</span><PhotoCredit photo={c.photo} /></li>)}
+      </ul>
+    )}
     <h2 class="pt-4 text-xl font-semibold">Your privacy</h2>
     <p>No cookies, no trackers, no accounts. We store nothing about you.</p>
   </div>
