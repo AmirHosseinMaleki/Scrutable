@@ -1,0 +1,62 @@
+---
+// No-JavaScript fallback for the Compare island: every topic listed one after another.
+import Expandable from './Expandable.astro';
+import SourceLink from './SourceLink.astro';
+import { formatDate } from '../lib/dates';
+import type { CompareCandidate, CompareTopic } from '../lib/compare';
+
+interface Props {
+  country: string;
+  topics: CompareTopic[];
+  candidates: CompareCandidate[];
+}
+const { country, topics, candidates } = Astro.props;
+---
+
+<nav aria-label="Topics" class="mt-6">
+  <ul class="flex flex-wrap gap-2">
+    {
+      topics.map((t) => (
+        <li>
+          <a href={`#topic-${t.slug}`} class="inline-flex min-h-11 items-center rounded-full border border-line px-4 text-accent hover:bg-accent-soft">{t.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<div class="mt-8 space-y-12">
+  {
+    topics.map((t) => (
+      <section id={`topic-${t.slug}`} aria-labelledby={`h-${t.slug}`} class="scroll-mt-4">
+        <h2 id={`h-${t.slug}`} class="text-2xl font-semibold">{t.name}</h2>
+        <p class="mt-1 text-muted">{t.description}</p>
+        <ul class="mt-4 divide-y divide-line rounded-xl border border-line">
+          {candidates.map((c) => {
+            const line = c.lines[t.slug];
+            return (
+              <li class="p-4">
+                <p class="font-semibold">
+                  <a href={`/${country}/candidates/${c.slug}/`} class="text-ink underline-offset-4 hover:text-accent hover:underline">{c.name}</a>
+                </p>
+                {line?.status === 'found' ? (
+                  <>
+                    <p class="mt-1">{line.summary}</p>
+                    <Expandable label="Source and quote" context={`for ${c.name}`}>
+                      {line.quote && <blockquote class="mb-2 border-l-4 border-line pl-3 italic">{line.quote}</blockquote>}
+                      <SourceLink source_url={line.source_url} source_date={line.source_date} last_checked={line.last_checked} />
+                    </Expandable>
+                  </>
+                ) : (
+                  <p class="mt-1 text-muted">
+                    No clear position found as of {line ? <time datetime={line.checked_on}>{formatDate(line.checked_on)}</time> : 'this date'}.
+                  </p>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))
+  }
+</div>
