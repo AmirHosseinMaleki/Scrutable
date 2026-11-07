@@ -1,23 +1,23 @@
-# SAMPLE DATA. Dates below are placeholders, not the real calendar.
+# Real election; the candidates attached to it are still sample data.
 country: fr
 kind: presidential
 name: French presidential election 2027
 status: upcoming
-sample: true
-date: "2027-04-01"
+sample: false
+date: "2027-04-18"
 key_dates:
-  - label: "Sample date: last day to register"
-    date: "2027-03-01"
-    source_url: https://example.com/sample/fr/2027/register
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - label: "Sample date: first round"
-    date: "2027-04-01"
-    source_url: https://example.com/sample/fr/2027/round-1
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - label: "Sample date: second round"
-    date: "2027-04-15"
-    source_url: https://example.com/sample/fr/2027/round-2
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
+  - label: "Last day to register to vote for round 1 (the sixth Friday before the vote)"
+    date: "2027-03-12"
+    source_url: https://www.service-public.gouv.fr/particuliers/actualites/A18967
+    source_date: "2026-06-18"
+    last_checked: "2026-11-07"
+  - label: "First round"
+    date: "2027-04-18"
+    source_url: https://www.service-public.gouv.fr/particuliers/actualites/A15053
+    source_date: "2026-07-02"
+    last_checked: "2026-11-07"
+  - label: "Second round"
+    date: "2027-05-02"
+    source_url: https://www.service-public.gouv.fr/particuliers/actualites/A15053
+    source_date: "2026-07-02"
+    last_checked: "2026-11-07"

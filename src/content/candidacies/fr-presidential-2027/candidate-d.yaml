@@ -12,30 +12,30 @@ profile:
   source_date: "2026-10-15"
   last_checked: "2026-11-06"
 positions:
-  - topic: topic-1
+  - topic: economy-jobs
     status: found
-    summary: "Sample position: Candidate D on topic 1 goes here."
-    source_url: https://example.com/sample/candidate-d/topic-1
+    summary: "Sample position: Candidate D on economy and jobs goes here."
+    source_url: https://example.com/sample/candidate-d/economy-jobs
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-2
+  - topic: pensions-health
     status: found
-    summary: "Sample position: Candidate D on topic 2 goes here."
-    source_url: https://example.com/sample/candidate-d/topic-2
+    summary: "Sample position: Candidate D on pensions and health goes here."
+    source_url: https://example.com/sample/candidate-d/pensions-health
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-3
+  - topic: security-justice
     status: found
-    summary: "Sample position: Candidate D on topic 3 goes here."
-    source_url: https://example.com/sample/candidate-d/topic-3
+    summary: "Sample position: Candidate D on security and justice goes here."
+    source_url: https://example.com/sample/candidate-d/security-justice
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-4
+  - topic: immigration
     status: found
-    summary: "Sample position: Candidate D on topic 4 goes here."
-    source_url: https://example.com/sample/candidate-d/topic-4
+    summary: "Sample position: Candidate D on immigration goes here."
+    source_url: https://example.com/sample/candidate-d/immigration
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-5
+  - topic: climate-energy
     status: not_found
     checked_on: "2026-11-06"

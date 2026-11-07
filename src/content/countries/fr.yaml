@@ -1,48 +1,63 @@
-# SAMPLE DATA. Placeholder text only; real content arrives in a separate, sourced pull request.
+# Real content. Every card links to its source; see the pull request for the full source list.
 name: France
-sample: true
-intro: "Sample text: a short introduction to the election will go here."
+sample: false
+intro: "This page explains how the election works, the key dates and how to vote. Each card links to its source."
 how_it_works:
-  - title: "What the president controls (sample)"
-    summary: "Sample text: this card will explain what the office decides."
-    detail: "Sample detail: a longer explanation will go here, written in plain words."
-    source_url: https://example.com/sample/fr/office
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - title: "How the two rounds work (sample)"
-    summary: "Sample text: this card will explain the first and second round."
-    detail: "Sample detail: how many candidates move on, and why."
-    source_url: https://example.com/sample/fr/rounds
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - title: "How candidates qualify (sample)"
-    summary: "Sample text: this card will explain how a person gets on the ballot."
-    detail: "Sample detail: the requirements, in plain words."
-    source_url: https://example.com/sample/fr/qualify
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - title: "Words you may meet (sample)"
-    summary: "Sample text: this card will explain jargon in plain words."
-    detail: "Sample detail: a short glossary will go here."
-    source_url: https://example.com/sample/fr/glossary
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
+  - title: "What the president does"
+    summary: "The president appoints the prime minister and is the head of the armed forces. They can also dissolve the National Assembly after consulting the prime minister and the presidents of the parliamentary assemblies."
+    detail: "The Constitution also says the president ensures that it is respected, that public authorities work regularly and that the State continues (article 5). The points above come from articles 8, 12 and 15."
+    source_url: https://www.elysee.fr/la-presidence/le-president-dans-la-constitution
+    source_date: "2022-12-15"
+    last_checked: "2026-11-07"
+  - title: "How long a term lasts"
+    summary: "The president is elected for five years by direct vote. Nobody can serve more than two consecutive terms."
+    detail: "This is article 6 of the Constitution."
+    source_url: https://www.elysee.fr/la-presidence/le-president-dans-la-constitution
+    source_date: "2022-12-15"
+    last_checked: "2026-11-07"
+  - title: "How the two rounds work"
+    summary: "To win outright, a candidate needs more than half of the votes cast. If nobody does, the two candidates in the lead go to a second round two weeks later."
+    source_url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1940
+    source_date: "2026-07-01"
+    last_checked: "2026-11-07"
+  - title: "Who can stand"
+    summary: "A candidate must be at least 18, a French voter and able to exercise civil and political rights. They also need 500 signatures from elected officials."
+    detail: "The signatures must come from at least 30 departments or overseas collectivities, with no more than 50 from any one of them. The candidate must also give the Constitutional Council a declaration of assets and a declaration of interests and activities. The Council checks the signatures, confirms the candidate agrees and draws up the list of candidates, which is published in the Official Journal."
+    source_url: https://www.info.gouv.fr/actualite/quelles-sont-les-conditions-pour-etre-candidat-a-l-election-presidentielle
+    source_date: "2026-09-15"
+    last_checked: "2026-11-07"
 how_to_vote:
-  - title: "Check you are registered (sample)"
-    summary: "Sample text: this step will explain how to check your registration."
-    detail: "Sample detail: where to check, and by when."
-    source_url: https://example.com/sample/fr/register
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - title: "Decide how to vote (sample)"
-    summary: "Sample text: this step will explain voting in person, by proxy or from abroad."
-    detail: "Sample detail: what each option needs."
-    source_url: https://example.com/sample/fr/options
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
-  - title: "On the day (sample)"
-    summary: "Sample text: this step will explain what to bring and where to go."
-    detail: "Sample detail: opening hours and documents."
-    source_url: https://example.com/sample/fr/election-day
-    source_date: "2026-10-15"
-    last_checked: "2026-11-06"
+  - title: "Register to vote"
+    summary: "Register on the electoral rolls by the sixth Friday before the vote, online or at the town hall."
+    detail: "Since 1 July 2026 the deadline is the same for both routes."
+    source_url: https://www.service-public.gouv.fr/particuliers/actualites/A18967
+    source_date: "2026-06-18"
+    last_checked: "2026-11-07"
+  - title: "Check your polling station"
+    summary: "An online service on service-public.fr shows whether you are registered and where your polling station is. It also shows any proxies in progress."
+    detail: "You log in with Ma-situation-électorale details or through FranceConnect."
+    source_url: https://www.service-public.gouv.fr/particuliers/vosdroits/R51788
+    source_date: "2026-06-18"
+    last_checked: "2026-11-07"
+  - title: "On the day: opening hours"
+    summary: "For the presidential election, polling stations are open from 8am to 7pm. A prefect's order can change the hours, but not beyond 8pm."
+    source_url: https://www.service-public.gouv.fr/particuliers/vosdroits/F16828
+    source_date: "2025-10-13"
+    last_checked: "2026-11-07"
+  - title: "What to bring"
+    summary: "Bring an original identity document, such as an identity card or passport. In towns under 1,000 people ID is not compulsory, and the voter card is never required."
+    detail: "Identity cards and passports are accepted if valid or expired for less than 5 years. A photo, a download on a phone or a photocopy is not accepted."
+    source_url: https://www.service-public.gouv.fr/particuliers/vosdroits/F34852/5_0
+    source_date: "2026-09-21"
+    last_checked: "2026-11-07"
+  - title: "If you cannot go in person"
+    summary: "You can give your vote to another voter by proxy. Start online at Maprocuration, then confirm in person at a police station or gendarmerie with ID."
+    detail: "The person who votes for you can hold only one proxy made in France. Do it as early as possible, because requests take time to process."
+    source_url: https://www.service-public.gouv.fr/particuliers/vosdroits/F1604
+    source_date: "2026-02-02"
+    last_checked: "2026-11-07"
+  - title: "If you live abroad"
+    summary: "French citizens abroad can vote from abroad if they are on the consular electoral list, or in France if they are on a municipal list. At a consulate or embassy they vote in person with ID, or by proxy."
+    source_url: https://www.service-public.gouv.fr/particuliers/vosdroits/F16904
+    source_date: "2026-11-06"
+    last_checked: "2026-11-07"
