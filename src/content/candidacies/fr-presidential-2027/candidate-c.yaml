@@ -12,37 +12,37 @@ profile:
   source_date: "2026-10-15"
   last_checked: "2026-11-06"
 positions:
-  - topic: topic-1
+  - topic: economy-jobs
     status: found
-    summary: "Sample position: Candidate C on topic 1 goes here."
-    quote: "Sample quote: placeholder words from Candidate C on topic 1."
+    summary: "Sample position: Candidate C on economy and jobs goes here."
+    quote: "Sample quote: placeholder words from Candidate C on economy and jobs."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-c/topic-1
+    source_url: https://example.com/sample/candidate-c/economy-jobs
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-2
+  - topic: pensions-health
     status: found
-    summary: "Sample position: Candidate C on topic 2 goes here."
-    quote: "Sample quote: placeholder words from Candidate C on topic 2."
+    summary: "Sample position: Candidate C on pensions and health goes here."
+    quote: "Sample quote: placeholder words from Candidate C on pensions and health."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-c/topic-2
+    source_url: https://example.com/sample/candidate-c/pensions-health
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-3
+  - topic: security-justice
     status: found
-    summary: "Sample position: Candidate C on topic 3 goes here."
-    source_url: https://example.com/sample/candidate-c/topic-3
+    summary: "Sample position: Candidate C on security and justice goes here."
+    source_url: https://example.com/sample/candidate-c/security-justice
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-4
+  - topic: immigration
     status: found
-    summary: "Sample position: Candidate C on topic 4 goes here."
-    source_url: https://example.com/sample/candidate-c/topic-4
+    summary: "Sample position: Candidate C on immigration goes here."
+    source_url: https://example.com/sample/candidate-c/immigration
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-5
+  - topic: climate-energy
     status: found
-    summary: "Sample position: Candidate C on topic 5 goes here."
-    source_url: https://example.com/sample/candidate-c/topic-5
+    summary: "Sample position: Candidate C on climate and energy goes here."
+    source_url: https://example.com/sample/candidate-c/climate-energy
     source_date: "2026-10-15"
     last_checked: "2026-11-06"

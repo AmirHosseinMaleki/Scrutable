@@ -1,0 +1,5 @@
+country: fr
+name: "Climate and energy"
+description: "Energy supply, prices and the response to climate change."
+order: 5
+sample: false

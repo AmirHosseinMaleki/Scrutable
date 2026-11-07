@@ -1,0 +1,5 @@
+country: fr
+name: "Economy and jobs"
+description: "Taxes, public spending, wages and employment."
+order: 1
+sample: false

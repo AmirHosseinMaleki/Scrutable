@@ -12,43 +12,43 @@ profile:
   source_date: "2026-10-15"
   last_checked: "2026-11-06"
 positions:
-  - topic: topic-1
+  - topic: economy-jobs
     status: found
-    summary: "Sample position: Candidate A on topic 1 goes here."
-    quote: "Sample quote: placeholder words from Candidate A on topic 1."
+    summary: "Sample position: Candidate A on economy and jobs goes here."
+    quote: "Sample quote: placeholder words from Candidate A on economy and jobs."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-a/topic-1
+    source_url: https://example.com/sample/candidate-a/economy-jobs
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-2
+  - topic: pensions-health
     status: found
-    summary: "Sample position: Candidate A on topic 2 goes here."
-    quote: "Sample quote: placeholder words from Candidate A on topic 2."
+    summary: "Sample position: Candidate A on pensions and health goes here."
+    quote: "Sample quote: placeholder words from Candidate A on pensions and health."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-a/topic-2
+    source_url: https://example.com/sample/candidate-a/pensions-health
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-3
+  - topic: security-justice
     status: found
-    summary: "Sample position: Candidate A on topic 3 goes here."
-    quote: "Sample quote: placeholder words from Candidate A on topic 3."
+    summary: "Sample position: Candidate A on security and justice goes here."
+    quote: "Sample quote: placeholder words from Candidate A on security and justice."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-a/topic-3
+    source_url: https://example.com/sample/candidate-a/security-justice
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-4
+  - topic: immigration
     status: found
-    summary: "Sample position: Candidate A on topic 4 goes here."
-    quote: "Sample quote: placeholder words from Candidate A on topic 4."
+    summary: "Sample position: Candidate A on immigration goes here."
+    quote: "Sample quote: placeholder words from Candidate A on immigration."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-a/topic-4
+    source_url: https://example.com/sample/candidate-a/immigration
     source_date: "2026-10-15"
     last_checked: "2026-11-06"
-  - topic: topic-5
+  - topic: climate-energy
     status: found
-    summary: "Sample position: Candidate A on topic 5 goes here."
-    quote: "Sample quote: placeholder words from Candidate A on topic 5."
+    summary: "Sample position: Candidate A on climate and energy goes here."
+    quote: "Sample quote: placeholder words from Candidate A on climate and energy."
     quote_lang: en
-    source_url: https://example.com/sample/candidate-a/topic-5
+    source_url: https://example.com/sample/candidate-a/climate-energy
     source_date: "2026-10-15"
     last_checked: "2026-11-06"

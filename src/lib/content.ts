@@ -68,6 +68,8 @@ export async function getPhotoCredits() {
     .sort((a, b) => a.name.localeCompare(b.name, 'en'));
 }
 
+/** True while any country, election or person is still sample data: the sample banner shows on every page until then. */
 export async function siteHasSample(): Promise<boolean> {
-  return (await getCountries()).some((c) => c.sample);
+  const [countries, elections, people] = await Promise.all([getCollection('countries'), getCollection('elections'), getCollection('people')]);
+  return [...countries, ...elections, ...people].some((e) => e.data.sample);
 }
