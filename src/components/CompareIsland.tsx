@@ -1,5 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 import { formatDate } from '../lib/dates';
+import { initials, quoteLabel } from '../lib/display';
 import { hashForTopic, topicFromHash, type CompareCandidate, type CompareLine, type CompareTopic } from '../lib/compare';
 
 interface Props {
@@ -7,6 +8,17 @@ interface Props {
   topics: CompareTopic[];
   /** Already in alphabetical order. */
   candidates: CompareCandidate[];
+}
+
+function Avatar({ name, photo }: { name: string; photo?: string }) {
+  const box = 'h-8 w-8 shrink-0 rounded-full';
+  return photo ? (
+    <img src={`/people/${photo}`} alt={`Portrait of ${name}`} width={32} height={32} loading="lazy" decoding="async" className={`${box} bg-surface object-cover object-top`} />
+  ) : (
+    <span aria-hidden="true" className={`${box} flex items-center justify-center bg-line text-xs font-semibold text-muted`}>
+      {initials(name)}
+    </span>
+  );
 }
 
 function Line({ line }: { line: CompareLine | undefined }) {
@@ -30,7 +42,14 @@ function Line({ line }: { line: CompareLine | undefined }) {
           </svg>
         </summary>
         <div className="pb-2 pt-1">
-          {line.quote && <blockquote className="mb-2 border-l-4 border-line pl-3 italic">{line.quote}</blockquote>}
+          {line.quote && (
+            <figure className="mb-2">
+              <figcaption className="text-sm text-muted">{quoteLabel(line.quote_lang)}</figcaption>
+              <blockquote lang={line.quote_lang} className="border-l-4 border-line pl-3 italic">
+                {line.quote}
+              </blockquote>
+            </figure>
+          )}
           <p className="text-sm text-muted">
             Source:{' '}
             <a href={line.source_url} rel="noopener noreferrer" className="text-accent underline underline-offset-2">
@@ -102,7 +121,8 @@ export default function CompareIsland({ country, topics, candidates }: Props) {
         <ul className="mt-4 divide-y divide-line rounded-xl border border-line">
           {candidates.map((c) => (
             <li key={c.slug} className="p-4">
-              <p className="font-semibold">
+              <p className="flex items-center gap-3 font-semibold">
+                <Avatar name={c.name} photo={c.photo} />
                 <a href={`/${country}/candidates/${c.slug}/`} className="text-ink underline-offset-4 hover:text-accent hover:underline">
                   {c.name}
                 </a>

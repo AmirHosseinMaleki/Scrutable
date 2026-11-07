@@ -119,9 +119,25 @@ export const electionSchema = z
 
 // --- Person ----------------------------------------------------------------
 
+/**
+ * A portrait stored in public/people/ (never hotlinked: no third-party requests, no trackers).
+ * source_url is the file's page (Wikimedia Commons for real people); the licence and author are
+ * shown to readers as credit.
+ */
+export const photoSchema = z.strictObject({
+  file: z.string().regex(/^[a-z0-9][a-z0-9-]*\.(jpg|webp|png|svg)$/, 'Use a lowercase file name in public/people/'),
+  author: z.string().min(1),
+  /** SPDX-style id. Only licences that allow reuse with credit are accepted. */
+  license: z.string().regex(/^(CC0-1\.0|PDM-1\.0|CC-BY-[1-4]\.0|CC-BY-SA-[1-4]\.0)$/, 'Licence must be CC0, public domain mark, CC BY or CC BY-SA'),
+  license_url: z.url({ protocol: /^https?$/ }),
+  ...sourceFields,
+});
+
 export const personSchema = z.strictObject({
   name: z.string().min(1),
   sample: z.boolean().default(false),
+  /** Optional. Without one the site shows a neutral initials avatar. */
+  photo: photoSchema.optional(),
 });
 
 // --- Topic -----------------------------------------------------------------
@@ -145,10 +161,12 @@ const positionFound = z.strictObject({
   topic: slug,
   status: z.literal('found'),
   summary: cardText,
-  /** The candidate's own words, copied exactly from the source. Leave out if there is none. */
+  /** The candidate's own words, copied exactly from the source, in the language of the source. Leave out if there is none. */
   quote: z.string().min(1).optional(),
+  /** Language of the quote (ISO 639-1, e.g. "fr"). Required with a quote. */
+  quote_lang: z.string().regex(/^[a-z]{2}$/, 'Use a two-letter language code such as "fr"').optional(),
   ...sourceFields,
-});
+}).refine((p) => !p.quote || p.quote_lang, { path: ['quote_lang'], message: 'quote_lang is required when a quote is given' });
 const positionGap = z.strictObject({ topic: slug, status: z.literal('not_found'), checked_on: isoDate });
 export const positionSchema = z.discriminatedUnion('status', [positionFound, positionGap]);
 

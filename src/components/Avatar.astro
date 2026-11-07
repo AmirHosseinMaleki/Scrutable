@@ -1,0 +1,32 @@
+---
+import { initials } from '../lib/display';
+
+interface Props {
+  name: string;
+  /** File name in public/people/. Without one, a neutral initials avatar is shown. */
+  photo?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+const { name, photo, size = 'md' } = Astro.props;
+// Same shape, same size, same neutral grey for everyone: no party colours, no preferential treatment.
+const box = { sm: 'h-8 w-8 text-xs', md: 'h-14 w-14 text-base', lg: 'h-24 w-24 text-2xl' }[size];
+const px = { sm: 32, md: 56, lg: 96 }[size];
+---
+
+{
+  photo ? (
+    <img
+      src={`/people/${photo}`}
+      alt={`Portrait of ${name}`}
+      width={px}
+      height={px}
+      loading="lazy"
+      decoding="async"
+      class={`${box} shrink-0 rounded-full bg-surface object-cover object-top`}
+    />
+  ) : (
+    <span aria-hidden="true" class={`${box} flex shrink-0 items-center justify-center rounded-full bg-line font-semibold text-muted`}>
+      {initials(name)}
+    </span>
+  )
+}

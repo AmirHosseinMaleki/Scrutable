@@ -1,6 +1,7 @@
 ---
 import Card from './Card.astro';
 import Badge from './Badge.astro';
+import Avatar from './Avatar.astro';
 import type { Candidate } from '../lib/content';
 
 interface Props {
@@ -12,7 +13,9 @@ const { person, candidacy, slug } = candidate;
 ---
 
 <Card as="li">
-  <div class="relative">
+  <div class="relative flex gap-4">
+    <Avatar name={person.name} photo={person.photo?.file} size="md" />
+    <div class="min-w-0">
     <h2 class="text-lg font-semibold leading-snug">
       <a href={`/${country}/candidates/${slug}/`} class="text-ink no-underline after:absolute after:inset-0 hover:text-accent hover:underline">
         {person.name}
@@ -21,5 +24,6 @@ const { person, candidacy, slug } = candidate;
     <p class="mt-1 text-sm text-muted">{candidacy.profile.party} · {candidacy.profile.family}</p>
     <p class="mt-2">{candidacy.profile.one_line}</p>
     <p class="mt-3"><Badge>{candidacy.status === 'official' ? 'Official candidate' : 'Declared candidate'}</Badge></p>
+    </div>
   </div>
 </Card>

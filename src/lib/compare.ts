@@ -5,6 +5,7 @@ export type CompareLine =
       status: 'found';
       summary: string;
       quote?: string;
+      quote_lang?: string;
       source_url: string;
       source_date: string;
       last_checked: string;
@@ -20,6 +21,8 @@ export interface CompareTopic {
 export interface CompareCandidate {
   slug: string;
   name: string;
+  /** File name in public/people/, if the person has a photo. */
+  photo?: string;
   /** One line per topic slug. */
   lines: Record<string, CompareLine>;
 }

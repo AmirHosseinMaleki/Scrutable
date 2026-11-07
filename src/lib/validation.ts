@@ -31,7 +31,12 @@ const PLACEHOLDER_NAME = /^(candidate [a-z]|sample\b)/i;
 // Parsed data is validated by Zod first; the cross-checks below only run on entries that passed.
 type Parsed = { entry: Entry; data: any };
 
-export function validateContent(content: Loaded, today: string): Issue[] {
+export interface Options {
+  /** Does public/people/<file> exist? Skipped when not given (unit tests). */
+  photoExists?: (file: string) => boolean;
+}
+
+export function validateContent(content: Loaded, today: string, options: Options = {}): Issue[] {
   const issues: Issue[] = [];
   const add = (level: Issue['level'], file: string, message: string) => issues.push({ level, file, message });
 
@@ -108,6 +113,14 @@ export function validateContent(content: Loaded, today: string): Issue[] {
 
   for (const { entry, data } of ok.people) {
     if (!data.sample && PLACEHOLDER_NAME.test(data.name)) add('error', entry.file, `"${data.name}" looks like a placeholder name but is not marked sample: true`);
+    if (data.photo) {
+      const { file, source_url } = data.photo as { file: string; source_url: string };
+      if (options.photoExists && !options.photoExists(file)) add('error', entry.file, `photo.file "${file}" is not in public/people/`);
+      if (!data.sample) {
+        if (new URL(source_url).hostname !== 'commons.wikimedia.org') add('error', entry.file, 'photo.source_url must be the file page on commons.wikimedia.org');
+        if (file.endsWith('.svg')) add('error', entry.file, 'photo.file must be a photograph (jpg, webp or png), not an svg');
+      }
+    }
   }
 
   for (const { entry, data } of ok.topics) {
