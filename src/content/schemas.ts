@@ -71,7 +71,8 @@ const resultLine = z.strictObject({
   name: z.string().min(1),
   /** Slug of a person entry, when that person also appears elsewhere on the site. */
   person: slug.optional(),
-  family: z.string().min(1),
+  /** Political family. Optional: only given when a reachable, citable source states it. */
+  family: z.string().min(1).optional(),
   /** Percentage of valid votes, 0–100. */
   share: z.number().min(0).max(100),
 });
@@ -81,6 +82,8 @@ const round = z.strictObject({
   date: isoDate,
   /** Turnout percentage, 0–100. */
   turnout: z.number().min(0).max(100),
+  /** Number of candidates on the ballot in this round, when the source states it. */
+  candidates: z.number().int().min(2).optional(),
   results: z.array(resultLine).min(1),
   ...sourceFields,
 });
@@ -103,9 +106,14 @@ export const electionSchema = z
     key_dates: z.array(keyDate).default([]),
     /** Past elections: results per round. */
     rounds: z.array(round).default([]),
-    winner: z.strictObject({ name: z.string().min(1), person: slug.optional(), family: z.string().min(1) }).optional(),
-    /** One line on what defined the term (a crisis, a major reform), with a source. */
-    defining_event: z.strictObject({ text: oneSentence, ...sourceFields }).optional(),
+    winner: z.strictObject({ name: z.string().min(1), person: slug.optional(), family: z.string().min(1).optional() }).optional(),
+    /** One line on what defined the term (a crisis, a major reform), with a source, or an explicit gap. */
+    defining_event: z
+      .discriminatedUnion('status', [
+        z.strictObject({ status: z.literal('found'), text: oneSentence, ...sourceFields }),
+        z.strictObject({ status: z.literal('not_found'), checked_on: isoDate }),
+      ])
+      .optional(),
   })
   .superRefine((e, ctx) => {
     if (e.status === 'past') {
@@ -189,13 +197,14 @@ export const candidacySchema = z.strictObject({
   sample: z.boolean().default(false),
   /** declared and official are shown on the site; withdrawn is kept in the data only. */
   status: z.enum(['declared', 'official', 'withdrawn']),
+  /** Required for candidates in an upcoming election; past winners only need their promises. */
   profile: z.strictObject({
     party: z.string().min(1),
     family: z.string().min(1),
     one_line: cardText,
     background: z.string().min(1),
     ...sourceFields,
-  }),
+  }).optional(),
   positions: z.array(positionSchema).default([]),
   /** Past winners only: the 3 headline promises. */
   promises: z.array(promiseSchema).default([]),

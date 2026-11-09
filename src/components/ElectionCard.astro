@@ -28,7 +28,7 @@ const year = election.date.slice(0, 4);
     {election.sample && <Badge>Sample</Badge>}
   </div>
   <p class="mt-1">
-    Winner: {election.winner?.name} ({election.winner?.family}).
+    Winner: {election.winner?.name}{election.winner?.family && ` (${election.winner.family})`}.
     {firstRound && ` Turnout in round 1: ${firstRound.turnout}%.`}
   </p>
 
@@ -44,7 +44,7 @@ const year = election.date.slice(0, 4);
               <thead class="text-muted">
                 <tr>
                   <th scope="col" class="py-1 pr-3 font-medium">Candidate</th>
-                  <th scope="col" class="py-1 pr-3 font-medium">Political family</th>
+                  {r.results.some((l) => l.family) && <th scope="col" class="py-1 pr-3 font-medium">Political family</th>}
                   <th scope="col" class="py-1 text-right font-medium">Share</th>
                 </tr>
               </thead>
@@ -58,7 +58,7 @@ const year = election.date.slice(0, 4);
                         line.name
                       )}
                     </th>
-                    <td class="py-1.5 pr-3">{line.family}</td>
+                    {r.results.some((l) => l.family) && <td class="py-1.5 pr-3">{line.family}</td>}
                     <td class="py-1.5 text-right tabular-nums">{line.share}%</td>
                   </tr>
                 ))}
@@ -73,8 +73,16 @@ const year = election.date.slice(0, 4);
         election.defining_event && (
           <div>
             <h3 class="font-semibold">What defined the term</h3>
-            <p>{election.defining_event.text}</p>
-            <SourceLink source_url={election.defining_event.source_url} source_date={election.defining_event.source_date} last_checked={election.defining_event.last_checked} />
+            {election.defining_event.status === 'found' ? (
+              <>
+                <p>{election.defining_event.text}</p>
+                <SourceLink source_url={election.defining_event.source_url} source_date={election.defining_event.source_date} last_checked={election.defining_event.last_checked} />
+              </>
+            ) : (
+              <p class="text-muted">
+                Not added as of <time datetime={election.defining_event.checked_on}>{formatDate(election.defining_event.checked_on)}</time>.
+              </p>
+            )}
           </div>
         )
       }
@@ -83,7 +91,12 @@ const year = election.date.slice(0, 4);
         winner && (
           <div>
             <h3 class="font-semibold">Headline promises of the winner</h3>
-            <ol class="mt-2 space-y-4">
+            {winner.promises.every((p) => p.status === 'not_found') ? (
+              <p class="mt-2 text-muted">
+                No headline promises found as of <time datetime={winner.promises[0]?.status === 'not_found' ? winner.promises[0].checked_on : undefined}>{winner.promises[0]?.status === 'not_found' ? formatDate(winner.promises[0].checked_on) : ''}</time>.
+              </p>
+            ) : (
+              <ol class="mt-2 space-y-4">
               {winner.promises.map((p) =>
                 p.status === 'found' ? (
                   <li>
@@ -100,7 +113,8 @@ const year = election.date.slice(0, 4);
                   </li>
                 ),
               )}
-            </ol>
+              </ol>
+            )}
           </div>
         )
       }

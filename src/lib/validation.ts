@@ -176,6 +176,7 @@ export function validateContent(content: Loaded, today: string, options: Options
     const positionTopics = (data.positions as { topic: string }[]).map((p) => p.topic);
 
     if (election.data.status === 'upcoming') {
+      if (!data.profile) add('error', entry.file, 'candidates in an upcoming election need a profile (party, family, one_line, background, source)');
       // Same template for everyone: exactly one position (or explicit gap) per topic.
       for (const t of positionTopics) if (!slugs.includes(t)) add('error', entry.file, `position topic "${t}" does not exist for ${election.data.country}`);
       for (const t of slugs) {
@@ -185,6 +186,7 @@ export function validateContent(content: Loaded, today: string, options: Options
       if (data.promises.length > 0) add('error', entry.file, 'promises belong to past winners only');
     } else {
       if (data.positions.length > 0) add('error', entry.file, 'past candidacies hold promises, not positions');
+      if (data.profile) add('error', entry.file, 'past candidacies hold promises only; leave out the profile');
       const isWinner = election.data.winner?.person === data.person;
       if (!isWinner) add('error', entry.file, 'only the winner of a past election has a candidacy file (with promises)');
       if (isWinner && data.promises.length !== PROMISES_PER_WINNER) {

@@ -1,0 +1,43 @@
+# Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+country: fr
+kind: presidential
+name: "French presidential election 2007"
+status: past
+sample: false
+date: "2007-04-22"
+rounds:
+  - round: 1
+    date: "2007-04-22"
+    turnout: 83.77
+    candidates: 12
+    results:
+      - name: "Nicolas Sarkozy"
+        person: nicolas-sarkozy
+        share: 31.18
+      - name: "Ségolène Royal"
+        share: 25.87
+      - name: "François Bayrou"
+        share: 18.57
+      - name: "Jean-Marie Le Pen"
+        share: 10.44
+    source_url: https://www.conseil-constitutionnel.fr/decision/2007/2007139PDR.htm
+    source_date: "2007-04-25"
+    last_checked: "2026-11-07"
+  - round: 2
+    date: "2007-05-06"
+    turnout: 83.97
+    results:
+      - name: "Nicolas Sarkozy"
+        person: nicolas-sarkozy
+        share: 53.06
+      - name: "Ségolène Royal"
+        share: 46.94
+    source_url: https://www.conseil-constitutionnel.fr/decision/2007/2007141pdr.htm
+    source_date: "2007-05-10"
+    last_checked: "2026-11-07"
+winner:
+  name: "Nicolas Sarkozy"
+  person: nicolas-sarkozy
+defining_event:
+  status: not_found
+  checked_on: "2026-11-07"

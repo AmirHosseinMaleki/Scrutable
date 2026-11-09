@@ -1,0 +1,41 @@
+# Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+country: fr
+kind: presidential
+name: "French presidential election 2002"
+status: past
+sample: false
+date: "2002-04-21"
+rounds:
+  - round: 1
+    date: "2002-04-21"
+    turnout: 71.6
+    candidates: 16
+    results:
+      - name: "Jacques Chirac"
+        person: jacques-chirac
+        share: 19.88
+      - name: "Jean-Marie Le Pen"
+        share: 16.86
+      - name: "Lionel Jospin"
+        share: 16.18
+    source_url: https://www.conseil-constitutionnel.fr/election-presidentielle-2002/resultats-du-1er-tour
+    source_date: "2002-04-24"
+    last_checked: "2026-11-07"
+  - round: 2
+    date: "2002-05-05"
+    turnout: 79.71
+    results:
+      - name: "Jacques Chirac"
+        person: jacques-chirac
+        share: 82.21
+      - name: "Jean-Marie Le Pen"
+        share: 17.79
+    source_url: https://www.conseil-constitutionnel.fr/decision/2002/2002111PDR.htm
+    source_date: "2002-05-08"
+    last_checked: "2026-11-07"
+winner:
+  name: "Jacques Chirac"
+  person: jacques-chirac
+defining_event:
+  status: not_found
+  checked_on: "2026-11-07"

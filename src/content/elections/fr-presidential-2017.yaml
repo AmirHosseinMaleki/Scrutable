@@ -1,0 +1,43 @@
+# Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+country: fr
+kind: presidential
+name: "French presidential election 2017"
+status: past
+sample: false
+date: "2017-04-23"
+rounds:
+  - round: 1
+    date: "2017-04-23"
+    turnout: 77.77
+    candidates: 11
+    results:
+      - name: "Emmanuel Macron"
+        person: emmanuel-macron
+        share: 24.01
+      - name: "Marine Le Pen"
+        share: 21.3
+      - name: "François Fillon"
+        share: 20.01
+      - name: "Jean-Luc Mélenchon"
+        share: 19.58
+    source_url: https://www.conseil-constitutionnel.fr/decision/2017/2017169PDR.htm
+    source_date: "2017-04-26"
+    last_checked: "2026-11-07"
+  - round: 2
+    date: "2017-05-07"
+    turnout: 74.56
+    results:
+      - name: "Emmanuel Macron"
+        person: emmanuel-macron
+        share: 66.1
+      - name: "Marine Le Pen"
+        share: 33.9
+    source_url: https://www.conseil-constitutionnel.fr/decision/2017/2017171PDR.htm
+    source_date: "2017-05-10"
+    last_checked: "2026-11-07"
+winner:
+  name: "Emmanuel Macron"
+  person: emmanuel-macron
+defining_event:
+  status: not_found
+  checked_on: "2026-11-07"

@@ -6,7 +6,7 @@ import { oldestChecked } from './sources';
 export interface Candidate {
   slug: string;
   person: Person;
-  candidacy: Candidacy;
+  candidacy: Candidacy & { profile: NonNullable<Candidacy['profile']> };
 }
 
 export async function getCountries() {
@@ -44,7 +44,11 @@ export async function getCandidates(electionSlug: string): Promise<Candidate[]> 
   const byId = new Map(people.map((p) => [p.id, p.data]));
   return candidacies
     .filter((c) => c.data.election === electionSlug && c.data.status !== 'withdrawn')
-    .map((c) => ({ slug: c.data.person, person: byId.get(c.data.person)!, candidacy: c.data }))
+    .map((c) => {
+      // validate:content already enforces this; the check keeps the types honest.
+      if (!c.data.profile) throw new Error(`Candidacy ${c.id} has no profile`);
+      return { slug: c.data.person, person: byId.get(c.data.person)!, candidacy: { ...c.data, profile: c.data.profile } };
+    })
     .sort((a, b) => a.person.name.localeCompare(b.person.name, 'en'));
 }
 

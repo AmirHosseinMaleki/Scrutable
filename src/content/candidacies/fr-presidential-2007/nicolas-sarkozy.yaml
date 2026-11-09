@@ -1,0 +1,11 @@
+election: fr-presidential-2007
+person: nicolas-sarkozy
+sample: false
+status: official
+promises:
+  - status: not_found
+    checked_on: "2026-11-07"
+  - status: not_found
+    checked_on: "2026-11-07"
+  - status: not_found
+    checked_on: "2026-11-07"

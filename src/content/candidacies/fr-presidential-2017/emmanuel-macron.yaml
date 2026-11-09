@@ -1,0 +1,26 @@
+election: fr-presidential-2017
+person: emmanuel-macron
+sample: false
+status: official
+promises:
+  - status: found
+    text: "Increase employees' purchasing power."
+    outcome: kept
+    rated_by: "LCP (Assemblée nationale)"
+    source_url: https://lcp.fr/actualites/2017-2022-le-president-a-t-il-tenu-les-engagements-du-candidat-106435
+    source_date: "2022-03-16"
+    last_checked: "2026-11-07"
+  - status: found
+    text: "Open unemployment benefits to people who resign and to the self-employed."
+    outcome: partly_kept
+    rated_by: "LCP (Assemblée nationale)"
+    source_url: https://lcp.fr/actualites/2017-2022-le-president-a-t-il-tenu-les-engagements-du-candidat-106435
+    source_date: "2022-03-16"
+    last_checked: "2026-11-07"
+  - status: found
+    text: "Create a universal pension system."
+    outcome: broken
+    rated_by: "LCP (Assemblée nationale)"
+    source_url: https://lcp.fr/actualites/2017-2022-le-president-a-t-il-tenu-les-engagements-du-candidat-106435
+    source_date: "2022-03-16"
+    last_checked: "2026-11-07"
