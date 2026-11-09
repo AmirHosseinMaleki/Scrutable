@@ -9,6 +9,7 @@ export type CompareLine =
       source_url: string;
       source_date: string;
       last_checked: string;
+      source_date_is_retrieval?: boolean;
     }
   | { status: 'not_found'; checked_on: string };
 

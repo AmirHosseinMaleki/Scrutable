@@ -9,6 +9,7 @@ interface Step {
   source_url: string;
   source_date: string;
   last_checked: string;
+  source_date_is_retrieval?: boolean;
 }
 const { steps } = Astro.props as { steps: Step[] };
 ---
@@ -35,7 +36,7 @@ const { steps } = Astro.props as { steps: Step[] };
           <li>
             <p class="font-medium">{s.title}</p>
             {s.detail && <p>{s.detail}</p>}
-            <SourceLink source_url={s.source_url} source_date={s.source_date} last_checked={s.last_checked} />
+            <SourceLink source_url={s.source_url} source_date={s.source_date} last_checked={s.last_checked} source_date_is_retrieval={s.source_date_is_retrieval} />
           </li>
         ))
       }

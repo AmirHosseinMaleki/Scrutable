@@ -10,6 +10,7 @@ interface Props {
   source_url: string;
   source_date: string;
   last_checked: string;
+  source_date_is_retrieval?: boolean;
   level?: 2 | 3;
 }
 const { title, summary, detail, level = 3, ...source } = Astro.props;

@@ -1,8 +1,10 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import CandidateCard from '../../../components/CandidateCard.astro';
+import SourceLink from '../../../components/SourceLink.astro';
+import { formatDate } from '../../../lib/dates';
 import { oldestChecked } from '../../../lib/sources';
-import { getCandidates, getCountries, getUpcomingElection } from '../../../lib/content';
+import { getAlsoDeclared, getCandidates, getCountries, getUpcomingElection } from '../../../lib/content';
 
 export async function getStaticPaths() {
   return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
@@ -11,12 +13,58 @@ export async function getStaticPaths() {
 const slug = Astro.params.country!;
 const election = await getUpcomingElection(slug);
 const candidates = await getCandidates(election.slug);
+const also = getAlsoDeclared(election);
+const intro = [
+  `${candidates.length} ${candidates.length === 1 ? 'candidate has' : 'candidates have'} a page so far, in alphabetical order by surname.`,
+  also.length > 0 ? `${also.length} more ${also.length === 1 ? 'has' : 'have'} declared and ${also.length === 1 ? 'is' : 'are'} listed below.` : '',
+  'The order says nothing about who is ahead.',
+]
+  .filter(Boolean)
+  .join(' ');
 ---
 
-<Base title="Candidates" country={slug} lastChecked={oldestChecked(...candidates.map((c) => c.candidacy))}>
+<Base title="Candidates" country={slug} lastChecked={oldestChecked(...candidates.map((c) => c.candidacy), election.also_declared)}>
   <h1 class="text-3xl font-semibold tracking-tight">Candidates</h1>
-  <p class="mt-3 max-w-prose text-muted">Everyone who has declared or is official, in alphabetical order. The order says nothing about who is ahead.</p>
+  <p class="mt-3 max-w-prose text-muted">{intro}</p>
   <ul class="mt-8 grid gap-4 sm:grid-cols-2">
     {candidates.map((c) => <CandidateCard candidate={c} country={slug} />)}
   </ul>
+
+  {
+    also.length > 0 && (
+      <section class="mt-14" aria-labelledby="also-heading">
+        <h2 id="also-heading" class="text-2xl font-semibold">Declared, not yet covered</h2>
+        <p class="mt-2 max-w-prose text-muted">
+          At least two established outlets report that these candidates have declared. We have not yet added their profiles or positions.
+        </p>
+        <ul class="mt-4 divide-y divide-line rounded-xl border border-line">
+          {also.map((a) => (
+            <li class="p-4">
+              <p class="font-semibold">
+                {a.name}
+                {a.party && <span class="font-normal text-muted"> · {a.party}</span>}
+              </p>
+              <p class="mt-1 text-sm text-muted">
+                Reported by{' '}
+                {a.sources.map((s, i) => (
+                  <>
+                    {i > 0 && ', '}
+                    <a href={s.source_url} rel="noopener noreferrer" class="text-accent underline underline-offset-2">{s.outlet}</a>{' '}
+                    (<time datetime={s.source_date}>{formatDate(s.source_date)}</time>)
+                  </>
+                ))}
+                .
+              </p>
+              {a.note && (
+                <div class="mt-2">
+                  <p class="text-sm">{a.note.text}</p>
+                  <SourceLink source_url={a.note.source_url} source_date={a.note.source_date} last_checked={a.note.last_checked} source_date_is_retrieval={a.note.source_date_is_retrieval} />
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 </Base>

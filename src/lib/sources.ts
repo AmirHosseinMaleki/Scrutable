@@ -10,6 +10,7 @@ export interface Fact {
   last_checked?: unknown;
   /** Set for explicit gaps ("not_found") that only record the date we looked. */
   checked_on?: unknown;
+  source_date_is_retrieval?: unknown;
 }
 
 const SOURCE_KEYS = ['source_url', 'source_date', 'last_checked'] as const;
@@ -28,6 +29,7 @@ export function collectFacts(data: unknown, path = ''): Fact[] {
         source_date: obj.source_date,
         last_checked: obj.last_checked,
         checked_on: obj.checked_on,
+        source_date_is_retrieval: obj.source_date_is_retrieval,
       });
     }
     for (const [k, v] of Object.entries(obj)) facts.push(...collectFacts(v, path ? `${path}.${k}` : k));

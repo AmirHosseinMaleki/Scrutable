@@ -36,7 +36,7 @@ const runs = earlierRuns(candidate.slug, await getElections(country));
     <div>
       <h1 class="text-3xl font-semibold tracking-tight">{person.name}</h1>
       <p class="mt-2 flex flex-wrap items-center gap-2 text-muted">
-        <span>{candidacy.profile.party} · {candidacy.profile.family}</span>
+        <span>{[candidacy.profile.party, candidacy.profile.family].filter(Boolean).join(' · ')}</span>
         <Badge>{candidacy.status === 'official' ? 'Official candidate' : 'Declared candidate'}</Badge>
       </p>
     </div>
@@ -44,9 +44,26 @@ const runs = earlierRuns(candidate.slug, await getElections(country));
   {person.photo && <div class="mt-2"><PhotoCredit photo={person.photo} /></div>}
   <p class="mt-4 text-lg">{candidacy.profile.one_line}</p>
 
+  {
+    candidacy.declaration && (
+      <div class="mt-4">
+        <p>Declared on <time datetime={candidacy.declaration.date}>{formatDate(candidacy.declaration.date)}</time>.</p>
+        <Expandable label="Declaration and sources">
+          <figure class="mb-2">
+            <figcaption class="text-sm text-muted">{quoteLabel(candidacy.declaration.own.quote_lang)}, on their own page</figcaption>
+            <blockquote lang={candidacy.declaration.own.quote_lang} class="border-l-4 border-line pl-3 italic">{candidacy.declaration.own.quote}</blockquote>
+          </figure>
+          <SourceLink source_url={candidacy.declaration.own.source_url} source_date={candidacy.declaration.own.source_date} last_checked={candidacy.declaration.own.last_checked} source_date_is_retrieval={candidacy.declaration.own.source_date_is_retrieval} />
+          <p class="mt-2 text-sm text-muted">Reported by {candidacy.declaration.news.outlet}:</p>
+          <SourceLink source_url={candidacy.declaration.news.source_url} source_date={candidacy.declaration.news.source_date} last_checked={candidacy.declaration.news.last_checked} source_date_is_retrieval={candidacy.declaration.news.source_date_is_retrieval} />
+        </Expandable>
+      </div>
+    )
+  }
+
   <Expandable label="Background and source">
     <p class="mb-2">{candidacy.profile.background}</p>
-    <SourceLink source_url={candidacy.profile.source_url} source_date={candidacy.profile.source_date} last_checked={candidacy.profile.last_checked} />
+    <SourceLink source_url={candidacy.profile.source_url} source_date={candidacy.profile.source_date} last_checked={candidacy.profile.last_checked} source_date_is_retrieval={candidacy.profile.source_date_is_retrieval} />
   </Expandable>
 
   <section class="mt-10" aria-labelledby="positions-heading">
@@ -69,7 +86,7 @@ const runs = earlierRuns(candidate.slug, await getElections(country));
                         <blockquote lang={p.quote_lang} class="border-l-4 border-line pl-3 italic">{p.quote}</blockquote>
                       </figure>
                     )}
-                    <SourceLink source_url={p.source_url} source_date={p.source_date} last_checked={p.last_checked} />
+                    <SourceLink source_url={p.source_url} source_date={p.source_date} last_checked={p.last_checked} source_date_is_retrieval={p.source_date_is_retrieval} />
                   </Expandable>
                 </>
               ) : (

@@ -21,3 +21,35 @@ key_dates:
     source_url: https://www.service-public.gouv.fr/particuliers/actualites/A15053
     source_date: "2026-07-02"
     last_checked: "2026-11-07"
+also_declared:
+  - name: "Sample Declared E"
+    sort_name: "Declared Sample E"
+    party: "Sample Party E"
+    sample: true
+    sources:
+      - outlet: "Sample Outlet"
+        source_url: https://example.com/sample/declared-e
+        source_date: "2026-10-14"
+        last_checked: "2026-11-06"
+      - outlet: "Sample Wire"
+        source_url: https://example.org/sample/declared-e
+        source_date: "2026-11-02"
+        last_checked: "2026-11-06"
+  - name: "Sample Declared F"
+    sort_name: "Declared Sample F"
+    party: "Sample Party F"
+    sample: true
+    sources:
+      - outlet: "Sample Outlet"
+        source_url: https://example.com/sample/declared-f
+        source_date: "2026-09-30"
+        last_checked: "2026-11-06"
+      - outlet: "Sample Wire"
+        source_url: https://example.org/sample/declared-f
+        source_date: "2026-10-01"
+        last_checked: "2026-11-06"
+    note:
+      text: "Sample note: a pending ruling may affect this candidacy."
+      source_url: https://example.com/sample/declared-f-note
+      source_date: "2026-10-20"
+      last_checked: "2026-11-06"

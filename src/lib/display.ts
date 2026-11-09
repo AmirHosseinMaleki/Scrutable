@@ -8,6 +8,11 @@ export function initials(name: string): string {
   return picked.join('').toUpperCase();
 }
 
+/** Alphabetical order by surname (sort_name), falling back to the display name. French collation handles accents. */
+export function compareBySortName(a: { name: string; sort_name?: string }, b: { name: string; sort_name?: string }): number {
+  return new Intl.Collator('fr', { sensitivity: 'base' }).compare(a.sort_name ?? a.name, b.sort_name ?? b.name);
+}
+
 /** "CC-BY-SA-4.0" → "CC BY-SA 4.0"; "CC0-1.0" → "CC0 1.0"; "PDM-1.0" → "Public Domain Mark 1.0". */
 export function licenseLabel(id: string): string {
   if (id.startsWith('PDM-')) return `Public Domain Mark ${id.slice(4)}`;

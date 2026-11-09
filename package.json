@@ -14,6 +14,7 @@
     "check": "astro check && tsc --noEmit",
     "test": "vitest run",
     "validate:content": "tsx scripts/validate-content.ts",
+    "verify:quotes": "tsx scripts/verify-quotes.ts",
     "lighthouse": "tsx scripts/lighthouse.ts"
   },
   "dependencies": {

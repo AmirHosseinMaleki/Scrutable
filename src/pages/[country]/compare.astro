@@ -4,7 +4,7 @@ import CompareIsland from '../../components/CompareIsland.tsx';
 import CompareStatic from '../../components/CompareStatic.astro';
 import type { CompareCandidate, CompareLine, CompareTopic } from '../../lib/compare';
 import { oldestChecked } from '../../lib/sources';
-import { getCandidates, getCountries, getTopics, getUpcomingElection } from '../../lib/content';
+import { getAlsoDeclared, getCandidates, getCountries, getTopics, getUpcomingElection } from '../../lib/content';
 
 export async function getStaticPaths() {
   return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
@@ -13,6 +13,13 @@ export async function getStaticPaths() {
 const slug = Astro.params.country!;
 const election = await getUpcomingElection(slug);
 const people = await getCandidates(election.slug);
+const alsoCount = getAlsoDeclared(election).length;
+const compareIntro = [
+  'Pick a topic to see one line per candidate. Candidates are in alphabetical order by surname.',
+  alsoCount > 0 ? `${people.length} of ${people.length + alsoCount} declared candidates are covered here; the rest are listed on the Candidates page.` : '',
+]
+  .filter(Boolean)
+  .join(' ');
 const topics: CompareTopic[] = (await getTopics(slug)).map((t) => ({ slug: t.slug, name: t.name, description: t.description }));
 
 // Plain, serialisable data for the island. Candidates are already in alphabetical order.
@@ -24,7 +31,7 @@ const candidates: CompareCandidate[] = people.map((c) => ({
     c.candidacy.positions.map((p): [string, CompareLine] => [
       p.topic,
       p.status === 'found'
-        ? { status: 'found', summary: p.summary, quote: p.quote, quote_lang: p.quote_lang, source_url: p.source_url, source_date: p.source_date, last_checked: p.last_checked }
+        ? { status: 'found', summary: p.summary, quote: p.quote, quote_lang: p.quote_lang, source_url: p.source_url, source_date: p.source_date, last_checked: p.last_checked, source_date_is_retrieval: p.source_date_is_retrieval }
         : { status: 'not_found', checked_on: p.checked_on },
     ]),
   ),
@@ -33,7 +40,7 @@ const candidates: CompareCandidate[] = people.map((c) => ({
 
 <Base title="Compare" country={slug} lastChecked={oldestChecked(...people.map((c) => c.candidacy))}>
   <h1 class="text-3xl font-semibold tracking-tight">Compare</h1>
-  <p class="mt-3 max-w-prose text-muted">Pick a topic to see one line per candidate. Candidates are in alphabetical order.</p>
+  <p class="mt-3 max-w-prose text-muted">{compareIntro}</p>
 
   <CompareIsland client:load country={slug} topics={topics} candidates={candidates} />
   <noscript><CompareStatic country={slug} topics={topics} candidates={candidates} /></noscript>

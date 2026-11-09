@@ -21,7 +21,7 @@ const { person, candidacy, slug } = candidate;
         {person.name}
       </a>
     </h2>
-    <p class="mt-1 text-sm text-muted">{candidacy.profile.party} · {candidacy.profile.family}</p>
+    <p class="mt-1 text-sm text-muted">{[candidacy.profile.party, candidacy.profile.family].filter(Boolean).join(' · ')}</p>
     <p class="mt-2">{candidacy.profile.one_line}</p>
     <p class="mt-3"><Badge>{candidacy.status === 'official' ? 'Official candidate' : 'Declared candidate'}</Badge></p>
     </div>
