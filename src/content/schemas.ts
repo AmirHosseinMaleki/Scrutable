@@ -40,8 +40,11 @@ const oneSentence = z
 /** The three fields every fact carries. */
 export const sourceFields = {
   source_url: z.url({ protocol: /^https?$/ }),
+  /** The most recent date the page prints for its content (published, updated or verified). */
   source_date: isoDate,
   last_checked: isoDate,
+  /** True when the page prints no date: source_date is then the date we read it, and must equal last_checked. */
+  source_date_is_retrieval: z.boolean().optional(),
 };
 
 // --- Country ---------------------------------------------------------------
@@ -94,6 +97,23 @@ const keyDate = z.strictObject({
   ...sourceFields,
 });
 
+/**
+ * A candidate who has declared but has no page of their own yet. Listed (alphabetically) so the Candidates
+ * page does not look like the whole field. Needs two established outlets that both report the declaration.
+ */
+const alsoDeclared = z.strictObject({
+  name: z.string().min(1),
+  /** Surname first, for alphabetical order. */
+  sort_name: z.string().min(1),
+  party: z.string().min(1).optional(),
+  sample: z.boolean().default(false),
+  sources: z
+    .array(z.strictObject({ outlet: z.string().min(1), ...sourceFields }))
+    .min(2, 'Two established outlets are needed to list someone as declared'),
+  /** Optional neutral note with its own source, e.g. a pending legal ruling that affects the candidacy. */
+  note: z.strictObject({ text: cardText, ...sourceFields }).optional(),
+});
+
 export const electionSchema = z
   .strictObject({
     country: slug,
@@ -104,6 +124,8 @@ export const electionSchema = z
     date: isoDate,
     /** Upcoming elections: dates readers need (register, round 1, round 2). */
     key_dates: z.array(keyDate).default([]),
+    /** Upcoming elections: declared candidates who do not have a page yet. */
+    also_declared: z.array(alsoDeclared).default([]),
     /** Past elections: results per round. */
     rounds: z.array(round).default([]),
     winner: z.strictObject({ name: z.string().min(1), person: slug.optional(), family: z.string().min(1).optional() }).optional(),
@@ -138,11 +160,15 @@ export const photoSchema = z.strictObject({
   /** SPDX-style id. Only licences that allow reuse with credit are accepted. */
   license: z.string().regex(/^(CC0-1\.0|PDM-1\.0|CC-BY-[1-4]\.0|CC-BY-SA-[1-4]\.0)$/, 'Licence must be CC0, public domain mark, CC BY or CC BY-SA'),
   license_url: z.url({ protocol: /^https?$/ }),
+  /** Year the photo was taken, shown in the credit so readers can see how old it is. */
+  taken_year: z.number().int().min(1900).max(2100).optional(),
   ...sourceFields,
 });
 
 export const personSchema = z.strictObject({
   name: z.string().min(1),
+  /** Surname first, e.g. "Mélenchon Jean-Luc": lists are sorted by it. Required for real people. */
+  sort_name: z.string().min(1).optional(),
   sample: z.boolean().default(false),
   /** Optional. Without one the site shows a neutral initials avatar. */
   photo: photoSchema.optional(),
@@ -197,10 +223,23 @@ export const candidacySchema = z.strictObject({
   sample: z.boolean().default(false),
   /** declared and official are shown on the site; withdrawn is kept in the data only. */
   status: z.enum(['declared', 'official', 'withdrawn']),
+  /**
+   * How the candidacy was declared: the candidate's own words on their own page (verbatim, in the language of the
+   * page) and one established news source. Required for real candidates in an upcoming election.
+   */
+  declaration: z
+    .strictObject({
+      /** Date of the declaration (ISO). */
+      date: isoDate,
+      own: z.strictObject({ quote: z.string().min(1), quote_lang: z.string().regex(/^[a-z]{2}$/), ...sourceFields }),
+      news: z.strictObject({ outlet: z.string().min(1), ...sourceFields }),
+    })
+    .optional(),
   /** Required for candidates in an upcoming election; past winners only need their promises. */
   profile: z.strictObject({
     party: z.string().min(1),
-    family: z.string().min(1),
+    /** Political family. Optional: only given when the candidate's or party's own page states its own label. */
+    family: z.string().min(1).optional(),
     one_line: cardText,
     background: z.string().min(1),
     ...sourceFields,
@@ -226,6 +265,7 @@ export type Election = z.infer<typeof electionSchema>;
 export type Person = z.infer<typeof personSchema>;
 export type Topic = z.infer<typeof topicSchema>;
 export type Candidacy = z.infer<typeof candidacySchema>;
+export type AlsoDeclared = z.infer<typeof alsoDeclared>;
 export type Position = z.infer<typeof positionSchema>;
 export type Promise_ = z.infer<typeof promiseSchema>;
 export type PromiseOutcome = z.infer<typeof promiseOutcome>;

@@ -64,6 +64,11 @@ export function validateContent(content: Loaded, today: string, options: Options
   for (const name of Object.keys(collections) as CollectionName[]) {
     for (const { entry, data } of ok[name]) {
       const isSample = Boolean(data.sample);
+      // Entries in an election's also_declared list carry their own sample flag.
+      const itemSample = (path: string) => {
+        const m = path.match(/^also_declared\.(\d+)\./);
+        return m ? Boolean(data.also_declared?.[Number(m[1])]?.sample) : false;
+      };
       let stalest: { date: string; age: number } | undefined;
       let stale = 0;
       for (const f of collectFacts(data)) {
@@ -71,11 +76,12 @@ export function validateContent(content: Loaded, today: string, options: Options
         if (f.source_url !== undefined) {
           const host = new URL(String(f.source_url)).hostname;
           const placeholder = PLACEHOLDER_HOSTS.some((h) => host === h || host.endsWith(`.${h}`));
-          if (placeholder && !isSample) add('error', entry.file, `${where}: placeholder source (${host}) on content that is not marked sample: true`);
+          if (placeholder && !isSample && !itemSample(f.path)) add('error', entry.file, `${where}: placeholder source (${host}) on content that is not marked sample: true`);
         }
         const sd = typeof f.source_date === 'string' ? f.source_date : undefined;
         const lc = typeof f.last_checked === 'string' ? f.last_checked : undefined;
         const checked = lc ?? (typeof f.checked_on === 'string' ? f.checked_on : undefined);
+        if (f.source_date_is_retrieval && sd !== lc) add('error', entry.file, `${where}: source_date_is_retrieval needs source_date equal to last_checked (the day the page was read)`);
         if (sd && sd > today) add('error', entry.file, `${where}: source_date ${sd} is in the future`);
         if (checked && checked > today) add('error', entry.file, `${where}: last_checked ${checked} is in the future`);
         if (sd && lc && lc < sd) add('error', entry.file, `${where}: last_checked ${lc} is before source_date ${sd}`);
@@ -113,6 +119,7 @@ export function validateContent(content: Loaded, today: string, options: Options
 
   for (const { entry, data } of ok.people) {
     if (!data.sample && PLACEHOLDER_NAME.test(data.name)) add('error', entry.file, `"${data.name}" looks like a placeholder name but is not marked sample: true`);
+    if (!data.sample && !data.sort_name) add('error', entry.file, 'sort_name (surname first) is required so lists can be alphabetical by surname');
     if (data.photo) {
       const { file, source_url } = data.photo as { file: string; source_url: string };
       if (options.photoExists && !options.photoExists(file)) add('error', entry.file, `photo.file "${file}" is not in public/people/`);
@@ -131,6 +138,15 @@ export function validateContent(content: Loaded, today: string, options: Options
   const upcomingPerCountry = new Map<string, number>();
   for (const { entry, data } of ok.elections) {
     if (!countries.has(data.country)) add('error', entry.file, `country "${data.country}" does not exist`);
+    if (data.status !== 'upcoming' && data.also_declared.length > 0) add('error', entry.file, 'also_declared belongs to an upcoming election only');
+    const seenSort = new Set<string>();
+    for (const a of data.also_declared as { name: string; sort_name: string; sources: { outlet: string; source_url: string }[] }[]) {
+      if (seenSort.has(a.sort_name.toLowerCase())) add('error', entry.file, `also_declared: "${a.name}" appears twice`);
+      seenSort.add(a.sort_name.toLowerCase());
+      const outlets = new Set(a.sources.map((s) => s.outlet.toLowerCase()));
+      const hosts = new Set(a.sources.map((s) => new URL(s.source_url).hostname.replace(/^www\./, '')));
+      if (outlets.size < 2 || hosts.size < 2) add('error', entry.file, `also_declared: "${a.name}" needs two different outlets (different sites)`);
+    }
     if (data.status === 'upcoming') upcomingPerCountry.set(data.country, (upcomingPerCountry.get(data.country) ?? 0) + 1);
 
     for (const r of data.rounds as { round: number; results: { name: string; person?: string; share: number }[] }[]) {
@@ -176,6 +192,16 @@ export function validateContent(content: Loaded, today: string, options: Options
     const positionTopics = (data.positions as { topic: string }[]).map((p) => p.topic);
 
     if (election.data.status === 'upcoming') {
+      if (!data.sample && !data.declaration) add('error', entry.file, 'real candidates need a declaration (their own words on their own page, plus one news source)');
+      if (data.declaration && data.declaration.date > today) add('error', entry.file, `declaration.date ${data.declaration.date} is in the future`);
+      if (data.declaration && data.declaration.news.outlet && new URL(data.declaration.news.source_url).hostname === new URL(data.declaration.own.source_url).hostname) {
+        add('error', entry.file, 'declaration: the news source must be a different site from the candidate\'s own page');
+      }
+      if (!data.sample) {
+        for (const p of data.positions as { topic: string; status: string; quote?: string }[]) {
+          if (p.status === 'found' && !p.quote) add('error', entry.file, `position "${p.topic}": real positions need the candidate's own words as a quote`);
+        }
+      }
       if (!data.profile) add('error', entry.file, 'candidates in an upcoming election need a profile (party, family, one_line, background, source)');
       // Same template for everyone: exactly one position (or explicit gap) per topic.
       for (const t of positionTopics) if (!slugs.includes(t)) add('error', entry.file, `position topic "${t}" does not exist for ${election.data.country}`);
@@ -192,6 +218,15 @@ export function validateContent(content: Loaded, today: string, options: Options
       if (isWinner && data.promises.length !== PROMISES_PER_WINNER) {
         add('error', entry.file, `winners have exactly ${PROMISES_PER_WINNER} promise slots (use status: not_found for a gap); found ${data.promises.length}`);
       }
+    }
+  }
+
+  for (const { entry, data } of ok.elections) {
+    const covered = new Set(
+      ok.candidacies.filter((c) => c.data.election === entry.id).map((c) => (people.get(c.data.person)?.data.name as string | undefined)?.toLowerCase()),
+    );
+    for (const a of data.also_declared as { name: string }[]) {
+      if (covered.has(a.name.toLowerCase())) add('error', entry.file, `also_declared: "${a.name}" already has a candidate page`);
     }
   }
 

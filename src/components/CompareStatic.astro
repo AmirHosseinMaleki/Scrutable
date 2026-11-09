@@ -52,7 +52,7 @@ const { country, topics, candidates } = Astro.props;
                           <blockquote lang={line.quote_lang} class="border-l-4 border-line pl-3 italic">{line.quote}</blockquote>
                         </figure>
                       )}
-                      <SourceLink source_url={line.source_url} source_date={line.source_date} last_checked={line.last_checked} />
+                      <SourceLink source_url={line.source_url} source_date={line.source_date} last_checked={line.last_checked} source_date_is_retrieval={line.source_date_is_retrieval} />
                     </Expandable>
                   </>
                 ) : (

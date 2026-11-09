@@ -1,6 +1,7 @@
 /** Content access for pages. Everything is read at build time from src/content. */
 import { getCollection } from 'astro:content';
 import type { Candidacy, Country, Election, Person, Topic } from '../content/schemas';
+import { compareBySortName } from './display';
 import { oldestChecked } from './sources';
 
 export interface Candidate {
@@ -38,7 +39,7 @@ export async function getTopics(country: string): Promise<(Topic & { slug: strin
     .sort((a, b) => a.order - b.order);
 }
 
-/** Declared and official candidates only, alphabetical by name (never by polls or importance). */
+/** Declared and official candidates only, alphabetical by surname (never by polls or importance). */
 export async function getCandidates(electionSlug: string): Promise<Candidate[]> {
   const [candidacies, people] = await Promise.all([getCollection('candidacies'), getCollection('people')]);
   const byId = new Map(people.map((p) => [p.id, p.data]));
@@ -49,7 +50,12 @@ export async function getCandidates(electionSlug: string): Promise<Candidate[]> 
       if (!c.data.profile) throw new Error(`Candidacy ${c.id} has no profile`);
       return { slug: c.data.person, person: byId.get(c.data.person)!, candidacy: { ...c.data, profile: c.data.profile } };
     })
-    .sort((a, b) => a.person.name.localeCompare(b.person.name, 'en'));
+    .sort((a, b) => compareBySortName(a.person, b.person));
+}
+
+/** Declared candidates who do not have a page yet, alphabetical by surname. */
+export function getAlsoDeclared(election: Election) {
+  return [...election.also_declared].sort(compareBySortName);
 }
 
 export async function getWinnerCandidacy(electionSlug: string, person: string): Promise<Candidacy | undefined> {
@@ -75,5 +81,9 @@ export async function getPhotoCredits() {
 /** True while any country, election or person is still sample data: the sample banner shows on every page until then. */
 export async function siteHasSample(): Promise<boolean> {
   const [countries, elections, people] = await Promise.all([getCollection('countries'), getCollection('elections'), getCollection('people')]);
-  return [...countries, ...elections, ...people].some((e) => e.data.sample);
+  const flags = [
+    ...[...countries, ...elections, ...people].map((e) => e.data.sample),
+    ...elections.flatMap((e) => e.data.also_declared.map((a) => a.sample)),
+  ];
+  return flags.some(Boolean);
 }

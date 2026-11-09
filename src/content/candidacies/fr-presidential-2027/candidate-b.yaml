@@ -3,6 +3,19 @@ election: fr-presidential-2027
 person: candidate-b
 sample: true
 status: official
+declaration:
+  date: "2026-02-10"
+  own:
+    quote: "Sample quote: Candidate B announces the candidacy."
+    quote_lang: en
+    source_url: https://example.com/sample/candidate-b/declaration
+    source_date: "2026-02-10"
+    last_checked: "2026-11-06"
+  news:
+    outlet: "Sample Outlet"
+    source_url: https://example.org/sample/candidate-b-declares
+    source_date: "2026-02-10"
+    last_checked: "2026-11-06"
 profile:
   party: "Sample Party B"
   family: "Family Y"

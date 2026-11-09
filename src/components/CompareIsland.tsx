@@ -55,8 +55,16 @@ function Line({ line }: { line: CompareLine | undefined }) {
             <a href={line.source_url} rel="noopener noreferrer" className="text-accent underline underline-offset-2">
               {host}
             </a>{' '}
-            · published <time dateTime={line.source_date}>{formatDate(line.source_date)}</time> · checked{' '}
-            <time dateTime={line.last_checked}>{formatDate(line.last_checked)}</time>
+            {line.source_date_is_retrieval ? (
+              <>
+                · page undated, read on <time dateTime={line.source_date}>{formatDate(line.source_date)}</time>
+              </>
+            ) : (
+              <>
+                · published <time dateTime={line.source_date}>{formatDate(line.source_date)}</time> · checked{' '}
+                <time dateTime={line.last_checked}>{formatDate(line.last_checked)}</time>
+              </>
+            )}
           </p>
         </div>
       </details>

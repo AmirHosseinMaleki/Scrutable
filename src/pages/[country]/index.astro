@@ -34,7 +34,7 @@ const links = [
           <li class="p-4">
             <p class="font-semibold"><time datetime={d.date}>{formatDate(d.date)}</time></p>
             <p>{d.label}</p>
-            <SourceLink source_url={d.source_url} source_date={d.source_date} last_checked={d.last_checked} />
+            <SourceLink source_url={d.source_url} source_date={d.source_date} last_checked={d.last_checked} source_date_is_retrieval={d.source_date_is_retrieval} />
           </li>
         ))
       }

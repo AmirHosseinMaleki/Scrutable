@@ -132,14 +132,21 @@ describe('validateContent', () => {
       last_checked: '2026-11-01',
       ...over,
     });
+    const realDeclaration = () => ({
+      date: '2026-05-01',
+      own: { quote: 'Je suis candidate.', quote_lang: 'fr', source_url: 'https://www.janedoe.fr/candidate', source_date: '2026-10-01', last_checked: '2026-11-01' },
+      news: { outlet: 'Public Sénat', source_url: 'https://www.publicsenat.fr/a', source_date: '2026-05-02', last_checked: '2026-11-01' },
+    });
     const realPerson = (c: ReturnType<typeof validContent>, p: Record<string, unknown>) => {
       const person = c.people[0]!.data as any;
       person.sample = false;
       person.name = 'Jane Doe';
+      person.sort_name = 'Doe Jane';
       person.photo = p;
       (c.candidacies[0]!.data as any).sample = false;
+      (c.candidacies[0]!.data as any).declaration = realDeclaration();
       // real content may not use placeholder sources
-      for (const pos of (c.candidacies[0]!.data as any).positions) pos.source_url = 'https://www.gouvernement.fr/s';
+      for (const pos of (c.candidacies[0]!.data as any).positions) Object.assign(pos, { source_url: 'https://www.gouvernement.fr/s', quote: 'Un mot.', quote_lang: 'fr' });
       (c.candidacies[0]!.data as any).profile.source_url = 'https://www.gouvernement.fr/s';
     };
 
@@ -199,6 +206,84 @@ describe('validateContent', () => {
     it('rejects a turnout or candidate count out of range', () => {
       expect(errors((c) => ((c.elections[1]!.data as any).rounds[0].turnout = 120)).length).toBeGreaterThan(0);
       expect(errors((c) => ((c.elections[1]!.data as any).rounds[0].candidates = 1)).length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('declarations, sort names and the also-declared list', () => {
+    const real = (c: ReturnType<typeof validContent>, withDeclaration = true) => {
+      const person = c.people[0]!.data as any;
+      Object.assign(person, { name: 'Jane Doe', sort_name: 'Doe Jane', sample: false });
+      const cand = c.candidacies[0]!.data as any;
+      cand.sample = false;
+      cand.profile.source_url = 'https://www.janedoe.fr/p';
+      for (const p of cand.positions) Object.assign(p, { source_url: 'https://www.janedoe.fr/p', quote: 'Un mot.', quote_lang: 'fr' });
+      if (withDeclaration) {
+        cand.declaration = {
+          date: '2026-05-01',
+          own: { quote: 'Je suis candidate.', quote_lang: 'fr', source_url: 'https://www.janedoe.fr/candidate', source_date: '2026-10-01', last_checked: '2026-11-01' },
+          news: { outlet: 'Public Sénat', source_url: 'https://www.publicsenat.fr/a', source_date: '2026-05-02', last_checked: '2026-11-01' },
+        };
+      }
+    };
+    it('accepts a real candidate with a declaration and quotes', () => expect(errors((c) => real(c))).toEqual([]));
+    it('requires a declaration for real candidates, not for sample ones', () => {
+      expect(errors((c) => real(c, false)).some((i) => i.message.includes('need a declaration'))).toBe(true);
+      expect(errors()).toEqual([]);
+    });
+    it('requires the news source to be a different site from the candidate\'s own page', () => {
+      expect(errors((c) => { real(c); (c.candidacies[0]!.data as any).declaration.news.source_url = 'https://www.janedoe.fr/press'; }).some((i) => i.message.includes('different site'))).toBe(true);
+    });
+    it('rejects a declaration dated in the future', () => {
+      expect(errors((c) => { real(c); (c.candidacies[0]!.data as any).declaration.date = '2026-12-31'; }).some((i) => i.message.includes('in the future'))).toBe(true);
+    });
+    it('requires a quote on real positions', () => {
+      expect(errors((c) => { real(c); delete (c.candidacies[0]!.data as any).positions[0].quote; delete (c.candidacies[0]!.data as any).positions[0].quote_lang; }).some((i) => i.message.includes('own words'))).toBe(true);
+    });
+    it('requires sort_name for real people', () => {
+      expect(errors((c) => { real(c); delete (c.people[0]!.data as any).sort_name; }).some((i) => i.message.includes('sort_name'))).toBe(true);
+    });
+    it('accepts an undated page only when source_date equals last_checked', () => {
+      expect(errors((c) => Object.assign((c.candidacies[0]!.data as any).positions[0], { source_date_is_retrieval: true, source_date: '2026-11-01' }))).toEqual([]);
+      expect(errors((c) => Object.assign((c.candidacies[0]!.data as any).positions[0], { source_date_is_retrieval: true })).some((i) => i.message.includes('source_date_is_retrieval'))).toBe(true);
+    });
+
+    const listed = (over: Record<string, unknown> = {}) => ({
+      name: 'Sam Roe',
+      sort_name: 'Roe Sam',
+      party: 'P',
+      sources: [
+        { outlet: 'Public Sénat', source_url: 'https://www.publicsenat.fr/x', source_date: '2026-10-14', last_checked: '2026-11-01' },
+        { outlet: 'Toute l\'Europe', source_url: 'https://www.touteleurope.eu/y', source_date: '2026-11-02', last_checked: '2026-11-02' },
+      ],
+      ...over,
+    });
+    // The fixture election is marked sample; the real one is not, which is what the list rules apply to.
+    const withAlso = (items: unknown[]) => (c: ReturnType<typeof validContent>) => {
+      (c.elections[0]!.data as any).sample = false;
+      (c.elections[0]!.data as any).key_dates[0].source_url = 'https://www.service-public.gouv.fr/d';
+      (c.elections[0]!.data as any).also_declared = items;
+    };
+    it('accepts a listed candidate backed by two different outlets', () => expect(errors(withAlso([listed()]))).toEqual([]));
+    it('rejects a listed candidate with one source, or two sources from the same site', () => {
+      expect(errors(withAlso([listed({ sources: [listed().sources[0]] })])).length).toBeGreaterThan(0);
+      expect(errors(withAlso([listed({ sources: [listed().sources[0], { ...listed().sources[0], outlet: 'Other' }] })])).some((i) => i.message.includes('two different outlets'))).toBe(true);
+    });
+    it('rejects duplicates and people who already have a page', () => {
+      expect(errors(withAlso([listed(), listed()])).some((i) => i.message.includes('twice'))).toBe(true);
+      expect(errors(withAlso([listed({ name: 'cand-a', sort_name: 'A Cand' })])).some((i) => i.message.includes('already has a candidate page'))).toBe(true);
+    });
+    it('allows placeholder sources only on sample entries', () => {
+      const placeholder = { sources: [{ outlet: 'A', source_url: 'https://example.com/a', source_date: '2026-10-01', last_checked: '2026-11-01' }, { outlet: 'B', source_url: 'https://example.org/b', source_date: '2026-10-01', last_checked: '2026-11-01' }] };
+      expect(errors(withAlso([listed({ ...placeholder, sample: true })]))).toEqual([]);
+      expect(errors(withAlso([listed({ ...placeholder })])).some((i) => i.message.includes('placeholder source'))).toBe(true);
+    });
+    it('accepts a listed candidate with a sourced note, and rejects a note without a source', () => {
+      const note = { text: 'A ruling is pending.', source_url: 'https://www.publicsenat.fr/n', source_date: '2026-10-01', last_checked: '2026-11-01' };
+      expect(errors(withAlso([listed({ note })]))).toEqual([]);
+      expect(errors(withAlso([listed({ note: { text: 'A ruling is pending.' } })])).length).toBeGreaterThan(0);
+    });
+    it('only allows the list on an upcoming election', () => {
+      expect(errors((c) => ((c.elections[1]!.data as any).also_declared = [listed()])).some((i) => i.message.includes('upcoming election only'))).toBe(true);
     });
   });
 });
