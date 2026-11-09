@@ -1,0 +1,43 @@
+# Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+country: fr
+kind: presidential
+name: "French presidential election 2012"
+status: past
+sample: false
+date: "2012-04-22"
+rounds:
+  - round: 1
+    date: "2012-04-22"
+    turnout: 79.48
+    candidates: 10
+    results:
+      - name: "François Hollande"
+        person: francois-hollande
+        share: 28.63
+      - name: "Nicolas Sarkozy"
+        share: 27.18
+      - name: "Marine Le Pen"
+        share: 17.9
+      - name: "Jean-Luc Mélenchon"
+        share: 11.1
+    source_url: https://www.conseil-constitutionnel.fr/decision/2012/2012152PDR.htm
+    source_date: "2012-04-25"
+    last_checked: "2026-11-07"
+  - round: 2
+    date: "2012-05-06"
+    turnout: 80.35
+    results:
+      - name: "François Hollande"
+        person: francois-hollande
+        share: 51.64
+      - name: "Nicolas Sarkozy"
+        share: 48.36
+    source_url: https://www.conseil-constitutionnel.fr/decision/2012/2012154PDR.htm
+    source_date: "2012-05-10"
+    last_checked: "2026-11-07"
+winner:
+  name: "François Hollande"
+  person: francois-hollande
+defining_event:
+  status: not_found
+  checked_on: "2026-11-07"

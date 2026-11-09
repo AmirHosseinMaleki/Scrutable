@@ -173,4 +173,32 @@ describe('validateContent', () => {
       expect(errors((c) => { const pos = (c.candidacies[0]!.data as any).positions[0]; pos.quote = 'Mots.'; pos.quote_lang = 'fr'; })).toEqual([]);
     });
   });
+
+  describe('past elections and optional fields', () => {
+    it('accepts a defining event that is an explicit gap', () => {
+      expect(errors((c) => ((c.elections[1]!.data as any).defining_event = { status: 'not_found', checked_on: '2026-11-01' }))).toEqual([]);
+    });
+    it('still requires a defining event (found or gap) for past elections', () => {
+      expect(errors((c) => delete (c.elections[1]!.data as any).defining_event).length).toBeGreaterThan(0);
+    });
+    it('accepts results and winners without a political family', () => {
+      expect(errors((c) => { const e = c.elections[1]!.data as any; delete e.rounds[0].results[0].family; delete e.winner.family; })).toEqual([]);
+    });
+    it('rejects a defining event with a source missing', () => {
+      expect(errors((c) => delete (c.elections[1]!.data as any).defining_event.source_url).length).toBeGreaterThan(0);
+    });
+    it('requires a profile for candidates in an upcoming election', () => {
+      expect(errors((c) => delete (c.candidacies[0]!.data as any).profile).some((i) => i.message.includes('need a profile'))).toBe(true);
+    });
+    it('does not allow a profile on a past winner candidacy', () => {
+      expect(errors((c) => ((c.candidacies[2]!.data as any).profile = { party: 'P', family: 'F', one_line: 'A line.', background: 'B.', source_url: 'https://example.com/s', source_date: '2026-10-01', last_checked: '2026-11-01' })).some((i) => i.message.includes('promises only'))).toBe(true);
+    });
+    it('accepts a past winner candidacy without a profile', () => {
+      expect(errors((c) => delete (c.candidacies[2]!.data as any).profile)).toEqual([]);
+    });
+    it('rejects a turnout or candidate count out of range', () => {
+      expect(errors((c) => ((c.elections[1]!.data as any).rounds[0].turnout = 120)).length).toBeGreaterThan(0);
+      expect(errors((c) => ((c.elections[1]!.data as any).rounds[0].candidates = 1)).length).toBeGreaterThan(0);
+    });
+  });
 });

@@ -1,0 +1,11 @@
+election: fr-presidential-2002
+person: jacques-chirac
+sample: false
+status: official
+promises:
+  - status: not_found
+    checked_on: "2026-11-07"
+  - status: not_found
+    checked_on: "2026-11-07"
+  - status: not_found
+    checked_on: "2026-11-07"

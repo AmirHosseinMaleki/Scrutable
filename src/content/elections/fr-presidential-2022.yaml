@@ -1,0 +1,41 @@
+# Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+country: fr
+kind: presidential
+name: "French presidential election 2022"
+status: past
+sample: false
+date: "2022-04-10"
+rounds:
+  - round: 1
+    date: "2022-04-10"
+    turnout: 73.69
+    candidates: 12
+    results:
+      - name: "Emmanuel Macron"
+        person: emmanuel-macron
+        share: 27.85
+      - name: "Marine Le Pen"
+        share: 23.15
+      - name: "Jean-Luc Mélenchon"
+        share: 21.95
+    source_url: https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm
+    source_date: "2022-04-13"
+    last_checked: "2026-11-07"
+  - round: 2
+    date: "2022-04-24"
+    turnout: 71.99
+    results:
+      - name: "Emmanuel Macron"
+        person: emmanuel-macron
+        share: 58.55
+      - name: "Marine Le Pen"
+        share: 41.45
+    source_url: https://www.conseil-constitutionnel.fr/decision/2022/2022197PDR.htm
+    source_date: "2022-04-27"
+    last_checked: "2026-11-07"
+winner:
+  name: "Emmanuel Macron"
+  person: emmanuel-macron
+defining_event:
+  status: not_found
+  checked_on: "2026-11-07"
