@@ -229,8 +229,8 @@ export const candidacySchema = z.strictObject({
    */
   declaration: z
     .strictObject({
-      /** Date of the declaration (ISO). */
-      date: isoDate,
+      /** Date of the declaration (ISO). Left out when no source states it. */
+      date: isoDate.optional(),
       own: z.strictObject({ quote: z.string().min(1), quote_lang: z.string().regex(/^[a-z]{2}$/), ...sourceFields }),
       news: z.strictObject({ outlet: z.string().min(1), ...sourceFields }),
     })

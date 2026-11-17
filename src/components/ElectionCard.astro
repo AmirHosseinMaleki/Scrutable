@@ -19,6 +19,8 @@ const { election, winner, currentCandidates, country } = Astro.props;
 const OUTCOME = { kept: 'Kept', partly_kept: 'Partly kept', broken: 'Broken', blocked: 'Blocked', unclear: 'Unclear' } as const;
 const firstRound = election.rounds.find((r) => r.round === 1);
 const rounds = [...election.rounds].sort((a, b) => a.round - b.round);
+// Every result line is stored (so earlier runs are complete); the card shows round 1 candidates with at least 10% of valid votes.
+const shown = (r: (typeof rounds)[number]) => (r.round === 1 ? r.results.filter((l) => l.share >= 10) : r.results);
 const year = election.date.slice(0, 4);
 ---
 
@@ -44,12 +46,12 @@ const year = election.date.slice(0, 4);
               <thead class="text-muted">
                 <tr>
                   <th scope="col" class="py-1 pr-3 font-medium">Candidate</th>
-                  {r.results.some((l) => l.family) && <th scope="col" class="py-1 pr-3 font-medium">Political family</th>}
+                  {shown(r).some((l) => l.family) && <th scope="col" class="py-1 pr-3 font-medium">Political family</th>}
                   <th scope="col" class="py-1 text-right font-medium">Share</th>
                 </tr>
               </thead>
               <tbody>
-                {r.results.map((line) => (
+                {shown(r).map((line) => (
                   <tr class="border-t border-line">
                     <th scope="row" class="py-1.5 pr-3 font-normal">
                       {line.person && currentCandidates.has(line.person) ? (
@@ -58,12 +60,13 @@ const year = election.date.slice(0, 4);
                         line.name
                       )}
                     </th>
-                    {r.results.some((l) => l.family) && <td class="py-1.5 pr-3">{line.family}</td>}
+                    {shown(r).some((l) => l.family) && <td class="py-1.5 pr-3">{line.family}</td>}
                     <td class="py-1.5 text-right tabular-nums">{line.share}%</td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            {r.round === 1 && r.results.length > shown(r).length && <p class="mt-1 text-sm text-muted">Candidates with at least 10% of valid votes. {r.results.length} candidates stood.</p>}
             <div class="mt-1"><SourceLink source_url={r.source_url} source_date={r.source_date} last_checked={r.last_checked} source_date_is_retrieval={r.source_date_is_retrieval} /></div>
           </div>
         ))

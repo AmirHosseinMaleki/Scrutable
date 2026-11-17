@@ -114,7 +114,9 @@ describe('validateContent', () => {
   });
 
   it('fails when shares add up to more than 100', () => {
-    expect(errors((c) => ((c.elections[1]!.data as any).rounds[0].results[1].share = 70)).length).toBeGreaterThan(0);
+    expect(errors((c) => { const r = (c.elections[1]!.data as any).rounds[0]; r.results[0].share = 60; r.results[1].share = 70; }).some((i) => i.message.includes('shares add up'))).toBe(true);
+    // rounded shares may exceed 100 by a hundredth or two
+    expect(errors((c) => { const r = (c.elections[1]!.data as any).rounds[0]; r.results[0].share = 50; r.results[1].share = 50.005; }).some((i) => i.message.includes('shares add up'))).toBe(false);
   });
 
   it('fails when a past election has no winner candidacy file', () => {
