@@ -1,4 +1,5 @@
 # Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+# Every result line is stored; the site shows round 1 candidates with at least 10% of valid votes.
 country: fr
 kind: presidential
 name: "French presidential election 2022"
@@ -17,7 +18,27 @@ rounds:
       - name: "Marine Le Pen"
         share: 23.15
       - name: "Jean-Luc Mélenchon"
+        person: jean-luc-melenchon
         share: 21.95
+      - name: "Éric Zemmour"
+        share: 7.07
+      - name: "Valérie Pécresse"
+        share: 4.78
+      - name: "Yannick Jadot"
+        share: 4.63
+      - name: "Jean Lassalle"
+        share: 3.13
+      - name: "Fabien Roussel"
+        share: 2.28
+      - name: "Nicolas Dupont-Aignan"
+        person: nicolas-dupont-aignan
+        share: 2.06
+      - name: "Anne Hidalgo"
+        share: 1.75
+      - name: "Philippe Poutou"
+        share: 0.77
+      - name: "Nathalie Arthaud"
+        share: 0.56
     source_url: https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm
     source_date: "2022-04-13"
     last_checked: "2026-11-07"

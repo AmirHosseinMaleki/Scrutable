@@ -1,4 +1,5 @@
 # Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+# Every result line is stored; the site shows round 1 candidates with at least 10% of valid votes.
 country: fr
 kind: presidential
 name: "French presidential election 2012"
@@ -15,11 +16,26 @@ rounds:
         person: francois-hollande
         share: 28.63
       - name: "Nicolas Sarkozy"
+        person: nicolas-sarkozy
         share: 27.18
       - name: "Marine Le Pen"
         share: 17.9
       - name: "Jean-Luc Mélenchon"
+        person: jean-luc-melenchon
         share: 11.1
+      - name: "François Bayrou"
+        share: 9.13
+      - name: "Eva Joly"
+        share: 2.31
+      - name: "Nicolas Dupont-Aignan"
+        person: nicolas-dupont-aignan
+        share: 1.79
+      - name: "Philippe Poutou"
+        share: 1.15
+      - name: "Nathalie Arthaud"
+        share: 0.56
+      - name: "Jacques Cheminade"
+        share: 0.25
     source_url: https://www.conseil-constitutionnel.fr/decision/2012/2012152PDR.htm
     source_date: "2012-04-25"
     last_checked: "2026-11-07"
@@ -31,6 +47,7 @@ rounds:
         person: francois-hollande
         share: 51.64
       - name: "Nicolas Sarkozy"
+        person: nicolas-sarkozy
         share: 48.36
     source_url: https://www.conseil-constitutionnel.fr/decision/2012/2012154PDR.htm
     source_date: "2012-05-10"

@@ -1,0 +1,74 @@
+# Real candidacy. Every position links to the candidate's own page; see the pull request for the source list.
+election: fr-presidential-2027
+person: olivier-becht
+sample: false
+status: declared
+declaration:
+  date: "2026-09-24"
+  own:
+    quote: "Olivier Becht est candidat à l’élection présidentielle de 2027"
+    quote_lang: fr
+    source_url: https://becht2027.fr/olivier-becht/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+    source_date: "2026-10-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "No party label (\"sans étiquette\")"
+  one_line: "Deputy for the fifth constituency of the Haut-Rhin and former minister for foreign trade, attractiveness and French citizens abroad."
+  background: "His own page says he was mayor of Rixheim and later head of intercommunal bodies."
+  source_url: https://becht2027.fr/olivier-becht/son-parcours/
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "Proposes a single employment contract that follows a worker through their whole life and can move between employers, with an income never below the minimum wage."
+    quote: "un contrat de travail qui nous suit toute notre vie"
+    quote_lang: fr
+    source_url: https://becht2027.fr/projet-france/les-5-refondations/refondation-sociale/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "On health, proposes a state secretariat for public health that would merge the five main existing agencies. Retirement rules are not covered on the pages read."
+    quote: "Un secrétariat d’État à la santé publique fusionnera les cinq grandes agences existantes"
+    quote_lang: fr
+    source_url: https://becht2027.fr/projet-france/les-5-refondations/refondation-sante/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "Proposes recruiting 10,000 more police officers. The same page adds community service for minor offenders, military-run correction centres and more high-security prison places."
+    quote: "Nous recruterons 10 000 policiers supplémentaires"
+    quote_lang: fr
+    source_url: https://becht2027.fr/projet-france/les-5-refondations/refondation-securite/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "Says the state will take back control of migration policy, and that the code on entry and residence will be completely reworked."
+    quote: "nous reprendrons le contrôle de notre politique migratoire"
+    quote_lang: fr
+    source_url: https://becht2027.fr/projet-france/les-5-refondations/refondation-securite/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "Calls for an energy revolution aimed at leaving fossil fuels, using a mix of nuclear power, renewables and storage technologies."
+    quote: "Notre pays doit engager une véritable révolution énergétique"
+    quote_lang: fr
+    source_url: https://becht2027.fr/projet-france/les-5-refondations/refondation-energie/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

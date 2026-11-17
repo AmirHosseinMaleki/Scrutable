@@ -1,0 +1,74 @@
+# Real candidacy. Every position links to the candidate's own page; see the pull request for the source list.
+election: fr-presidential-2027
+person: jean-luc-melenchon
+sample: false
+status: declared
+declaration:
+  date: "2026-05-03"
+  own:
+    quote: "C’est le sens de ma candidature à l’élection présidentielle"
+    quote_lang: fr
+    source_url: https://melenchon2027.fr/lettre-au-peuple-de-france/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-jean-luc-melenchon-officialise-sa-candidature-pour-2027-435851
+    source_date: "2026-05-03"
+    last_checked: "2026-11-17"
+profile:
+  party: "La France insoumise"
+  one_line: "Candidate of La France insoumise for the 2027 presidential election."
+  background: "The party's own site asks supporters to back his candidacy."
+  source_url: https://lafranceinsoumise.fr/
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "Lead measure of the tax section: make income tax more progressive, with 14 brackets instead of 5. The same chapter proposes raising the minimum wage to 1,700 euros net."
+    quote: "Rendre l’impôt sur le revenu plus progressif avec un barème à 14 tranches"
+    quote_lang: fr
+    source_url: https://melenchon2027.fr/programme/livre/une-economie-au-service-des-besoins/chapitre2
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "Lead pension measure: repeal the reform that raised the retirement age to 64, then lower the age. Health measures in the book include rebuilding public hospitals and acting against medical deserts."
+    quote: "Abroger la réforme Macron passant l’âge de départ à la retraite à 64 ans"
+    quote_lang: fr
+    source_url: https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre1
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "Lead measure of the first security section: draw up a new counter-terrorism strategy. The chapter also proposes refounding the public police service and an annual parliamentary debate on criminal policy."
+    quote: "Élaborer une nouvelle stratégie antiterroriste"
+    quote_lang: fr
+    source_url: https://melenchon2027.fr/programme/livre/fonder-la-6e-republique/chapitre2
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "The nearest section, on nationality, leads with full birthright citizenship for children born in France and also proposes local voting rights for foreigners. The contents list has no chapter on entry or residence rules."
+    quote: "Garantir le droit du sol intégral à tous les enfants nés en France"
+    quote_lang: fr
+    source_url: https://melenchon2027.fr/programme/livre/mettre-en-securite-sociale/chapitre4
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "Lead measure: write the \"green rule\" principle into the Constitution. Next items include a moratorium on large projects that the programme describes as useless and imposed."
+    quote: "Inscrire dans la Constitution le principe de la « règle verte »"
+    quote_lang: fr
+    source_url: https://melenchon2027.fr/programme/livre/pour-une-bifurcation-ecologique-et-sociale/chapitre1
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

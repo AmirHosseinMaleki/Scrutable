@@ -1,4 +1,5 @@
 # Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+# Every result line is stored; the site shows round 1 candidates with at least 10% of valid votes.
 country: fr
 kind: presidential
 name: "French presidential election 2007"
@@ -20,6 +21,22 @@ rounds:
         share: 18.57
       - name: "Jean-Marie Le Pen"
         share: 10.44
+      - name: "Olivier Besancenot"
+        share: 4.08
+      - name: "Philippe de Villiers"
+        share: 2.23
+      - name: "Marie-George Buffet"
+        share: 1.93
+      - name: "Dominique Voynet"
+        share: 1.57
+      - name: "Arlette Laguiller"
+        share: 1.33
+      - name: "José Bové"
+        share: 1.32
+      - name: "Frédéric Nihous"
+        share: 1.15
+      - name: "Gérard Schivardi"
+        share: 0.34
     source_url: https://www.conseil-constitutionnel.fr/decision/2007/2007139PDR.htm
     source_date: "2007-04-25"
     last_checked: "2026-11-07"
