@@ -1,0 +1,68 @@
+# Real candidacy. Every position links to the candidate's own pages; see the pull request for the source list.
+election: fr-presidential-2027
+person: edouard-philippe
+sample: false
+status: declared
+declaration:
+  own:
+    quote: "Depuis deux ans, je suis candidat à l’élection présidentielle"
+    quote_lang: fr
+    source_url: https://www.edouardphilippe.fr/edouard-philippe
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+    source_date: "2026-10-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "Horizons"
+  one_line: "Mayor of Le Havre, elected in 2010 and again in 2020, and Prime Minister for three years from 2017."
+  background: "His own page lists the founding of Horizons in 2021 and a presidential candidacy from 2024."
+  source_url: https://www.edouardphilippe.fr/edouard-philippe
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "The first flagship proposal on work is to fund social protection by means other than labour, to raise net pay. Others include letting firms organise working time and limiting unemployment benefit to 12 months for under-50s."
+    quote: "Financer la protection sociale autrement que par le travail, pour augmenter le salaire net"
+    quote_lang: fr
+    source_url: https://www.edouardphilippe.fr/programme/travail
+    source_date: "2026-11-12"
+    last_checked: "2026-11-17"
+  - topic: pensions-health
+    status: found
+    summary: "The first flagship pension proposal is to raise the retirement age gradually to 65 and the contribution period to 45 years. The programme has no health page; health measures appear within its work, pension and public-finance pages."
+    quote: "Porter progressivement l’âge de départ à 65 ans"
+    quote_lang: fr
+    source_url: https://www.edouardphilippe.fr/programme/retraites
+    source_date: "2026-11-12"
+    last_checked: "2026-11-17"
+  - topic: security-justice
+    status: found
+    summary: "The first flagship security proposal is a narcotics emergency regime giving exceptional means in the areas most affected by drug trafficking. The first justice proposal is to restore minimum sentences."
+    quote: "Un « état d’urgence narco » qui donne des moyens exceptionnels"
+    quote_lang: fr
+    source_url: https://www.edouardphilippe.fr/programme/securite
+    source_date: "2026-11-12"
+    last_checked: "2026-11-17"
+  - topic: immigration
+    status: found
+    summary: "The first flagship immigration proposal is quotas to choose labour migration. Others are a moratorium on family reunification and return centres abroad."
+    quote: "Des quotas pour choisir l’immigration de travail"
+    quote_lang: fr
+    source_url: https://www.edouardphilippe.fr/programme/immigration
+    source_date: "2026-11-12"
+    last_checked: "2026-11-17"
+  - topic: climate-energy
+    status: found
+    summary: "The first flagship energy proposal is to relaunch nuclear power and develop renewables where they are efficient. Others are electrifying uses to leave oil and gas and a carbon price at European borders."
+    quote: "Relancer le nucléaire et développer les renouvelables là où elles sont efficaces"
+    quote_lang: fr
+    source_url: https://www.edouardphilippe.fr/programme/energie
+    source_date: "2026-11-12"
+    last_checked: "2026-11-17"
+promises: []

@@ -1,0 +1,49 @@
+# Real candidacy. Every position links to the candidate's own pages; see the pull request for the source list.
+election: fr-presidential-2027
+person: francois-asselineau
+sample: false
+status: declared
+declaration:
+  own:
+    quote: "François Asselineau, président de l'UPR et candidat à l'élection présidentielle"
+    quote_lang: fr
+    source_url: https://www.upr.fr/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "Public Sénat"
+    source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+    source_date: "2026-09-18"
+    last_checked: "2026-11-17"
+profile:
+  party: "Union populaire républicaine (UPR)"
+  one_line: "Founder and president of the Union populaire républicaine."
+  background: "The page gives 25 March 2007 as the founding date of the UPR."
+  source_url: https://www.upr.fr/francois-asselineau
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: pensions-health
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: security-justice
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: immigration
+    status: found
+    summary: "Lists immigration, debt and nuclear power as subjects for major referendums, without saying what the questions would be."
+    quote: "Grands référendums : immigration, dette, nucléaire"
+    quote_lang: fr
+    source_url: https://www.upr.fr/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: not_found
+    checked_on: "2026-11-17"
+promises: []

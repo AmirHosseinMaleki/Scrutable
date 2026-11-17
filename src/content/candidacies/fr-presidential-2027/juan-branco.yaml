@@ -1,0 +1,74 @@
+# Real candidacy. Every position links to the candidate's own pages; see the pull request for the source list.
+election: fr-presidential-2027
+person: juan-branco
+sample: false
+status: declared
+declaration:
+  date: "2025-12-19"
+  own:
+    quote: "Il a annoncé le 19 décembre 2025 son intention de se présenter"
+    quote_lang: fr
+    source_url: https://ruches.org/juan-branco
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
+    source_date: "2026-11-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "Les Ruches"
+  one_line: "Lawyer, writer and doctor of law. His candidacy is carried by the citizens' movement Les Ruches."
+  background: "His page lists a doctorate in law in 2014, a research post in international law from 2015 and an oath taken in 2017."
+  source_url: https://ruches.org/juan-branco
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "The first economy measure is to make the governorship of the Bank of France an elected post. Next are a five-year budget proposal drawn up by a Planning Commissioner and oversight by a \"defender of the peoples\"."
+    quote: "Le gouvernorat de la Banque de France fera l’objet d’une élection"
+    quote_lang: fr
+    source_url: https://ruches.org/le-projet
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "On pensions, the first rules measure aligns retirement schemes and their rates of return within and between generations. On health, the first measure is an emergency plan to end medical deserts."
+    quote: "Alignement des régimes de retraite et des taux de retour intra et intergénérationnel"
+    quote_lang: fr
+    source_url: https://ruches.org/le-projet
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "The first justice measure is to absorb the Higher Council of the Judiciary into a \"defender of the peoples\". The next section proposes municipalising the national police, except the judicial police and public-order units."
+    quote: "Absorption du Conseil Supérieur de la Magistrature (CSM) par le Défenseur des peuples"
+    quote_lang: fr
+    source_url: https://ruches.org/le-projet
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "The first measure on the subject is a form of asylum granted by a citizens' commission to freedom fighters. The Interior section adds objective integration criteria for foreigners and conditions on family reunification."
+    quote: "Création d’un asile attribuable par commission citoyenne au profit des combattants de la liberté"
+    quote_lang: fr
+    source_url: https://ruches.org/le-projet
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "The energy section's first measure gives the Planning Commissioner the initiative for an organic law. It also says no extra spending will be imposed on households without compensation, and calls for ending dependence on imported fossil flows."
+    quote: "Le Commissaire au Plan aura l’initiative d’un projet de loi organique"
+    quote_lang: fr
+    source_url: https://ruches.org/le-projet
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

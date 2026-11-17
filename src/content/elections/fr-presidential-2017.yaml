@@ -32,6 +32,7 @@ rounds:
       - name: "Philippe Poutou"
         share: 1.09
       - name: "François Asselineau"
+        person: francois-asselineau
         share: 0.92
       - name: "Nathalie Arthaud"
         share: 0.64

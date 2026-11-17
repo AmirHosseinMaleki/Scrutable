@@ -34,18 +34,6 @@ also_declared:
         source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
         source_date: "2026-09-18"
         last_checked: "2026-11-17"
-  - name: "François Asselineau"
-    sort_name: "Asselineau François"
-    party: "Union populaire républicaine"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
-        source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
-        last_checked: "2026-11-17"
   - name: "Gabriel Attal"
     sort_name: "Attal Gabriel"
     party: "Renaissance"
@@ -68,18 +56,6 @@ also_declared:
       - outlet: "Public Sénat"
         source_url: https://www.publicsenat.fr/actualites/politique/election-presidentielle-2027-qui-sont-les-candidats-declares-ou-presque
         source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-  - name: "Juan Branco"
-    sort_name: "Branco Juan"
-    party: "Les Ruches"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
-        source_date: "2026-11-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
         last_checked: "2026-11-17"
   - name: "Raphaël Glucksmann"
     sort_name: "Glucksmann Raphaël"
@@ -122,30 +98,6 @@ also_declared:
       source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
       source_date: "2026-11-14"
       last_checked: "2026-11-17"
-  - name: "David Lisnard"
-    sort_name: "Lisnard David"
-    party: "Nouvelle Énergie"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
-        source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
-        last_checked: "2026-11-17"
-  - name: "Édouard Philippe"
-    sort_name: "Philippe Édouard"
-    party: "Horizons"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
-        source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
-        last_checked: "2026-11-17"
   - name: "Florian Philippot"
     sort_name: "Philippot Florian"
     party: "Les Patriotes"
@@ -183,18 +135,6 @@ also_declared:
   - name: "Fabien Roussel"
     sort_name: "Roussel Fabien"
     party: "Parti communiste français"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
-        source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
-        last_checked: "2026-11-17"
-  - name: "François Ruffin"
-    sort_name: "Ruffin François"
-    party: "Debout !"
     sources:
       - outlet: "LCP"
         source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
