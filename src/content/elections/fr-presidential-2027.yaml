@@ -22,18 +22,6 @@ key_dates:
     source_date: "2026-07-02"
     last_checked: "2026-11-07"
 also_declared:
-  - name: "Gabriel Attal"
-    sort_name: "Attal Gabriel"
-    party: "Renaissance"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
-        source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
-        last_checked: "2026-11-17"
   - name: "Karim Bouamrane"
     sort_name: "Bouamrane Karim"
     sources:
@@ -44,18 +32,6 @@ also_declared:
       - outlet: "Public Sénat"
         source_url: https://www.publicsenat.fr/actualites/politique/election-presidentielle-2027-qui-sont-les-candidats-declares-ou-presque
         source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-  - name: "Raphaël Glucksmann"
-    sort_name: "Glucksmann Raphaël"
-    party: "Place publique"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
-        source_date: "2026-11-14"
-        last_checked: "2026-11-17"
-      - outlet: "Euronews"
-        source_url: https://www.euronews.com/2026/08/23/french-2027-presidential-election-raphael-glucksmann-prepares-to-enter-the-ring
-        source_date: "2026-08-31"
         last_checked: "2026-11-17"
   - name: "Francis Lalanne"
     sort_name: "Lalanne Francis"

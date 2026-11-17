@@ -1,0 +1,57 @@
+# Real candidacy. Declaration and positions come from his own letter and campaign site; see the pull request for the source list.
+election: fr-presidential-2027
+person: raphael-glucksmann
+sample: false
+status: declared
+declaration:
+  own:
+    quote: "Je suis candidat à la Présidence de la République."
+    quote_lang: fr
+    source_url: https://place-publique.eu/posts/2fgDdljEIy36rgxBjRyiQZ/raphael-glucksmann-sa-lettre-aux-francais
+    source_date: "2026-08-25"
+    last_checked: "2026-11-17"
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
+    source_date: "2026-11-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "Place publique"
+  one_line: "Co-president of the party Place publique."
+  background: "His letter on his party's website is signed as co-president of Place publique."
+  source_url: https://place-publique.eu/posts/2fgDdljEIy36rgxBjRyiQZ/raphael-glucksmann-sa-lettre-aux-francais
+  source_date: "2026-08-25"
+  last_checked: "2026-11-17"
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "In his letter he says he will defend work over rent income. He also says he will protect French production and bring factories back to French regions."
+    quote: "Nous défendrons le travail plutôt que la rente."
+    quote_lang: fr
+    source_url: https://place-publique.eu/posts/2fgDdljEIy36rgxBjRyiQZ/raphael-glucksmann-sa-lettre-aux-francais
+    source_date: "2026-08-25"
+    last_checked: "2026-11-17"
+  - topic: pensions-health
+    status: found
+    summary: "In his letter he says he will give schools, hospitals and public services the means to keep their promise. He also says care homes and nurseries would be taken out of the market."
+    quote: "Nous redonnerons à l’école, à l’hôpital, aux services publics les moyens de tenir leur promesse."
+    quote_lang: fr
+    source_url: https://place-publique.eu/posts/2fgDdljEIy36rgxBjRyiQZ/raphael-glucksmann-sa-lettre-aux-francais
+    source_date: "2026-08-25"
+    last_checked: "2026-11-17"
+  - topic: security-justice
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: immigration
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: climate-energy
+    status: found
+    summary: "He presented the first part of his ecological programme on 9 November with Yannick Jadot, built around the first 100 days to leave fossil fuels. It aims to protect household purchasing power, adapt France to the new climate regime and regain sovereignty."
+    quote: "Les premiers 100 jours pour sortir des énergies fossiles."
+    quote_lang: fr
+    source_url: https://glucks2027.fr/revolution-ecologique/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

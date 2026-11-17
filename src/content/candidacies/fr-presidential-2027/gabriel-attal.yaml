@@ -1,0 +1,73 @@
+# Real candidacy. Every position links to the candidate's own campaign site; see the pull request for the source list.
+election: fr-presidential-2027
+person: gabriel-attal
+sample: false
+status: declared
+declaration:
+  date: "2026-05-22"
+  own:
+    quote: "Je suis candidat à l'élection présidentielle pour débloquer l'avenir et faire en sorte que chaque génération vive mieux que la précédente."
+    quote_lang: fr
+    source_url: https://attalpresident.fr/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+    source_date: "2026-10-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "Renaissance"
+  one_line: "Former Prime Minister, member of the National Assembly for the Hauts-de-Seine and general secretary of Renaissance."
+  background: "His campaign site says he has been a local elected official since 2014 and was appointed Prime Minister in January 2024."
+  source_url: https://attalpresident.fr/gabriel-attal
+  source_date: "2026-05-22"
+  last_checked: "2026-11-17"
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "He says his fight will be to raise wages, through investment in productivity, lower salary charges and efforts to reduce unemployment. He also proposes replacing the labour code with a short \"labour constitution\"."
+    quote: "Alors mon combat, ce sera de faire monter les salaires."
+    quote_lang: fr
+    source_url: https://attalpresident.fr/programme/travail-salaires
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "His pensions page says small pensions would be protected and the legal retirement age replaced by contribution duration. It also lists directing half of profit-sharing into retirement savings and balancing the social security accounts."
+    quote: "Les petites pensions protégées, et l'âge légal remplacé par la durée de cotisation."
+    quote_lang: fr
+    source_url: https://attalpresident.fr/programme/publics/retraites
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "His announced measures include recruiting 3,000 magistrates and clerks to shorten trial delays. They also include judging crimes against minors in under three months."
+    quote: "Recruter 3 000 magistrats et greffiers pour raccourcir les délais de jugement"
+    quote_lang: fr
+    source_url: https://attalpresident.fr/programme
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "He favours giving priority to work-related immigration, through a points-based system as in Canada. He also says France should take in fewer immigrants and that family reunification should be reduced."
+    quote: "Ce que nous voulons, c’est la préférence travail, où l’on accueille les compétences, les talents dont nous avons besoin sur la base d’un système à points comme au Canada"
+    quote_lang: fr
+    source_url: https://attalpresident.fr/programme/frontieres
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "He says leaving fossil fuels would make France more independent, and that France should speed up its emissions cuts. He lists large-scale building renovation, widely available electric vehicles and decarbonised industry."
+    quote: "Libérer la France des fossiles, c’est permettre à nos jeunes de vivre dans une France indépendante."
+    quote_lang: fr
+    source_url: https://attalpresident.fr/programme/dette-ecologique
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []
