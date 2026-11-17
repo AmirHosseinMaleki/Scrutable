@@ -43,6 +43,27 @@ export function htmlToText(html: string): string {
     .replace(/&([a-zA-Z]+);/g, (m, name) => ENTITIES[name] ?? m);
 }
 
+/** True when the URL points at a PDF file (query strings and fragments are ignored). */
+export function isPdfUrl(url: string): boolean {
+  try {
+    return new URL(url).pathname.toLowerCase().endsWith('.pdf');
+  } catch {
+    return false;
+  }
+}
+
+/** The file name a saved copy of a PDF URL is expected to have, e.g. "brochure-ete-2026.pdf". */
+export function pdfFileName(url: string): string {
+  const last = new URL(url).pathname.split('/').pop() ?? '';
+  return decodeURIComponent(last);
+}
+
+/** Text from a PDF often has ligature characters and soft hyphens; turn them into the plain letters a reader sees. */
+export function cleanPdfText(text: string): string {
+  const ligatures: Record<string, string> = { 'ﬀ': 'ff', 'ﬁ': 'fi', 'ﬂ': 'fl', 'ﬃ': 'ffi', 'ﬄ': 'ffl', 'ﬅ': 'st', 'ﬆ': 'st' };
+  return text.replace(/[­\f]/g, (c) => (c === '\f' ? ' ' : '')).replace(/[ﬀ-ﬆ]/g, (c) => ligatures[c] ?? c);
+}
+
 /** Makes text comparable: Unicode NFC, one kind of apostrophe and quote, no-break spaces and repeated spaces collapsed. */
 export function normalizeForMatch(text: string): string {
   return text

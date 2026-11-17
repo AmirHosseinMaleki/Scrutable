@@ -6,3 +6,5 @@ reports/
 *.log
 .claude/
 screenshots/
+# PDFs saved by hand for `pnpm verify:quotes` (sources that refuse scripted downloads)
+docs/inbox/

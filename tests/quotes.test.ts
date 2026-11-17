@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { collectQuotes, containsQuote, htmlToText, normalizeForMatch } from '../src/lib/quotes';
+import { cleanPdfText, collectQuotes, containsQuote, htmlToText, isPdfUrl, normalizeForMatch, pdfFileName } from '../src/lib/quotes';
 import { compareBySortName } from '../src/lib/display';
 import { validContent } from './fixtures';
 
@@ -57,5 +57,23 @@ describe('compareBySortName', () => {
   it('treats accents sensibly and falls back to the display name', () => {
     expect(compareBySortName({ name: 'Éric Zed', sort_name: 'Zed Éric' }, { name: 'Eve Zee', sort_name: 'Zee Eve' })).toBeLessThan(0);
     expect(compareBySortName({ name: 'Candidate A' }, { name: 'Candidate B' })).toBeLessThan(0);
+  });
+});
+
+describe('PDF sources', () => {
+  it('recognises PDF URLs and the file name a saved copy needs', () => {
+    expect(isPdfUrl('https://example.org/medias/brochure-ete-2026.pdf')).toBe(true);
+    expect(isPdfUrl('https://example.org/files/Programme.PDF?download=1')).toBe(true);
+    expect(isPdfUrl('https://example.org/programme')).toBe(false);
+    expect(isPdfUrl('not a url')).toBe(false);
+    expect(pdfFileName('https://example.org/a/Projet%20pour%20la%20France.pdf?x=1')).toBe('Projet pour la France.pdf');
+  });
+  it('turns ligatures into letters and drops soft hyphens and page breaks', () => {
+    expect(cleanPdfText('oﬃciel et ﬁnﬂuent')).toBe('officiel et finfluent');
+    expect(cleanPdfText('sou­veraineté\fPage')).toBe('souveraineté Page');
+  });
+  it('still matches a quote that the PDF wrapped over several lines', () => {
+    const text = cleanPdfText('C’est pourquoi\nje suis candidate.\f2');
+    expect(containsQuote(text, 'C’est pourquoi je suis candidate.')).toBe(true);
   });
 });
