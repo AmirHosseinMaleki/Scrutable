@@ -151,7 +151,8 @@ export function validateContent(content: Loaded, today: string, options: Options
 
     for (const r of data.rounds as { round: number; results: { name: string; person?: string; share: number }[] }[]) {
       const total = r.results.reduce((sum, x) => sum + x.share, 0);
-      if (total > 100.0001) add('error', entry.file, `round ${r.round}: shares add up to ${total.toFixed(1)}% (more than 100%)`);
+      // Each share is rounded to 2 decimals, so allow half a hundredth per line.
+      if (total > 100 + 0.005 * r.results.length) add('error', entry.file, `round ${r.round}: shares add up to ${total.toFixed(2)}% (more than 100%)`);
       for (const x of r.results) {
         if (x.person && !people.has(x.person)) add('error', entry.file, `round ${r.round}: person "${x.person}" does not exist`);
       }
@@ -193,7 +194,7 @@ export function validateContent(content: Loaded, today: string, options: Options
 
     if (election.data.status === 'upcoming') {
       if (!data.sample && !data.declaration) add('error', entry.file, 'real candidates need a declaration (their own words on their own page, plus one news source)');
-      if (data.declaration && data.declaration.date > today) add('error', entry.file, `declaration.date ${data.declaration.date} is in the future`);
+      if (data.declaration?.date && data.declaration.date > today) add('error', entry.file, `declaration.date ${data.declaration.date} is in the future`);
       if (data.declaration && data.declaration.news.outlet && new URL(data.declaration.news.source_url).hostname === new URL(data.declaration.own.source_url).hostname) {
         add('error', entry.file, 'declaration: the news source must be a different site from the candidate\'s own page');
       }

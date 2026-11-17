@@ -47,7 +47,13 @@ const runs = earlierRuns(candidate.slug, await getElections(country));
   {
     candidacy.declaration && (
       <div class="mt-4">
-        <p>Declared on <time datetime={candidacy.declaration.date}>{formatDate(candidacy.declaration.date)}</time>.</p>
+        <p>
+          {candidacy.declaration.date ? (
+            <>Declared on <time datetime={candidacy.declaration.date}>{formatDate(candidacy.declaration.date)}</time>.</>
+          ) : (
+            'Has declared. We found no source that gives the date.'
+          )}
+        </p>
         <Expandable label="Declaration and sources">
           <figure class="mb-2">
             <figcaption class="text-sm text-muted">{quoteLabel(candidacy.declaration.own.quote_lang)}, on their own page</figcaption>
