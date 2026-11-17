@@ -111,6 +111,9 @@ const year = election.date.slice(0, 4);
                             <p>{fact.dates.map((d) => formatDate(d)).join(', ')}.</p>
                           ))}
                         <SourceLink source_url={fact.source_url} source_date={fact.source_date} last_checked={fact.last_checked} source_date_is_retrieval={fact.source_date_is_retrieval} />
+                        {fact.also_sources.map((s) => (
+                          <SourceLink source_url={s.source_url} source_date={s.source_date} last_checked={s.last_checked} source_date_is_retrieval={s.source_date_is_retrieval} />
+                        ))}
                       </>
                     )}
                   </dd>

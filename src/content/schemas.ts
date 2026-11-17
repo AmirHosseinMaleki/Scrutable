@@ -97,7 +97,12 @@ const keyDate = z.strictObject({
  * record and each either found (with its source) or an explicit gap. There is no editorial "what defined the term" line.
  */
 const termGap = z.strictObject({ status: z.literal('not_found'), checked_on: isoDate });
-const termFact = <T extends z.ZodRawShape>(shape: T) => z.discriminatedUnion('status', [z.strictObject({ status: z.literal('found'), ...shape, ...sourceFields }), termGap]);
+/** A found fact has one main source and, when one page is not enough, extra sources (each with its own date and check). */
+const termFact = <T extends z.ZodRawShape>(shape: T) =>
+  z.discriminatedUnion('status', [
+    z.strictObject({ status: z.literal('found'), ...shape, ...sourceFields, also_sources: z.array(z.strictObject(sourceFields)).default([]) }),
+    termGap,
+  ]);
 
 const termFacts = z.strictObject({
   /** True when the term is still running: the card then says "so far". */
