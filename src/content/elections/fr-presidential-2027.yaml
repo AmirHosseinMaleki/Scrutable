@@ -22,18 +22,6 @@ key_dates:
     source_date: "2026-07-02"
     last_checked: "2026-11-07"
 also_declared:
-  - name: "Nathalie Arthaud"
-    sort_name: "Arthaud Nathalie"
-    party: "Lutte ouvrière"
-    sources:
-      - outlet: "LCP"
-        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
-        source_date: "2026-10-14"
-        last_checked: "2026-11-17"
-      - outlet: "Public Sénat"
-        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
-        source_date: "2026-09-18"
-        last_checked: "2026-11-17"
   - name: "Gabriel Attal"
     sort_name: "Attal Gabriel"
     party: "Renaissance"

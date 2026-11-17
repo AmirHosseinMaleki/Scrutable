@@ -1,0 +1,57 @@
+# Real candidacy. Positions come from the campaign brochure published on her own site (a PDF, printed date 26 June 2026); see the pull request for the source list.
+election: fr-presidential-2027
+person: nathalie-arthaud
+sample: false
+status: declared
+declaration:
+  own:
+    quote: "C’est ce programme communiste, révolutionnaire et internationaliste que je veux porter lors de l’élection présidentielle de 2027. Et c’est pourquoi je suis candidate."
+    quote_lang: fr
+    source_url: https://www.nathalie-arthaud.info/medias/document/fichiers/2026/06/brochure-ete-2026.pdf
+    source_date: "2026-06-26"
+    last_checked: "2026-11-17"
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+    source_date: "2026-10-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "Lutte ouvrière"
+  one_line: "Spokesperson of Lutte ouvrière and a teacher at a lycée in Aubervilliers."
+  background: "On her campaign site she says she is not a professional politician and earns her living as a teacher."
+  source_url: https://www.nathalie-arthaud.info/
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "She calls for a large rise in wages, benefits and pensions, indexed on rising prices. She also calls for working time and workload to be cut without loss of pay, so that work is shared."
+    quote: "Nous devons imposer une augmentation massive des salaires, des allocations et des pensions et leur indexation sur la hausse des prix : quand les prix montent, notre salaire doit suivre !"
+    quote_lang: fr
+    source_url: https://www.nathalie-arthaud.info/medias/document/fichiers/2026/06/brochure-ete-2026.pdf
+    source_date: "2026-06-26"
+    last_checked: "2026-11-17"
+  - topic: pensions-health
+    status: found
+    summary: "She calls for pensions to rise with prices. She also proposes that the profits of oil and arms companies be confiscated, with the money going to hospitals and schools."
+    quote: "Confiscation des bénéfices de ces profiteurs de guerre : les milliards pour les hôpitaux, les écoles, pas pour la guerre !"
+    quote_lang: fr
+    source_url: https://www.nathalie-arthaud.info/medias/document/fichiers/2026/06/brochure-ete-2026.pdf
+    source_date: "2026-06-26"
+    last_checked: "2026-11-17"
+  - topic: security-justice
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: immigration
+    status: found
+    summary: "She calls for all undocumented people to be given legal status. She also calls for freedom of movement and settlement for everyone."
+    quote: "Régularisation de tous les sans-papiers, liberté de circulation et d’installation pour chaque être humain de cette planète !"
+    quote_lang: fr
+    source_url: https://www.nathalie-arthaud.info/medias/document/fichiers/2026/06/brochure-ete-2026.pdf
+    source_date: "2026-06-26"
+    last_checked: "2026-11-17"
+  - topic: climate-energy
+    status: not_found
+    checked_on: "2026-11-17"
+promises: []
