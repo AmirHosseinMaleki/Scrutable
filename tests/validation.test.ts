@@ -184,17 +184,26 @@ describe('validateContent', () => {
   });
 
   describe('past elections and optional fields', () => {
-    it('accepts a defining event that is an explicit gap', () => {
-      expect(errors((c) => ((c.elections[1]!.data as any).defining_event = { status: 'not_found', checked_on: '2026-11-01' }))).toEqual([]);
+    it('accepts a term fact that is an explicit gap', () => {
+      expect(errors((c) => ((c.elections[1]!.data as any).term.referendums = { status: 'not_found', checked_on: '2026-11-01' }))).toEqual([]);
     });
-    it('still requires a defining event (found or gap) for past elections', () => {
-      expect(errors((c) => delete (c.elections[1]!.data as any).defining_event).length).toBeGreaterThan(0);
+    it('accepts found term facts with nothing listed (none held, no dissolution)', () => {
+      expect(errors(() => {})).toEqual([]);
+    });
+    it('still requires a term block for past elections', () => {
+      expect(errors((c) => delete (c.elections[1]!.data as any).term).some((i) => i.message.includes('term block'))).toBe(true);
+    });
+    it('rejects an old defining_event field', () => {
+      expect(errors((c) => ((c.elections[1]!.data as any).defining_event = { status: 'not_found', checked_on: '2026-11-01' })).length).toBeGreaterThan(0);
     });
     it('accepts results and winners without a political family', () => {
       expect(errors((c) => { const e = c.elections[1]!.data as any; delete e.rounds[0].results[0].family; delete e.winner.family; })).toEqual([]);
     });
-    it('rejects a defining event with a source missing', () => {
-      expect(errors((c) => delete (c.elections[1]!.data as any).defining_event.source_url).length).toBeGreaterThan(0);
+    it('rejects a found term fact with a source missing', () => {
+      expect(errors((c) => delete (c.elections[1]!.data as any).term.prime_ministers.source_url).length).toBeGreaterThan(0);
+    });
+    it('rejects a found prime-minister fact with no names', () => {
+      expect(errors((c) => ((c.elections[1]!.data as any).term.prime_ministers.names = [])).length).toBeGreaterThan(0);
     });
     it('requires a profile for candidates in an upcoming election', () => {
       expect(errors((c) => delete (c.candidacies[0]!.data as any).profile).some((i) => i.message.includes('need a profile'))).toBe(true);
