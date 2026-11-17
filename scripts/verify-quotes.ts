@@ -6,7 +6,11 @@
  *
  * Exit 1 if any quote is NOT FOUND. Pages that cannot be read are reported as "unverified" and only fail with --strict.
  */
-import { collectQuotes, containsQuote, htmlToText } from '../src/lib/quotes';
+import { execFileSync } from 'node:child_process';
+import { existsSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { cleanPdfText, collectQuotes, containsQuote, htmlToText, isPdfUrl, pdfFileName } from '../src/lib/quotes';
 import { loadContent } from './load-content';
 
 const strict = process.argv.includes('--strict');
@@ -18,14 +22,41 @@ if (refs.length === 0) {
   process.exit(0);
 }
 
+/**
+ * PDFs: some sites refuse scripted downloads, so a copy saved by hand in docs/inbox/ under the URL's file name is
+ * used first (docs/inbox/ is git-ignored). Otherwise the PDF is fetched. Text is extracted with poppler's
+ * `pdftotext` (brew install poppler); without it PDF quotes are reported as "unverified".
+ */
+const INBOX = join(import.meta.dirname, '..', 'docs', 'inbox');
+
+async function pdfText(url: string): Promise<{ text?: string; error?: string }> {
+  let file = join(INBOX, pdfFileName(url));
+  if (!existsSync(file)) {
+    const r = await fetch(url, { headers: { 'user-agent': 'Scrutable quote check (read-only)' }, redirect: 'follow', signal: AbortSignal.timeout(60_000) }).catch(
+      (e: Error) => e,
+    );
+    if (r instanceof Error) return { error: `${r.message}; save a copy as docs/inbox/${pdfFileName(url)}` };
+    if (!r.ok) return { error: `HTTP ${r.status}; save a copy as docs/inbox/${pdfFileName(url)}` };
+    file = join(mkdtempSync(join(tmpdir(), 'scrutable-pdf-')), 'source.pdf');
+    writeFileSync(file, Buffer.from(await r.arrayBuffer()));
+  }
+  try {
+    return { text: cleanPdfText(execFileSync('pdftotext', [file, '-'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })) };
+  } catch (e) {
+    return { error: `pdftotext failed (${(e as Error).message.split('\n')[0]})` };
+  }
+}
+
 const pages = new Map<string, Promise<{ text?: string; error?: string }>>();
 function page(url: string) {
   if (!pages.has(url)) {
     pages.set(
       url,
-      fetch(url, { headers: { 'user-agent': 'Scrutable quote check (read-only)' }, redirect: 'follow', signal: AbortSignal.timeout(30_000) })
-        .then(async (r) => (r.ok ? { text: htmlToText(await r.text()) } : { error: `HTTP ${r.status}` }))
-        .catch((e: Error) => ({ error: e.message })),
+      isPdfUrl(url)
+        ? pdfText(url)
+        : fetch(url, { headers: { 'user-agent': 'Scrutable quote check (read-only)' }, redirect: 'follow', signal: AbortSignal.timeout(30_000) })
+            .then(async (r) => (r.ok ? { text: htmlToText(await r.text()) } : { error: `HTTP ${r.status}` }))
+            .catch((e: Error) => ({ error: e.message })),
     );
   }
   return pages.get(url)!;
