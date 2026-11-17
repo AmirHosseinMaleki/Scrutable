@@ -1,0 +1,66 @@
+# Real candidacy. Every position links to the candidate's own pages; see the pull request for the source list.
+election: fr-presidential-2027
+person: francois-ruffin
+sample: false
+status: declared
+declaration:
+  own:
+    quote: "Je suis candidat à la présidence de la République française"
+    quote_lang: fr
+    source_url: https://francoisruffin.fr/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "Public Sénat"
+    source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+    source_date: "2026-09-18"
+    last_checked: "2026-11-17"
+profile:
+  party: "Debout"
+  one_line: "Deputy for the Somme."
+  background: "LCP reports that he said he would run alone if there is no primary."
+  source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+  source_date: "2026-10-14"
+  last_checked: "2026-11-17"
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "The first wage proposal in the workers' cahier is to index wages to inflation. The next revalues pay grids."
+    quote: "nous indexerons les salaires sur l’inflation"
+    quote_lang: fr
+    source_url: https://nouspresident.fr/statut-travailleurs-essentiels/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "The first pension proposal is to grant extra pension quarters. The same page proposes early retirement to compensate for hard working conditions."
+    quote: "accorder des trimestres supplémentaires pour la retraite"
+    quote_lang: fr
+    source_url: https://nouspresident.fr/statut-travailleurs-essentiels/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "On courts, proposes ending the Government's power to appoint prosecutors, within a cahier on separating money from the State. Police and prisons are not covered on the pages read."
+    quote: "en abrogeant notamment le pouvoir de nomination des magistrats du parquet par le Gouvernement"
+    quote_lang: fr
+    source_url: https://nouspresident.fr/separation-argent-etat/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: climate-energy
+    status: found
+    summary: "The first proposal under \"leaving fossil fuels\" is a general mobilisation to renovate homes, with a goal of 800,000 major renovations a year. Another proposes expanding social car leasing."
+    quote: "Nous Président, nous organiserons la mobilisation générale pour la rénovation des logements"
+    quote_lang: fr
+    source_url: https://nouspresident.fr/travaillisme-ecologique/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

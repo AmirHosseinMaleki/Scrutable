@@ -1,0 +1,74 @@
+# Real candidacy. Every position links to the candidate's own pages; see the pull request for the source list.
+election: fr-presidential-2027
+person: david-lisnard
+sample: false
+status: declared
+declaration:
+  date: "2026-03-31"
+  own:
+    quote: "David Lisnard, candidat à l'élection présidentielle de 2027"
+    quote_lang: fr
+    source_url: https://www.lisnard2027.fr/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "Toute l'Europe"
+    source_url: https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/
+    source_date: "2026-11-09"
+    last_checked: "2026-11-17"
+profile:
+  party: "Nouvelle Énergie"
+  one_line: "Mayor of Cannes since 2014 and president of the Association of Mayors of France since 2021."
+  background: "His party's biography presents him as president of Nouvelle Énergie."
+  source_url: https://www.unenouvelleenergie.fr/david-lisnard/
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "The economy section opens with removing surcharges on capital and labour and loosening the labour-code rules. It also calls for stronger cuts in production taxes and a single employment contract for new jobs."
+    quote: "Supprimer les surcharges sur le capital et le travail"
+    quote_lang: fr
+    source_url: https://www.unenouvelleenergie.fr/notre-programme/reussir-une-nouvelle-ambition-francaise/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "The pension section puts raising the retirement age first, calling a legal age of 65 an urgent national imperative. On health, the health page's first proposal is a differentiated agreement scheme (conventionnement différencié)."
+    quote: "La réforme des retraites : la priorité de l'augmentation de l'âge de la retraite"
+    quote_lang: fr
+    source_url: https://www.unenouvelleenergie.fr/notre-programme/reussir-une-nouvelle-ambition-francaise/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "The first security measure is to give prefects the means to actually command. Next are putting police back on the street, at least 50% of their time, and reducing police bureaucracy."
+    quote: "donner aux préfets les moyens de commander réellement"
+    quote_lang: fr
+    source_url: https://www.unenouvelleenergie.fr/notre-programme/securite/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "The first immigration measure is to revisit the 1968 Franco-Algerian agreement. Next are diplomatic pressure on non-cooperating countries and a showdown with the European Court of Human Rights."
+    quote: "Revenir sur l'accord franco-algérien de 1968"
+    quote_lang: fr
+    source_url: https://www.unenouvelleenergie.fr/notre-programme/immigration/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "The section opens with the aim of making France the low-carbon leader of the G20. The first measures listed are favouring decarbonised energy based on nuclear power and a carbon price with green taxation."
+    quote: "Nous voulons faire de la France le leader « Bas carbone » du G20"
+    quote_lang: fr
+    source_url: https://www.unenouvelleenergie.fr/notre-programme/generer-un-renouveau-civique/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

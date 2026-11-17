@@ -1,0 +1,13 @@
+name: "Juan Branco"
+sort_name: "Branco Juan"
+sample: false
+photo:
+  file: juan-branco.jpg
+  author: "Web Summit"
+  license: CC-BY-2.0
+  license_url: https://creativecommons.org/licenses/by/2.0
+  taken_year: 2019
+  source_url: https://commons.wikimedia.org/wiki/File:2019_-_Centre_Stage_-_Day_2_VJR21625_(49024215596).jpg
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true

@@ -1,0 +1,13 @@
+name: "Édouard Philippe"
+sort_name: "Philippe Édouard"
+sample: false
+photo:
+  file: edouard-philippe.jpg
+  author: "Jacques Paquier"
+  license: CC-BY-2.0
+  license_url: https://creativecommons.org/licenses/by/2.0
+  taken_year: 2019
+  source_url: https://commons.wikimedia.org/wiki/File:%C3%89douard_Philippe_2019_(cropped).jpg
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
