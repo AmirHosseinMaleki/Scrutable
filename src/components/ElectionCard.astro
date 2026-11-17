@@ -73,19 +73,50 @@ const year = election.date.slice(0, 4);
       }
 
       {
-        election.defining_event && (
+        election.term && (
           <div>
-            <h3 class="font-semibold">What defined the term</h3>
-            {election.defining_event.status === 'found' ? (
-              <>
-                <p>{election.defining_event.text}</p>
-                <SourceLink source_url={election.defining_event.source_url} source_date={election.defining_event.source_date} last_checked={election.defining_event.last_checked} source_date_is_retrieval={election.defining_event.source_date_is_retrieval} />
-              </>
-            ) : (
-              <p class="text-muted">
-                Not added as of <time datetime={election.defining_event.checked_on}>{formatDate(election.defining_event.checked_on)}</time>.
-              </p>
-            )}
+            <h3 class="font-semibold">During the term{election.term.ongoing && ' (so far)'}</h3>
+            <dl class="mt-2 space-y-3">
+              {[
+                { label: 'Prime ministers', fact: election.term.prime_ministers },
+                { label: 'Referendums', fact: election.term.referendums },
+                { label: 'Dissolutions of the National Assembly', fact: election.term.dissolutions },
+              ].map(({ label, fact }) => (
+                <div>
+                  <dt class="font-medium">{label}</dt>
+                  <dd>
+                    {fact.status === 'not_found' ? (
+                      <p class="text-muted">
+                        Not added as of <time datetime={fact.checked_on}>{formatDate(fact.checked_on)}</time>.
+                      </p>
+                    ) : (
+                      <>
+                        {'names' in fact && <p>{fact.names.join(', ')}.</p>}
+                        {'held' in fact &&
+                          (fact.held.length === 0 ? (
+                            <p>None held.</p>
+                          ) : (
+                            <ul class="list-disc pl-5">
+                              {fact.held.map((h) => (
+                                <li>
+                                  <time datetime={h.date}>{formatDate(h.date)}</time>: {h.subject}
+                                </li>
+                              ))}
+                            </ul>
+                          ))}
+                        {'dates' in fact &&
+                          (fact.dates.length === 0 ? (
+                            <p>None.</p>
+                          ) : (
+                            <p>{fact.dates.map((d) => formatDate(d)).join(', ')}.</p>
+                          ))}
+                        <SourceLink source_url={fact.source_url} source_date={fact.source_date} last_checked={fact.last_checked} source_date_is_retrieval={fact.source_date_is_retrieval} />
+                      </>
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         )
       }

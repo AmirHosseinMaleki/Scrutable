@@ -35,7 +35,7 @@ export function validContent(): Loaded {
           date: '2020-04-01',
           rounds: [{ round: 1, date: '2020-04-01', turnout: 60, results: [{ name: 'W', person: 'win-1', family: 'F', share: 40 }, { name: 'O', family: 'G', share: 30 }], ...src }],
           winner: { name: 'W', person: 'win-1', family: 'F' },
-          defining_event: { status: 'found', text: 'Something happened.', ...src },
+          term: { ongoing: false, prime_ministers: { status: 'found', names: ['P1'], ...src }, referendums: { status: 'found', held: [], ...src }, dissolutions: { status: 'found', dates: [], ...src } },
         },
       },
     ],

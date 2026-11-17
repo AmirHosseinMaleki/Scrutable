@@ -16,7 +16,7 @@ const make = (n: number, family: string | undefined, withRunoff: boolean, extra?
       ...(withRunoff ? [{ round: 2, date: `${2000 + n}-04-15`, turnout: 69 - n, results: [{ name: 'W', person: `w${n}`, ...(family ? { family } : {}), share: 55 }, { name: 'X', family: 'Z', ...(extra ?? {}), share: 45 }], ...src }] : []),
     ],
     winner: { name: 'W', person: `w${n}`, ...(family ? { family } : {}) },
-    defining_event: { status: 'found', text: 'Something.', ...src },
+    term: { ongoing: false, prime_ministers: { status: 'found', names: ['P'], ...src }, referendums: { status: 'found', held: [], ...src }, dissolutions: { status: 'found', dates: [], ...src } },
   });
 
 const elections = [make(1, 'B', true), make(2, 'A', false), make(3, 'B', true, { person: 'cand' })];

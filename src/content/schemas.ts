@@ -32,11 +32,6 @@ const cardText = z
   .min(1)
   .refine((s) => countSentences(s) <= 2, 'Card text must be at most 2 sentences');
 
-const oneSentence = z
-  .string()
-  .min(1)
-  .refine((s) => countSentences(s) <= 1, 'Must be one sentence');
-
 /** The three fields every fact carries. */
 export const sourceFields = {
   source_url: z.url({ protocol: /^https?$/ }),
@@ -98,6 +93,24 @@ const keyDate = z.strictObject({
 });
 
 /**
+ * Facts about the term that followed a past election: the same three for every term, each taken from an official
+ * record and each either found (with its source) or an explicit gap. There is no editorial "what defined the term" line.
+ */
+const termGap = z.strictObject({ status: z.literal('not_found'), checked_on: isoDate });
+const termFact = <T extends z.ZodRawShape>(shape: T) => z.discriminatedUnion('status', [z.strictObject({ status: z.literal('found'), ...shape, ...sourceFields }), termGap]);
+
+const termFacts = z.strictObject({
+  /** True when the term is still running: the card then says "so far". */
+  ongoing: z.boolean().default(false),
+  /** Prime ministers who served during the term, in order. */
+  prime_ministers: termFact({ names: z.array(z.string().min(1)).min(1) }),
+  /** Referendums held during the term. An empty list means none were held (the source still has to say so). */
+  referendums: termFact({ held: z.array(z.strictObject({ date: isoDate, subject: z.string().min(1) })) }),
+  /** Dates on which the National Assembly was dissolved during the term. An empty list means no dissolution. */
+  dissolutions: termFact({ dates: z.array(isoDate) }),
+});
+
+/**
  * A candidate who has declared but has no page of their own yet. Listed (alphabetically) so the Candidates
  * page does not look like the whole field. Needs two established outlets that both report the declaration.
  */
@@ -129,19 +142,14 @@ export const electionSchema = z
     /** Past elections: results per round. */
     rounds: z.array(round).default([]),
     winner: z.strictObject({ name: z.string().min(1), person: slug.optional(), family: z.string().min(1).optional() }).optional(),
-    /** One line on what defined the term (a crisis, a major reform), with a source, or an explicit gap. */
-    defining_event: z
-      .discriminatedUnion('status', [
-        z.strictObject({ status: z.literal('found'), text: oneSentence, ...sourceFields }),
-        z.strictObject({ status: z.literal('not_found'), checked_on: isoDate }),
-      ])
-      .optional(),
+    /** Past elections: what happened during the term that followed (prime ministers, referendums, dissolutions). */
+    term: termFacts.optional(),
   })
   .superRefine((e, ctx) => {
     if (e.status === 'past') {
       if (e.rounds.length === 0) ctx.addIssue({ code: 'custom', path: ['rounds'], message: 'Past elections need at least one round of results' });
       if (!e.winner) ctx.addIssue({ code: 'custom', path: ['winner'], message: 'Past elections need a winner' });
-      if (!e.defining_event) ctx.addIssue({ code: 'custom', path: ['defining_event'], message: 'Past elections need a defining_event' });
+      if (!e.term) ctx.addIssue({ code: 'custom', path: ['term'], message: 'Past elections need a term block' });
     } else if (e.key_dates.length === 0) {
       ctx.addIssue({ code: 'custom', path: ['key_dates'], message: 'Upcoming elections need key_dates' });
     }

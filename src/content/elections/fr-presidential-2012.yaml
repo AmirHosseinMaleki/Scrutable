@@ -56,6 +56,14 @@ rounds:
 winner:
   name: "François Hollande"
   person: francois-hollande
-defining_event:
-  status: not_found
-  checked_on: "2026-11-07"
+term:
+  ongoing: false
+  prime_ministers:
+    status: not_found
+    checked_on: "2026-11-17"
+  referendums:
+    status: not_found
+    checked_on: "2026-11-17"
+  dissolutions:
+    status: not_found
+    checked_on: "2026-11-17"
