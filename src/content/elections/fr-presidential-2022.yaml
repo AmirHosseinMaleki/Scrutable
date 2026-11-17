@@ -61,11 +61,36 @@ winner:
 term:
   ongoing: true
   prime_ministers:
-    status: not_found
-    checked_on: "2026-11-17"
+    status: found
+    names:
+      - "Élisabeth Borne"
+      - "Gabriel Attal"
+      - "Michel Barnier"
+      - "François Bayrou"
+      - "Sébastien Lecornu"
+    source_url: https://www.info.gouv.fr/les-anciens-premiers-et-premieres-ministres-de-la-ve-republique
+    source_date: "2026-09-07"
+    last_checked: "2026-11-17"
+    also_sources:
+      - source_url: https://www.info.gouv.fr/composition-du-gouvernement
+        source_date: "2026-02-26"
+        last_checked: "2026-11-17"
   referendums:
-    status: not_found
-    checked_on: "2026-11-17"
+    status: found
+    held: []
+    source_url: https://www.conseil-constitutionnel.fr/referendum-sous-la-ve-republique/tableau-recapitulatif-des-referendums-de-la-veme-republique
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
   dissolutions:
-    status: not_found
-    checked_on: "2026-11-17"
+    status: found
+    dates:
+      - "2024-06-09"
+    source_url: https://www.senat.fr/leg/exposes-des-motifs/ppl24-608-expose.html
+    source_date: "2025-05-13"
+    last_checked: "2026-11-17"
+    also_sources:
+      - source_url: https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/dissolution-de-l-assemblee-nationale-en-application-de-l-article-12-de-la-constitution
+        source_date: "2026-11-17"
+        last_checked: "2026-11-17"
+        source_date_is_retrieval: true
