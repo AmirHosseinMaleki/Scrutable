@@ -1,0 +1,74 @@
+# Real candidacy. Every position links to the candidate's own page; see the pull request for the source list.
+election: fr-presidential-2027
+person: nicolas-dupont-aignan
+sample: false
+status: declared
+declaration:
+  date: "2025-03-08"
+  own:
+    quote: "a officiellement annoncé, sa candidature à l’élection présidentielle de 2027"
+    quote_lang: fr
+    source_url: https://www.debout-la-france.fr/nicolas-dupont-aignan/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "Public Sénat"
+    source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+    source_date: "2026-09-18"
+    last_checked: "2026-11-17"
+profile:
+  party: "Debout la France"
+  one_line: "Founder and president of Debout la France. Elected mayor of Yerres in 1995 and deputy from 1997 to 2024."
+  background: "His party's page says he stood in the presidential elections of 2012, 2017 and 2022."
+  source_url: https://www.debout-la-france.fr/nicolas-dupont-aignan/
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "The first of 30 economy measures is to cut the cost of energy sharply for everyone. Others listed include halving administrative rules and lowering production taxes."
+    quote: "Diminuer pour tous massivement le coût de l’énergie"
+    quote_lang: fr
+    source_url: https://www.debout-la-france.fr/projet/economie-travail/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "The first of 10 pension measures is to index pensions to inflation at a minimum. Another keeps the minimum retirement age and contribution period at current levels."
+    quote: "Indexer les retraites à minima sur l’inflation"
+    quote_lang: fr
+    source_url: https://www.debout-la-france.fr/projet/retraites/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "The first of 30 security measures is to deploy the army at the borders to free police for other tasks. Others raise police numbers and widen municipal police powers."
+    quote: "Déployer l’armée aux frontières"
+    quote_lang: fr
+    source_url: https://www.debout-la-france.fr/projet/securite/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "The first of 27 measures is to restore border controls by leaving the Schengen area and recruiting 10,000 specialised agents. Another makes irregular stay an offence punished by prison."
+    quote: "Rétablir le contrôle aux frontières en sortant de Schengen"
+    quote_lang: fr
+    source_url: https://www.debout-la-france.fr/projet/immigration-et-assimilation/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "The first of 14 energy measures is to strengthen low-carbon electricity so that France stays independent. Others stop the rise of the electricity levy and keep EDF in public ownership."
+    quote: "Conforter une énergie électrique décarbonnée"
+    quote_lang: fr
+    source_url: https://www.debout-la-france.fr/projet/environnement-energie/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

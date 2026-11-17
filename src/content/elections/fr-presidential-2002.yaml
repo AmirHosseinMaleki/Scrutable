@@ -1,4 +1,5 @@
 # Real result, from the Conseil constitutionnel's decisions. Shares and turnout are calculated from the official counts.
+# Every result line is stored; the site shows round 1 candidates with at least 10% of valid votes.
 country: fr
 kind: presidential
 name: "French presidential election 2002"
@@ -18,6 +19,32 @@ rounds:
         share: 16.86
       - name: "Lionel Jospin"
         share: 16.18
+      - name: "François Bayrou"
+        share: 6.84
+      - name: "Arlette Laguiller"
+        share: 5.72
+      - name: "Jean-Pierre Chevènement"
+        share: 5.33
+      - name: "Noël Mamère"
+        share: 5.25
+      - name: "Olivier Besancenot"
+        share: 4.25
+      - name: "Jean Saint-Josse"
+        share: 4.23
+      - name: "Alain Madelin"
+        share: 3.91
+      - name: "Robert Hue"
+        share: 3.37
+      - name: "Bruno Mégret"
+        share: 2.34
+      - name: "Christine Taubira"
+        share: 2.32
+      - name: "Corinne Lepage"
+        share: 1.88
+      - name: "Christine Boutin"
+        share: 1.19
+      - name: "Daniel Gluckstein"
+        share: 0.47
     source_url: https://www.conseil-constitutionnel.fr/election-presidentielle-2002/resultats-du-1er-tour
     source_date: "2002-04-24"
     last_checked: "2026-11-07"

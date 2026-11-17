@@ -1,0 +1,74 @@
+# Real candidacy. Every position links to the candidate's own page; see the pull request for the source list.
+election: fr-presidential-2027
+person: bruno-retailleau
+sample: false
+status: declared
+declaration:
+  date: "2026-02-12"
+  own:
+    quote: "Voilà le sens de ma candidature : rendre aux Français le pouvoir de décider"
+    quote_lang: fr
+    source_url: https://avecretailleau.fr/candidat
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "Public Sénat"
+    source_url: https://www.publicsenat.fr/actualites/politique/je-suis-pret-bruno-retailleau-se-declare-candidat-a-lelection-presidentielle-2027
+    source_date: "2026-02-12"
+    last_checked: "2026-11-17"
+profile:
+  party: "Les Républicains"
+  one_line: "Was named Minister of the Interior in 2024 and elected president of Les Républicains in 2025."
+  background: "His own page describes a career as a local elected official, from the Vendée to the Interior Ministry."
+  source_url: https://avecretailleau.fr/candidat
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "The first of 6 work measures is to give every employee back 500 euros a year. Another removes social contributions on overtime."
+    quote: "Rendre 500 euros par an à tous les salariés"
+    quote_lang: fr
+    source_url: https://avecretailleau.fr/projet/theme/travail
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "The first of 7 pension measures is to allow retirement from age 63, with a full-rate pension guaranteed at 65. The health section is marked as coming later."
+    quote: "Pouvoir partir dès 63 ans, à 65 ans pour un taux plein garanti"
+    quote_lang: fr
+    source_url: https://avecretailleau.fr/projet/theme/retraites
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: found
+    summary: "The justice section is announced, but its measures are not yet published. Its summary says a sentence handed down should be a sentence carried out."
+    quote: "une peine prononcée doit être une peine exécutée"
+    quote_lang: fr
+    source_url: https://avecretailleau.fr/projet
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: immigration
+    status: found
+    summary: "The first of 13 immigration measures is to end citizenship by birth in France (droit du sol). Others reduce social aid for foreigners and retake control of the borders."
+    quote: "Supprimer le droit du sol"
+    quote_lang: fr
+    source_url: https://avecretailleau.fr/projet/theme/immigration
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: climate-energy
+    status: found
+    summary: "The first of 10 electricity measures is to extend nuclear plants to 80 years of operation. Others include building EPR2 reactors and ending subsidies for wind turbines."
+    quote: "Prolonger les centrales nucléaires jusqu’à 80 ans"
+    quote_lang: fr
+    source_url: https://avecretailleau.fr/projet/theme/electricite
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

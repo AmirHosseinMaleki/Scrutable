@@ -1,0 +1,61 @@
+# Real candidacy. Every position links to the candidate's own page; see the pull request for the source list.
+election: fr-presidential-2027
+person: delphine-batho
+sample: false
+status: declared
+declaration:
+  own:
+    quote: "Ma candidature à l’élection présidentielle est au service d’une cause vitale"
+    quote_lang: fr
+    source_url: https://www.delphinebatho.fr/mon-parcours/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  news:
+    outlet: "LCP"
+    source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+    source_date: "2026-10-14"
+    last_checked: "2026-11-17"
+profile:
+  party: "Génération Écologie"
+  one_line: "Elected deputy for Deux-Sèvres in 2007 and re-elected five times. Was Minister of Ecology, Sustainable Development and Energy from 2012."
+  background: "Her own page lists roles from 1990, as president of a high-school students' union, to 2025, as a member of the National Assembly's defence committee."
+  source_url: https://www.delphinebatho.fr/mon-parcours/
+  source_date: "2026-11-17"
+  last_checked: "2026-11-17"
+  source_date_is_retrieval: true
+positions:
+  - topic: economy-jobs
+    status: found
+    summary: "Proposes an industrial strategy built on a circular economy that, her page says, could create 1 million lasting jobs that cannot be relocated."
+    quote: "peut créer 1 million d’emplois durables et non délocalisables"
+    quote_lang: fr
+    source_url: https://www.delphinebatho.fr/priorites/la-securite-climatique-et-la-paix/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: pensions-health
+    status: found
+    summary: "On health, proposes ending medical deserts, with a bill ready to regulate where doctors set up and to create health centres. Retirement rules are not covered on the pages read."
+    quote: "Mettre fin aux déserts médicaux"
+    quote_lang: fr
+    source_url: https://www.delphinebatho.fr/priorites/la-pleine-sante/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+  - topic: security-justice
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: immigration
+    status: not_found
+    checked_on: "2026-11-17"
+  - topic: climate-energy
+    status: found
+    summary: "Her first proposal on climate security is to take climate change seriously. The same page lists civil protection, energy bills and collective geothermal power."
+    quote: "Prendre enfin au sérieux le changement climatique"
+    quote_lang: fr
+    source_url: https://www.delphinebatho.fr/priorites/la-securite-climatique-et-la-paix/
+    source_date: "2026-11-17"
+    last_checked: "2026-11-17"
+    source_date_is_retrieval: true
+promises: []

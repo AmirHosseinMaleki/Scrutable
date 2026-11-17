@@ -1,4 +1,4 @@
-# Real election; the candidates attached to it are still sample data.
+# Real election. Candidates with a page are in candidacies/fr-presidential-2027/; the rest are in also_declared.
 country: fr
 kind: presidential
 name: French presidential election 2027
@@ -22,34 +22,209 @@ key_dates:
     source_date: "2026-07-02"
     last_checked: "2026-11-07"
 also_declared:
-  - name: "Sample Declared E"
-    sort_name: "Declared Sample E"
-    party: "Sample Party E"
-    sample: true
+  - name: "Nathalie Arthaud"
+    sort_name: "Arthaud Nathalie"
+    party: "Lutte ouvrière"
     sources:
-      - outlet: "Sample Outlet"
-        source_url: https://example.com/sample/declared-e
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
         source_date: "2026-10-14"
-        last_checked: "2026-11-06"
-      - outlet: "Sample Wire"
-        source_url: https://example.org/sample/declared-e
-        source_date: "2026-11-02"
-        last_checked: "2026-11-06"
-  - name: "Sample Declared F"
-    sort_name: "Declared Sample F"
-    party: "Sample Party F"
-    sample: true
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "François Asselineau"
+    sort_name: "Asselineau François"
+    party: "Union populaire républicaine"
     sources:
-      - outlet: "Sample Outlet"
-        source_url: https://example.com/sample/declared-f
-        source_date: "2026-09-30"
-        last_checked: "2026-11-06"
-      - outlet: "Sample Wire"
-        source_url: https://example.org/sample/declared-f
-        source_date: "2026-10-01"
-        last_checked: "2026-11-06"
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Gabriel Attal"
+    sort_name: "Attal Gabriel"
+    party: "Renaissance"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Karim Bouamrane"
+    sort_name: "Bouamrane Karim"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/election-presidentielle-2027-qui-sont-les-candidats-declares-ou-presque
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+  - name: "Juan Branco"
+    sort_name: "Branco Juan"
+    party: "Les Ruches"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
+        source_date: "2026-11-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Raphaël Glucksmann"
+    sort_name: "Glucksmann Raphaël"
+    party: "Place publique"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
+        source_date: "2026-11-14"
+        last_checked: "2026-11-17"
+      - outlet: "Euronews"
+        source_url: https://www.euronews.com/2026/08/23/french-2027-presidential-election-raphael-glucksmann-prepares-to-enter-the-ring
+        source_date: "2026-08-31"
+        last_checked: "2026-11-17"
+  - name: "Francis Lalanne"
+    sort_name: "Lalanne Francis"
+    party: "France Libre"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Marine Le Pen"
+    sort_name: "Le Pen Marine"
+    party: "Rassemblement national"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
     note:
-      text: "Sample note: a pending ruling may affect this candidacy."
-      source_url: https://example.com/sample/declared-f-note
-      source_date: "2026-10-20"
-      last_checked: "2026-11-06"
+      text: "She has announced her candidacy while awaiting the decision on her appeal to the Court of Cassation."
+      source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932
+      source_date: "2026-11-14"
+      last_checked: "2026-11-17"
+  - name: "David Lisnard"
+    sort_name: "Lisnard David"
+    party: "Nouvelle Énergie"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Édouard Philippe"
+    sort_name: "Philippe Édouard"
+    party: "Horizons"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Florian Philippot"
+    sort_name: "Philippot Florian"
+    party: "Les Patriotes"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Natacha Polony"
+    sort_name: "Polony Natacha"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/election-presidentielle-2027-qui-sont-les-candidats-declares-ou-presque
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+  - name: "Teddy Riner"
+    sort_name: "Riner Teddy"
+    sources:
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-judoka-teddy-riner-se-lance-dans-la-course-a-lelysee-au-milieu-dune-multitude-de-candidats
+        source_date: "2026-11-09"
+        last_checked: "2026-11-17"
+      - outlet: "Toute l'Europe"
+        source_url: https://www.touteleurope.eu/vie-politique-des-etats-membres/presidentielle-2027-qui-sont-les-candidats-deja-declares/
+        source_date: "2026-11-09"
+        last_checked: "2026-11-17"
+  - name: "Fabien Roussel"
+    sort_name: "Roussel Fabien"
+    party: "Parti communiste français"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "François Ruffin"
+    sort_name: "Ruffin François"
+    party: "Debout !"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Marine Tondelier"
+    sort_name: "Tondelier Marine"
+    party: "Les Écologistes"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
+  - name: "Éric Zemmour"
+    sort_name: "Zemmour Éric"
+    party: "Reconquête"
+    sources:
+      - outlet: "LCP"
+        source_url: https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-deja-en-lice-et-des-pretendants-436373
+        source_date: "2026-10-14"
+        last_checked: "2026-11-17"
+      - outlet: "Public Sénat"
+        source_url: https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart
+        source_date: "2026-09-18"
+        last_checked: "2026-11-17"
