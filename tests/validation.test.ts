@@ -199,6 +199,12 @@ describe('validateContent', () => {
     it('accepts results and winners without a political family', () => {
       expect(errors((c) => { const e = c.elections[1]!.data as any; delete e.rounds[0].results[0].family; delete e.winner.family; })).toEqual([]);
     });
+    it('accepts extra sources on a term fact and checks them like any other source', () => {
+      const extra = { source_url: 'https://example.org/b', source_date: '2026-11-01', last_checked: '2026-11-01' };
+      expect(errors((c) => ((c.elections[1]!.data as any).term.prime_ministers.also_sources = [extra]))).toEqual([]);
+      expect(errors((c) => ((c.elections[1]!.data as any).term.prime_ministers.also_sources = [{ ...extra, source_url: undefined }])).length).toBeGreaterThan(0);
+      expect(errors((c) => ((c.elections[1]!.data as any).term.prime_ministers.also_sources = [{ ...extra, source_date: '2026-10-01', source_date_is_retrieval: true }])).some((i) => i.message.includes('source_date_is_retrieval'))).toBe(true);
+    });
     it('rejects a found term fact with a source missing', () => {
       expect(errors((c) => delete (c.elections[1]!.data as any).term.prime_ministers.source_url).length).toBeGreaterThan(0);
     });
