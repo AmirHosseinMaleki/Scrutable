@@ -27,11 +27,11 @@ profile:
 positions:
   - topic: economy-jobs
     status: found
-    summary: "The first flagship proposal on work is to fund social protection by means other than labour, to raise net pay. Others include letting firms organise working time and limiting unemployment benefit to 12 months for under-50s."
-    quote: "Financer la protection sociale autrement que par le travail, pour augmenter le salaire net"
+    summary: "The first flagship proposal on work is to raise net pay by reducing social spending, with part of the savings on pensions, unemployment insurance and sick leave redistributed as purchasing power. Others include letting firms organise working time and limiting unemployment benefit to 12 months for under-50s."
+    quote: "Augmenter le salaire net en baissant la dépense sociale"
     quote_lang: fr
     source_url: https://www.edouardphilippe.fr/programme/travail
-    source_date: "2026-11-12"
+    source_date: "2026-11-16"
     last_checked: "2026-11-17"
   - topic: pensions-health
     status: found
@@ -39,7 +39,7 @@ positions:
     quote: "Porter progressivement l’âge de départ à 65 ans"
     quote_lang: fr
     source_url: https://www.edouardphilippe.fr/programme/retraites
-    source_date: "2026-11-12"
+    source_date: "2026-11-16"
     last_checked: "2026-11-17"
   - topic: security-justice
     status: found
@@ -51,11 +51,11 @@ positions:
     last_checked: "2026-11-17"
   - topic: immigration
     status: found
-    summary: "The first flagship immigration proposal is quotas to choose labour migration. Others are a moratorium on family reunification and return centres abroad."
-    quote: "Des quotas pour choisir l’immigration de travail"
+    summary: "The first flagship immigration proposal is to halve legal immigration, back to the level of 15 years ago. Others are quotas to choose labour migration, a moratorium on family reunification and return centres abroad."
+    quote: "Diviser l’immigration légale par deux, pour la ramener au niveau d’il y a 15 ans"
     quote_lang: fr
     source_url: https://www.edouardphilippe.fr/programme/immigration
-    source_date: "2026-11-12"
+    source_date: "2026-11-16"
     last_checked: "2026-11-17"
   - topic: climate-energy
     status: found
@@ -63,6 +63,6 @@ positions:
     quote: "Relancer le nucléaire et développer les renouvelables là où elles sont efficaces"
     quote_lang: fr
     source_url: https://www.edouardphilippe.fr/programme/energie
-    source_date: "2026-11-12"
+    source_date: "2026-11-16"
     last_checked: "2026-11-17"
 promises: []
