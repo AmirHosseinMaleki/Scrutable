@@ -38,6 +38,7 @@ rounds:
       - name: "Philippe Poutou"
         share: 0.77
       - name: "Nathalie Arthaud"
+        person: nathalie-arthaud
         share: 0.56
     source_url: https://www.conseil-constitutionnel.fr/decision/2022/2022195PDR.htm
     source_date: "2022-04-13"
