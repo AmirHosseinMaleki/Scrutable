@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { countSentences, electionSchema } from '../src/content/schemas';
-import { earlierRuns, storyFacts } from '../src/lib/story';
+import { earlierRuns, groupByKind, kindInfo, storyFacts } from '../src/lib/story';
 
 const src = { source_url: 'https://example.com/s', source_date: '2026-10-01', last_checked: '2026-11-01' };
 const make = (n: number, family: string | undefined, withRunoff: boolean, extra?: { person: string }, candidates?: number) =>
@@ -57,4 +57,34 @@ describe('earlierRuns', () => {
   });
   it('marks wins', () => expect(earlierRuns('w1', elections)[0]).toMatchObject({ won: true, round: 2 }));
   it('returns an empty list for people who never ran', () => expect(earlierRuns('nobody', elections)).toEqual([]));
+});
+
+describe('groupByKind', () => {
+  const termFacts = [{ status: 'not_found', label: 'Governments', checked_on: '2026-11-01' }];
+  const other = (n: number, kind: 'parliamentary' | 'senate') =>
+    electionSchema.parse({
+      country: 'cz',
+      kind,
+      name: `O${n}`,
+      status: 'past',
+      sample: true,
+      date: `${2000 + n}-10-01`,
+      rounds: [{ round: 1, date: `${2000 + n}-10-01`, results: [{ name: 'P', seats: 80, share: 30 }, { name: 'Q', seats: 60, share: 20 }], ...src }],
+      winner: { name: 'P' },
+      term_facts: termFacts,
+    });
+
+  it('keeps the order presidential, parliamentary, senate, each newest first', () => {
+    const groups = groupByKind([other(5, 'senate'), elections[0]!, other(3, 'parliamentary'), other(7, 'parliamentary'), elections[2]!]);
+    expect(groups.map((g) => g.kind)).toEqual(['presidential', 'parliamentary', 'senate']);
+    expect(groups[1]!.elections.map((e) => e.name)).toEqual(['O7', 'O3']);
+    expect(groups[0]!.elections.map((e) => e.name)).toEqual(['E3', 'E1']);
+  });
+  it('leaves out kinds with no elections, so France stays a single group', () => {
+    expect(groupByKind(elections).map((g) => g.kind)).toEqual(['presidential']);
+  });
+  it('has a label for every kind', () => {
+    expect(kindInfo('parliamentary').winnerLabel).toBe('Largest party');
+    expect(kindInfo('presidential').winnerLabel).toBe('Winner');
+  });
 });

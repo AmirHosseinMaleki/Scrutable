@@ -14,13 +14,18 @@ const slug = Astro.params.country!;
 const election = await getUpcomingElection(slug);
 const candidates = await getCandidates(election.slug);
 const also = getAlsoDeclared(election);
-const intro = [
-  `${candidates.length} ${candidates.length === 1 ? 'candidate has' : 'candidates have'} a page so far, in alphabetical order by surname.`,
-  also.length > 0 ? `${also.length} more ${also.length === 1 ? 'has' : 'have'} declared and ${also.length === 1 ? 'is' : 'are'} listed below.` : '',
-  'The order says nothing about who is ahead.',
-]
-  .filter(Boolean)
-  .join(' ');
+const intro =
+  candidates.length === 0 && also.length === 0
+    ? 'No one has declared yet. We list a candidate only once at least two established outlets report that they have declared.'
+    : [
+        candidates.length === 0
+          ? 'No candidate has a page yet.'
+          : `${candidates.length} ${candidates.length === 1 ? 'candidate has' : 'candidates have'} a page so far, in alphabetical order by surname.`,
+        also.length > 0 ? `${also.length} ${candidates.length === 0 ? '' : 'more '}${also.length === 1 ? 'has' : 'have'} declared and ${also.length === 1 ? 'is' : 'are'} listed below.` : '',
+        'The order says nothing about who is ahead.',
+      ]
+        .filter(Boolean)
+        .join(' ');
 ---
 
 <Base title="Candidates" country={slug} lastChecked={oldestChecked(...candidates.map((c) => c.candidacy), election.also_declared)}>

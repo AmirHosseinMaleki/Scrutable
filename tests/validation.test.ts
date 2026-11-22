@@ -190,6 +190,18 @@ describe('validateContent', () => {
     it('accepts found term facts with nothing listed (none held, no dissolution)', () => {
       expect(errors(() => {})).toEqual([]);
     });
+    it('requires a turnout figure for presidential elections', () => {
+      expect(errors((c) => delete (c.elections[1]!.data as any).rounds[0].turnout).some((i) => i.message.includes('turnout is required'))).toBe(true);
+    });
+    it('does not apply the presidential rules to other election types', () => {
+      const e = errors((c) => {
+        const d = c.elections[1]!.data as any;
+        d.kind = 'parliamentary';
+        delete d.rounds[0].turnout;
+        d.rounds[0].results = [{ name: 'Z', family: 'G', seats: 90, share: 20 }, { name: 'W', family: 'F', seats: 110, share: 40 }];
+      });
+      expect(e.filter((i) => i.message.includes('turnout') || i.message.includes('not first in the final round'))).toEqual([]);
+    });
     it('still requires a term block for past elections', () => {
       expect(errors((c) => delete (c.elections[1]!.data as any).term).some((i) => i.message.includes('term block'))).toBe(true);
     });

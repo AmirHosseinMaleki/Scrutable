@@ -4,10 +4,12 @@ import CompareIsland from '../../components/CompareIsland.tsx';
 import CompareStatic from '../../components/CompareStatic.astro';
 import type { CompareCandidate, CompareLine, CompareTopic } from '../../lib/compare';
 import { oldestChecked } from '../../lib/sources';
-import { getAlsoDeclared, getCandidates, getCountries, getTopics, getUpcomingElection } from '../../lib/content';
+import { getAlsoDeclared, getCandidates, getCountries, getTopics, getUpcomingElection, hasCompare } from '../../lib/content';
 
 export async function getStaticPaths() {
-  return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
+  const countries = await getCountries();
+  const withCompare = await Promise.all(countries.map(async (c) => ((await hasCompare(c.slug)) ? c : undefined)));
+  return withCompare.filter((c) => c !== undefined).map((c) => ({ params: { country: c!.slug } }));
 }
 
 const slug = Astro.params.country!;

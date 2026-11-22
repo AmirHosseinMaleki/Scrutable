@@ -34,3 +34,8 @@ export function languageName(code: string): string {
 export function quoteLabel(lang: string | undefined): string {
   return !lang || lang === 'en' ? 'Quote' : `Original quote (${languageName(lang)})`;
 }
+
+const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+/** A small number as a word ("five"), larger ones as digits. */
+export const numberWord = (n: number): string => WORDS[n] ?? String(n);
+export const upperFirst = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
