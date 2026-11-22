@@ -87,3 +87,9 @@ export async function siteHasSample(): Promise<boolean> {
   ];
   return flags.some(Boolean);
 }
+
+/** Compare needs at least two candidates with a page: a country with fewer hides it from the navigation. */
+export async function hasCompare(country: string): Promise<boolean> {
+  const upcoming = (await getElections(country)).find((e) => e.status === 'upcoming');
+  return upcoming ? (await getCandidates(upcoming.slug)).length >= 2 : false;
+}

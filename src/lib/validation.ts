@@ -149,7 +149,8 @@ export function validateContent(content: Loaded, today: string, options: Options
     }
     if (data.status === 'upcoming') upcomingPerCountry.set(data.country, (upcomingPerCountry.get(data.country) ?? 0) + 1);
 
-    for (const r of data.rounds as { round: number; results: { name: string; person?: string; share: number }[] }[]) {
+    for (const r of data.rounds as { round: number; turnout?: number; results: { name: string; person?: string; share: number }[] }[]) {
+      if (data.kind === 'presidential' && r.turnout === undefined) add('error', entry.file, `round ${r.round}: turnout is required for presidential elections`);
       const total = r.results.reduce((sum, x) => sum + x.share, 0);
       // Each share is rounded to 2 decimals, so allow half a hundredth per line.
       if (total > 100 + 0.005 * r.results.length) add('error', entry.file, `round ${r.round}: shares add up to ${total.toFixed(2)}% (more than 100%)`);
@@ -159,10 +160,10 @@ export function validateContent(content: Loaded, today: string, options: Options
     }
     if (data.winner) {
       if (data.winner.person && !people.has(data.winner.person)) add('error', entry.file, `winner.person "${data.winner.person}" does not exist`);
-      if (data.status === 'past' && !data.winner.person) add('error', entry.file, 'winner.person is required so the 3 headline promises can be attached to a candidacy');
+      if (data.status === 'past' && data.kind === 'presidential' && !data.winner.person) add('error', entry.file, 'winner.person is required so the 3 headline promises can be attached to a candidacy');
       const last = data.rounds.at(-1);
       const top = last ? [...last.results].sort((a: { share: number }, b: { share: number }) => b.share - a.share)[0] : undefined;
-      if (top && top.name !== data.winner.name) add('error', entry.file, `winner "${data.winner.name}" is not first in the final round (first: "${top.name}")`);
+      if (data.kind === 'presidential' && top && top.name !== data.winner.name) add('error', entry.file, `winner "${data.winner.name}" is not first in the final round (first: "${top.name}")`);
     }
   }
   for (const [country, n] of upcomingPerCountry) {

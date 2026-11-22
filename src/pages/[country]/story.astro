@@ -2,8 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import ElectionCard from '../../components/ElectionCard.astro';
 import FactStrip from '../../components/FactStrip.astro';
+import { upperFirst } from '../../lib/display';
 import { oldestChecked } from '../../lib/sources';
-import { byDateDesc, storyFacts } from '../../lib/story';
+import { byDateDesc, groupByKind, kindInfo, storyFacts } from '../../lib/story';
 import { getCandidates, getCountries, getElections, getUpcomingElection, getWinnerCandidacy } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
 
 const slug = Astro.params.country!;
 const past = byDateDesc((await getElections(slug)).filter((e) => e.status === 'past'));
-const facts = storyFacts(past);
+const groups = groupByKind(past);
 const upcoming = await getUpcomingElection(slug);
 const currentCandidates = new Set((await getCandidates(upcoming.slug)).map((c) => c.slug));
 const cards = await Promise.all(
@@ -21,15 +22,38 @@ const cards = await Promise.all(
     winner: election.winner?.person ? await getWinnerCandidacy(election.slug, election.winner.person) : undefined,
   })),
 );
+// "The last 5 presidential elections" (digits, as on the French page), or "The most recent senate election" for one.
+const lastN = (n: number, kind: Parameters<typeof kindInfo>[0]) => (n === 1 ? `The most recent ${kindInfo(kind).plural.replace(/elections$/, 'election')}` : `The last ${n} ${kindInfo(kind).plural}`);
+const cardsOf = (kind: string) => cards.filter((c) => c.election.kind === kind);
 ---
 
 <Base title="The story so far" country={slug} lastChecked={oldestChecked(...past, ...cards.map((c) => c.winner))}>
   <h1 class="text-3xl font-semibold tracking-tight">The story so far</h1>
-  <p class="mt-3 max-w-prose text-muted">The last {past.length} presidential elections, newest first. Open a card for results, the winner's promises and what became of them.</p>
-
-  <div class="mt-8"><FactStrip facts={facts} /></div>
-
-  <ul class="mt-8 space-y-4">
-    {cards.map(({ election, winner }) => <li><ElectionCard {election} {winner} {currentCandidates} country={slug} /></li>)}
-  </ul>
+  {
+    groups.length === 1 ? (
+      <>
+        <p class="mt-3 max-w-prose text-muted">{lastN(past.length, groups[0]!.kind)}, newest first. Open a card for results, the winner's promises and what became of them.</p>
+        {groups[0]!.kind === 'presidential' && <div class="mt-8"><FactStrip facts={storyFacts(past)} count={past.length} /></div>}
+        <ul class="mt-8 space-y-4">
+          {cardsOf(groups[0]!.kind).map(({ election, winner }) => <li><ElectionCard {election} {winner} {currentCandidates} country={slug} /></li>)}
+        </ul>
+      </>
+    ) : (
+      <>
+        <p class="mt-3 max-w-prose text-muted">Past elections by type, newest first. Open a card for results and what happened during the term.</p>
+        {
+          groups.map((g) => (
+            <section class="mt-10" aria-labelledby={`${g.kind}-heading`}>
+              <h2 id={`${g.kind}-heading`} class="text-2xl font-semibold">{upperFirst(kindInfo(g.kind).plural)}</h2>
+              <p class="mt-2 max-w-prose text-muted">{lastN(g.elections.length, g.kind)}, newest first.</p>
+              {g.kind === 'presidential' && <div class="mt-6"><FactStrip facts={storyFacts(g.elections)} count={g.elections.length} /></div>}
+              <ul class="mt-6 space-y-4">
+                {cardsOf(g.kind).map(({ election, winner }) => <li><ElectionCard {election} {winner} {currentCandidates} country={slug} /></li>)}
+              </ul>
+            </section>
+          ))
+        }
+      </>
+    )
+  }
 </Base>

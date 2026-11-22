@@ -1,10 +1,18 @@
 ---
 import type { StoryFact } from '../lib/story';
-const { facts } = Astro.props as { facts: StoryFact[] };
+import { numberWord, upperFirst } from '../lib/display';
+interface Props {
+  facts: StoryFact[];
+  /** How many election cards the facts are calculated from. */
+  count: number;
+}
+const { facts, count } = Astro.props;
+const heading = `${upperFirst(numberWord(facts.length))} ${facts.length === 1 ? 'fact' : 'facts'} across ${count === 1 ? 'the election' : `all ${numberWord(count)} elections`}`;
+const note = `Calculated from the ${count === 1 ? 'election card' : `${numberWord(count)} election cards`} below.`;
 ---
 
 <section aria-labelledby="strip-heading">
-  <h2 id="strip-heading" class="sr-only">Three facts across all five elections</h2>
+  <h2 id="strip-heading" class="sr-only">{heading}</h2>
   <ul class="grid gap-3 sm:grid-cols-3">
     {
       facts.map((f) => (
@@ -15,5 +23,5 @@ const { facts } = Astro.props as { facts: StoryFact[] };
       ))
     }
   </ul>
-  <p class="mt-2 text-sm text-muted">Calculated from the five election cards below.</p>
+  <p class="mt-2 text-sm text-muted">{note}</p>
 </section>

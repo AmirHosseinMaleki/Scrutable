@@ -8,6 +8,21 @@ export interface StoryFact {
   text: string;
 }
 
+export type ElectionKind = Election['kind'];
+
+/** Plural headings and the label for the result of each election type. Order is the order groups are shown in. */
+export const KINDS: { kind: ElectionKind; plural: string; winnerLabel: string; rowLabel: string }[] = [
+  { kind: 'presidential', plural: 'presidential elections', winnerLabel: 'Winner', rowLabel: 'Candidate' },
+  { kind: 'parliamentary', plural: 'parliamentary elections', winnerLabel: 'Largest party', rowLabel: 'Party or list' },
+  { kind: 'senate', plural: 'senate elections', winnerLabel: 'Majority', rowLabel: 'Party' },
+];
+export const kindInfo = (kind: ElectionKind) => KINDS.find((k) => k.kind === kind)!;
+
+/** Past elections grouped by type in a fixed order (presidential, parliamentary, senate), each group newest first. */
+export function groupByKind<E extends Election>(elections: E[]): { kind: ElectionKind; elections: E[] }[] {
+  return KINDS.map(({ kind }) => ({ kind, elections: byDateDesc(elections.filter((e) => e.kind === kind)) })).filter((g) => g.elections.length > 0);
+}
+
 const year = (e: Election) => e.date.slice(0, 4);
 const fmt = (n: number) => `${Number.isInteger(n) ? n : n.toFixed(1)}%`;
 

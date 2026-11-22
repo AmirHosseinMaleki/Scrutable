@@ -4,8 +4,10 @@ import ExplainerCard from '../../components/ExplainerCard.astro';
 import SourceLink from '../../components/SourceLink.astro';
 import StepList from '../../components/StepList.astro';
 import { formatDate } from '../../lib/dates';
+import { numberWord } from '../../lib/display';
 import { oldestChecked } from '../../lib/sources';
-import { getCountries, getCountry, getUpcomingElection } from '../../lib/content';
+import { groupByKind } from '../../lib/story';
+import { getCountries, getCountry, getElections, getUpcomingElection, hasCompare } from '../../lib/content';
 
 export async function getStaticPaths() {
   return (await getCountries()).map((c) => ({ params: { country: c.slug } }));
@@ -15,10 +17,14 @@ const { country: slug } = Astro.params;
 const country = await getCountry(slug!);
 const election = await getUpcomingElection(slug!);
 const dates = [...election.key_dates].sort((a, b) => a.date.localeCompare(b.date));
+const compare = await hasCompare(slug!);
+const pastGroups = groupByKind((await getElections(slug!)).filter((e) => e.status === 'past'));
+const pastCount = pastGroups.reduce((n, g) => n + g.elections.length, 0);
+const storyText = pastGroups.length === 1 ? `The last ${numberWord(pastCount)} elections.` : 'Past elections, by type.';
 const links = [
   { href: `/${slug}/candidates/`, label: 'Candidates', text: 'Who is running.' },
-  { href: `/${slug}/compare/`, label: 'Compare', text: 'One topic, every candidate.' },
-  { href: `/${slug}/story/`, label: 'The story so far', text: 'The last five elections.' },
+  ...(compare ? [{ href: `/${slug}/compare/`, label: 'Compare', text: 'One topic, every candidate.' }] : []),
+  { href: `/${slug}/story/`, label: 'The story so far', text: storyText },
 ];
 ---
 
@@ -55,7 +61,7 @@ const links = [
 
   <nav class="mt-12" aria-label="Next steps">
     <h2 class="text-2xl font-semibold">Keep going</h2>
-    <ul class="mt-4 grid gap-4 sm:grid-cols-3">
+    <ul class={`mt-4 grid gap-4 ${links.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
       {
         links.map((l) => (
           <li class="relative rounded-xl border border-line p-5">

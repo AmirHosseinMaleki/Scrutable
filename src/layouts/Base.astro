@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { formatDate } from '../lib/dates';
-import { siteHasSample } from '../lib/content';
+import { hasCompare, siteHasSample } from '../lib/content';
 
 interface Props {
   title: string;
@@ -15,11 +15,12 @@ interface Props {
 const { title, description = 'Scrutable explains elections: how they work, who is running, what they stand for. Every fact has a source.', country, lastChecked } = Astro.props;
 const sample = await siteHasSample();
 const path = Astro.url.pathname;
+const compare = country ? await hasCompare(country) : false;
 const nav = country
   ? [
       { href: `/${country}/`, label: 'Overview' },
       { href: `/${country}/candidates/`, label: 'Candidates' },
-      { href: `/${country}/compare/`, label: 'Compare' },
+      ...(compare ? [{ href: `/${country}/compare/`, label: 'Compare' }] : []),
       { href: `/${country}/story/`, label: 'The story so far' },
     ]
   : [];

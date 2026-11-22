@@ -73,13 +73,19 @@ const resultLine = z.strictObject({
   family: z.string().min(1).optional(),
   /** Percentage of valid votes, 0–100. */
   share: z.number().min(0).max(100),
+  /** Seats won, for parliamentary and senate elections. */
+  seats: z.number().int().min(0).optional(),
+  /** Electoral College votes, for US presidential elections. */
+  electoral_votes: z.number().int().min(0).optional(),
 });
 
 const round = z.strictObject({
   round: z.union([z.literal(1), z.literal(2)]),
   date: isoDate,
-  /** Turnout percentage, 0–100. */
-  turnout: z.number().min(0).max(100),
+  /** Turnout percentage, 0–100. Required for presidential elections; leave it out when no single figure exists. */
+  turnout: z.number().min(0).max(100).optional(),
+  /** Total seats at stake, for parliamentary and senate elections. */
+  seats_total: z.number().int().min(1).optional(),
   /** Number of candidates on the ballot in this round, when the source states it. */
   candidates: z.number().int().min(2).optional(),
   results: z.array(resultLine).min(1),
@@ -116,6 +122,21 @@ const termFacts = z.strictObject({
 });
 
 /**
+ * Term facts for countries whose terms do not look like France's: a list of labelled facts, each found (with its
+ * source) or an explicit gap. An empty `items` list means "none" and still needs a source.
+ */
+const termListItem = z.discriminatedUnion('status', [
+  z.strictObject({
+    status: z.literal('found'),
+    label: z.string().min(1),
+    items: z.array(z.string().min(1)),
+    ...sourceFields,
+    also_sources: z.array(z.strictObject(sourceFields)).default([]),
+  }),
+  z.strictObject({ status: z.literal('not_found'), label: z.string().min(1), checked_on: isoDate }),
+]);
+
+/**
  * A candidate who has declared but has no page of their own yet. Listed (alphabetically) so the Candidates
  * page does not look like the whole field. Needs two established outlets that both report the declaration.
  */
@@ -135,7 +156,8 @@ const alsoDeclared = z.strictObject({
 export const electionSchema = z
   .strictObject({
     country: slug,
-    kind: z.literal('presidential'),
+    /** The type of election. Presidential unless stated. */
+    kind: z.enum(['presidential', 'parliamentary', 'senate']).default('presidential'),
     name: z.string().min(1),
     status: z.enum(['upcoming', 'past']),
     sample: z.boolean().default(false),
@@ -149,12 +171,15 @@ export const electionSchema = z
     winner: z.strictObject({ name: z.string().min(1), person: slug.optional(), family: z.string().min(1).optional() }).optional(),
     /** Past elections: what happened during the term that followed (prime ministers, referendums, dissolutions). */
     term: termFacts.optional(),
+    /** Past elections outside France: other labelled facts about the term (see termListItem). */
+    term_facts: z.array(termListItem).optional(),
   })
   .superRefine((e, ctx) => {
     if (e.status === 'past') {
       if (e.rounds.length === 0) ctx.addIssue({ code: 'custom', path: ['rounds'], message: 'Past elections need at least one round of results' });
       if (!e.winner) ctx.addIssue({ code: 'custom', path: ['winner'], message: 'Past elections need a winner' });
-      if (!e.term) ctx.addIssue({ code: 'custom', path: ['term'], message: 'Past elections need a term block' });
+      if (e.country === 'fr' && !e.term) ctx.addIssue({ code: 'custom', path: ['term'], message: 'Past elections need a term block' });
+      if (e.country !== 'fr' && !e.term && !e.term_facts) ctx.addIssue({ code: 'custom', path: ['term_facts'], message: 'Past elections need term_facts (or a term block)' });
     } else if (e.key_dates.length === 0) {
       ctx.addIssue({ code: 'custom', path: ['key_dates'], message: 'Upcoming elections need key_dates' });
     }
