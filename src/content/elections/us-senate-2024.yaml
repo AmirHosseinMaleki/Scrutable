@@ -1,0 +1,64 @@
+# Real result. Seats won are counted from the Senate's own class rosters: the 33 senators of Class I (elected in November 2024)
+# plus the senator elected in Nebraska's separate 2024 special election. No official nationwide vote share exists, so none is given.
+country: us
+kind: senate
+name: "United States Senate elections 2024"
+status: past
+sample: false
+date: "2024-11-05"
+rounds:
+  - round: 1
+    date: "2024-11-05"
+    seats_total: 34
+    results:
+      - name: "Democratic Party"
+        seats: 17
+      - name: "Independents"
+        seats: 2
+      - name: "Republican Party"
+        seats: 15
+    source_url: https://www.senate.gov/senators/Class_I.htm
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources:
+      - label: "Nebraska's special election: the senator elected for the two-year term (Nebraska Secretary of State, official canvass, 5 November 2024)"
+        source_url: https://sos.nebraska.gov/sites/default/files/doc/elections/2024/2024%20General%20Canvass%20Book.pdf
+        source_date: "2026-11-22"
+        last_checked: "2026-11-22"
+        source_date_is_retrieval: true
+      - label: "Party of the Nebraska senator elected in the special election (Senate Class II roster)"
+        source_url: https://www.senate.gov/senators/Class_II.htm
+        source_date: "2026-11-22"
+        last_checked: "2026-11-22"
+        source_date_is_retrieval: true
+winner:
+  name: "Republican Party"
+term_facts:
+  - status: found
+    label: "Senate seats by party at the start of the term"
+    items:
+      - "Democrats: 45, Republicans: 53, independents: 2 (119th Congress, as at 3 January 2025). The party with the majority is listed as Republicans."
+    source_url: https://www.senate.gov/about/parties-leadership/party-division.shtml
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources: []
+  - status: found
+    label: "Majority leader at the start of the term"
+    items:
+      - "John Thune (R-SD)"
+    source_url: https://www.senate.gov/about/parties-leadership/majority-minority-leaders.htm
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources: []
+  - status: found
+    label: "House of Representatives seats by party at the start of the term"
+    items:
+      - "Democrats: 215, Republicans: 220 (initial results for the 119th Congress, 2025–2027)."
+    source_url: https://history.house.gov/Institution/Party-Divisions/Party-Divisions/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources: []

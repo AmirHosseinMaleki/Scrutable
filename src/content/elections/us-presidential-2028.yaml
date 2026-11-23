@@ -1,0 +1,30 @@
+# Real election. No candidate has a page yet, and no one is listed as declared: a declaration needs two established outlets.
+country: us
+kind: presidential
+name: United States presidential election 2028
+status: upcoming
+sample: false
+date: "2028-11-07"
+key_dates:
+  - label: "Election Day (the first Tuesday after the first Monday in November)"
+    date: "2028-11-07"
+    source_url: https://www.usa.gov/presidential-election-process
+    source_date: "2026-02-25"
+    last_checked: "2026-11-22"
+  - label: "Electors meet in their states and vote (the first Tuesday after the second Wednesday in December; date worked out from 3 U.S.C. 7)"
+    date: "2028-12-19"
+    source_url: https://www.govinfo.gov/content/pkg/USCODE-2023-title3/html/USCODE-2023-title3-chap1-sec7.htm
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - label: "Congress meets to count the electoral votes (the sixth day of January)"
+    date: "2029-01-06"
+    source_url: https://www.govinfo.gov/content/pkg/USCODE-2023-title3/html/USCODE-2023-title3-chap1-sec15.htm
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - label: "Inauguration Day"
+    date: "2029-01-20"
+    source_url: https://www.usa.gov/presidential-election-process
+    source_date: "2026-02-25"
+    last_checked: "2026-11-22"

@@ -1,0 +1,110 @@
+# Real result. Popular-vote shares and electoral votes as compiled by the Federal Election Commission from state election offices; turnout from the Census Bureau (see also_sources).
+country: us
+kind: presidential
+name: "United States presidential election 2008"
+status: past
+sample: false
+date: "2008-11-04"
+rounds:
+  - round: 1
+    date: "2008-11-04"
+    turnout: 63.6
+    candidates: 24
+    results:
+      - name: "Barack Obama"
+        person: barack-obama
+        family: "Democratic"
+        share: 52.93
+        electoral_votes: 365
+      - name: "John McCain"
+        family: "Republican"
+        share: 45.65
+        electoral_votes: 173
+      - name: "Ralph Nader"
+        share: 0.56
+      - name: "Bob Barr"
+        share: 0.4
+      - name: "Chuck Baldwin"
+        share: 0.15
+      - name: "Cynthia McKinney"
+        share: 0.12
+      - name: "Alan Keyes"
+        share: 0.04
+      - name: "Ron Paul"
+        share: 0.03
+      - name: "Gloria La Riva"
+        share: 0.01
+      - name: "Brian Moore"
+        share: 0.0
+      - name: "Róger Calero"
+        share: 0.0
+      - name: "Richard Duncan"
+        share: 0.0
+      - name: "James Harris"
+        share: 0.0
+      - name: "Charles Jay"
+        share: 0.0
+      - name: "John Joseph Polachek"
+        share: 0.0
+      - name: "Frank Edward McEnulty"
+        share: 0.0
+      - name: "Jeffrey J. Wamboldt"
+        share: 0.0
+      - name: "Thomas Robert Stevens"
+        share: 0.0
+      - name: "Gene C. Amondson"
+        share: 0.0
+      - name: "Jeffrey “Jeff” Boss"
+        share: 0.0
+      - name: "George Phillies"
+        share: 0.0
+      - name: "Ted Weill"
+        share: 0.0
+      - name: "Jonathan E. Allen"
+        share: 0.0
+      - name: "Bradford Lyttle"
+        share: 0.0
+    source_url: https://www.fec.gov/documents/1665/federalelections2008.pdf
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources:
+      - label: "Turnout: share of citizens aged 18 and over who reported voting (Census Bureau, Current Population Survey, table A-6)"
+        source_url: https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
+        source_date: "2025-04-24"
+        last_checked: "2026-11-22"
+winner:
+  name: "Barack Obama"
+  person: barack-obama
+  family: "Democratic"
+term_facts:
+  - status: found
+    label: "Impeachments of the president by the House of Representatives"
+    items: []
+    source_url: https://history.house.gov/Institution/Impeachment/Impeachment-List/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Constitutional amendments ratified"
+    items: []
+    source_url: https://www.archives.gov/founding-docs/amendments-11-27
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "House of Representatives seats by party at the start of the term"
+    items:
+      - "Democrats: 257, Republicans: 178 (initial results for the 111th Congress, 2009–2011)."
+    source_url: https://history.house.gov/Institution/Party-Divisions/Party-Divisions/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Senate seats by party at the start of the term"
+    items:
+      - "Democrats: 56, Republicans: 41, independents: 2, vacant: 1 (111th Congress, as at 20 January 2009)."
+    source_url: https://www.senate.gov/about/parties-leadership/party-division.shtml
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true

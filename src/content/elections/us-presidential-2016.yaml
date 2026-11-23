@@ -1,0 +1,127 @@
+# Real result. Popular-vote shares and electoral votes as compiled by the Federal Election Commission from state election offices; turnout from the Census Bureau (see also_sources).
+# The winner by electoral votes (Trump, 304) is not first in the popular vote (Clinton). See the review notes in the pull request.
+country: us
+kind: presidential
+name: "United States presidential election 2016"
+status: past
+sample: false
+date: "2016-11-08"
+rounds:
+  - round: 1
+    date: "2016-11-08"
+    turnout: 61.4
+    candidates: 31
+    results:
+      - name: "Hillary Clinton"
+        family: "Democratic"
+        share: 48.18
+        electoral_votes: 227
+      - name: "Donald J. Trump"
+        person: donald-trump
+        family: "Republican"
+        share: 46.09
+        electoral_votes: 304
+      - name: "Gary Johnson"
+        share: 3.28
+      - name: "Jill Stein"
+        share: 1.07
+      - name: "Evan McMullin"
+        share: 0.54
+      - name: "Darrell L. Castle"
+        share: 0.15
+      - name: "Gloria Estela La Riva"
+        share: 0.05
+      - name: "Roque \"Rocky\" De La Fuente"
+        share: 0.02
+      - name: "Richard Duncan"
+        share: 0.02
+      - name: "Dan R. Vacek"
+        share: 0.01
+      - name: "Alyson Kennedy"
+        share: 0.01
+      - name: "Mike Smith"
+        share: 0.01
+      - name: "Chris Keniston"
+        share: 0.01
+      - name: "Michael A. Maturen"
+        share: 0.0
+      - name: "Lynn S. Kahn"
+        share: 0.0
+      - name: "James Hedges"
+        share: 0.0
+      - name: "Tom Hoefling"
+        share: 0.0
+      - name: "Monica Moorehead"
+        share: 0.0
+      - name: "Laurence Kotlikoff"
+        share: 0.0
+      - name: "Peter Skewes"
+        share: 0.0
+      - name: "Rocky Giordani"
+        share: 0.0
+      - name: "Emidio Soltysik"
+        share: 0.0
+      - name: "Scott Copeland"
+        share: 0.0
+      - name: "Kyle Kenley Kopitke"
+        share: 0.0
+      - name: "Joseph Allen Maldonado"
+        share: 0.0
+      - name: "Ryan Alan Scott"
+        share: 0.0
+      - name: "Rod Silva"
+        share: 0.0
+      - name: "Princess Jacob"
+        share: 0.0
+      - name: "Jerry White"
+        share: 0.0
+      - name: "Bradford Lyttle"
+        share: 0.0
+      - name: "Frank Atwood"
+        share: 0.0
+    source_url: https://www.fec.gov/resources/cms-content/documents/federalelections2016.pdf
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources:
+      - label: "Turnout: share of citizens aged 18 and over who reported voting (Census Bureau, Current Population Survey, table A-6)"
+        source_url: https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
+        source_date: "2025-04-24"
+        last_checked: "2026-11-22"
+winner:
+  name: "Donald J. Trump"
+  person: donald-trump
+  family: "Republican"
+term_facts:
+  - status: found
+    label: "Impeachments of the president by the House of Representatives"
+    items:
+      - "Donald J. Trump, impeached on 18 December 2019 for abuse of power and obstruction of Congress; acquitted by the Senate."
+      - "Donald J. Trump, impeached on 13 January 2021 for incitement of insurrection; acquitted by the Senate."
+    source_url: https://history.house.gov/Institution/Impeachment/Impeachment-List/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Constitutional amendments ratified"
+    items: []
+    source_url: https://www.archives.gov/founding-docs/amendments-11-27
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "House of Representatives seats by party at the start of the term"
+    items:
+      - "Democrats: 194, Republicans: 241 (initial results for the 115th Congress, 2017–2019)."
+    source_url: https://history.house.gov/Institution/Party-Divisions/Party-Divisions/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Senate seats by party at the start of the term"
+    items:
+      - "Democrats: 46, Republicans: 52, independents: 2 (115th Congress, as at 20 January 2017)."
+    source_url: https://www.senate.gov/about/parties-leadership/party-division.shtml
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true

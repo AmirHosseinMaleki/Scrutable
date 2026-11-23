@@ -1,0 +1,91 @@
+# Real content. Every card links to its source; see the pull request for the full source list.
+name: "United States"
+sample: false
+intro: "This page explains how the United States presidential and Senate elections work, the key dates and how to vote. Each card links to its source."
+how_it_works:
+  - title: "What the president does"
+    summary: "The president is the head of state, leads the executive branch and is commander in chief of the armed forces. They can veto laws passed by Congress and nominate agency heads and Supreme Court justices, whom the Senate confirms or rejects."
+    source_url: https://www.usa.gov/branches-of-government
+    source_date: "2026-03-02"
+    last_checked: "2026-11-22"
+  - title: "How long a term lasts"
+    summary: "The president holds office for a term of four years. This is set in Article II of the Constitution."
+    source_url: https://www.archives.gov/founding-docs/constitution-transcript
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "The two-term limit"
+    summary: "No one can be elected president more than twice. This is the 22nd Amendment, ratified in 1951."
+    detail: "The amendment also says that someone who held the office for more than two years of a term to which another person was elected can be elected only once."
+    source_url: https://www.archives.gov/founding-docs/amendments-11-27
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "How the Electoral College works"
+    summary: "Voters do not choose the president directly: each state has as many electors as it has members of Congress, and the District of Columbia has three, making 538 in all. A candidate needs at least 270 electoral votes to win."
+    detail: "In 48 states and Washington, D.C., the winner of the state's vote gets all of its electoral votes. Maine and Nebraska assign theirs proportionally. A candidate can win the Electoral College but lose the popular vote, as happened in 2016."
+    source_url: https://www.usa.gov/electoral-college
+    source_date: "2026-02-25"
+    last_checked: "2026-11-22"
+  - title: "How a candidate gets on the ballot"
+    summary: "Each party's nominee is chosen through state primaries and caucuses, which award delegates. The delegates then vote at the party's national convention, and a candidate typically needs a majority of them."
+    detail: "If no candidate has a majority going into the convention, delegates vote in extra rounds until someone does."
+    source_url: https://www.usa.gov/national-conventions
+    source_date: "2026-02-25"
+    last_checked: "2026-11-22"
+  - title: "Who sits in the Senate"
+    summary: "Each state has two senators, so the Senate has 100 members. Senators vote as individuals, not as one vote per state."
+    source_url: https://www.senate.gov/about/origins-foundations/senate-and-constitution/two-senators-per-state.htm
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "How Senate elections work"
+    summary: "Senators are elected to six-year terms. Every two years about one-third of the seats face election."
+    detail: "The Constitution splits the seats into three groups, called classes, and one class is up for election every two years."
+    source_url: https://www.senate.gov/about/origins-foundations/senate-and-constitution/senate-classes.htm
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+how_to_vote:
+  - title: "Rules depend on your state"
+    summary: "Each state and territory sets its own rules for registering and voting. Deadlines, ID rules and voting options differ from place to place."
+    detail: "Vote.gov, run by the federal government, links to each state's own registration and voting information."
+    source_url: https://vote.gov/register
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "Register to vote"
+    summary: "There is no national registration deadline: in some states the last day is 30 days before Election Day, in others you can register on the day. Most states let you register online, and you can also register by mail or in person."
+    detail: "The National Mail Voter Registration Form works in every state except New Hampshire, North Dakota, Wisconsin and Wyoming. In person, you can register at your state or local election office or your state motor vehicles office."
+    source_url: https://vote.gov/register
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "Check your registration"
+    summary: "Make sure you are registered under your correct legal name and address. Select your state on vote.gov to confirm your status on your state election website."
+    detail: "In states with closed primaries, you can only vote in your own party's primary. In general elections you can vote for any candidate, whatever your party."
+    source_url: https://vote.gov/register
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "Choose how to vote"
+    summary: "Depending on your state, you may be able to vote in person on Election Day, vote early in person, or vote by mail or with an absentee ballot. Some states run elections entirely by mail."
+    detail: "A mail ballot can be returned by post, or to an official drop box or your local election office. Opening and closing times for voting locations vary."
+    source_url: https://vote.gov/guide-to-voting
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "What to bring"
+    summary: "Each state sets its own voter ID rules, and in most states you must bring ID to vote in person. You do not need a voter registration card to vote."
+    detail: "You can get an ID card at your state motor vehicle office, even if you do not drive."
+    source_url: https://vote.gov/guide-to-voting
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - title: "If you live abroad or serve in the military"
+    summary: "Citizens living outside the country can register and request an absentee ballot with the Federal Post Card Application. Military members and their families can use the same form."
+    detail: "The Federal Voting Assistance Program has more information for military and overseas voters."
+    source_url: https://vote.gov/register
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true

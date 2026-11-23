@@ -1,0 +1,112 @@
+# Real result. Popular-vote shares and electoral votes as compiled by the Federal Election Commission from state election offices; turnout from the Census Bureau (see also_sources).
+# The 2024 FEC file prints counts only: shares are calculated here from the official counts (candidate votes divided by total votes, rounded to 2 decimals).
+country: us
+kind: presidential
+name: "United States presidential election 2024"
+status: past
+sample: false
+date: "2024-11-05"
+rounds:
+  - round: 1
+    date: "2024-11-05"
+    turnout: 65.3
+    candidates: 24
+    results:
+      - name: "Donald J. Trump"
+        person: donald-trump
+        family: "Republican"
+        share: 49.8
+        electoral_votes: 312
+      - name: "Kamala D. Harris"
+        family: "Democratic"
+        share: 48.32
+        electoral_votes: 226
+      - name: "Jill Stein"
+        share: 0.56
+      - name: "Robert F. Kennedy, Jr."
+        share: 0.49
+      - name: "Chase Oliver"
+        share: 0.42
+      - name: "Claudia De La Cruz"
+        share: 0.11
+      - name: "Cornel West"
+        share: 0.05
+      - name: "Peter Sonski"
+        share: 0.03
+      - name: "Randall A. Terry"
+        share: 0.03
+      - name: "Shiva Ayyadurai"
+        share: 0.02
+      - name: "Richard Duncan"
+        share: 0.01
+      - name: "Joel Skousen"
+        share: 0.01
+      - name: "Jay J Bowman"
+        share: 0.0
+      - name: "Chris Garrity"
+        share: 0.0
+      - name: "Joseph Kishore"
+        share: 0.0
+      - name: "Rachele Fruit"
+        share: 0.0
+      - name: "Mattie Preston"
+        share: 0.0
+      - name: "Lucifer \"Justin Case\" Everylove"
+        share: 0.0
+      - name: "Blake Huber"
+        share: 0.0
+      - name: "Michael Wood"
+        share: 0.0
+      - name: "Vermin Supreme"
+        share: 0.0
+      - name: "Laura Ebke"
+        share: 0.0
+      - name: "William P. Stodden"
+        share: 0.0
+      - name: "Robert \"Robby\" Wells"
+        share: 0.0
+    source_url: https://www.fec.gov/documents/5644/2024presgeresults.pdf
+    source_date: "2025-01-16"
+    last_checked: "2026-11-22"
+    also_sources:
+      - label: "Turnout: share of citizens aged 18 and over who reported voting (Census Bureau, Current Population Survey, table A-6)"
+        source_url: https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
+        source_date: "2025-04-24"
+        last_checked: "2026-11-22"
+winner:
+  name: "Donald J. Trump"
+  person: donald-trump
+  family: "Republican"
+term_facts:
+  - status: found
+    label: "Impeachments of the president by the House of Representatives"
+    items:
+      - "None so far (the term is still running)."
+    source_url: https://history.house.gov/Institution/Impeachment/Impeachment-List/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Constitutional amendments ratified"
+    items:
+      - "None so far (the term is still running)."
+    source_url: https://www.archives.gov/founding-docs/amendments-11-27
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "House of Representatives seats by party at the start of the term"
+    items:
+      - "Democrats: 215, Republicans: 220 (initial results for the 119th Congress, 2025–2027)."
+    source_url: https://history.house.gov/Institution/Party-Divisions/Party-Divisions/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Senate seats by party at the start of the term"
+    items:
+      - "Democrats: 45, Republicans: 53, independents: 2 (119th Congress, as at 20 January 2025)."
+    source_url: https://www.senate.gov/about/parties-leadership/party-division.shtml
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
