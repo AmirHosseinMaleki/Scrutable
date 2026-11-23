@@ -1,3 +1,13 @@
 name: "Barack Obama"
 sort_name: "Obama Barack"
 sample: false
+photo:
+  file: barack-obama.jpg
+  author: "Pete Souza (official White House photo)"
+  license: PDM-1.0
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  taken_year: 2012
+  source_url: https://commons.wikimedia.org/wiki/File:President_Barack_Obama.jpg
+  source_date: "2026-11-23"
+  last_checked: "2026-11-23"
+  source_date_is_retrieval: true
