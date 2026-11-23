@@ -6,6 +6,7 @@ name: "United States presidential election 2024"
 status: past
 sample: false
 date: "2024-11-05"
+term_ongoing: true
 rounds:
   - round: 1
     date: "2024-11-05"
@@ -80,16 +81,14 @@ winner:
 term_facts:
   - status: found
     label: "Impeachments of the president by the House of Representatives"
-    items:
-      - "None so far (the term is still running)."
+    items: []
     source_url: https://history.house.gov/Institution/Impeachment/Impeachment-List/
     source_date: "2026-11-22"
     last_checked: "2026-11-22"
     source_date_is_retrieval: true
   - status: found
     label: "Constitutional amendments ratified"
-    items:
-      - "None so far (the term is still running)."
+    items: []
     source_url: https://www.archives.gov/founding-docs/amendments-11-27
     source_date: "2026-11-22"
     last_checked: "2026-11-22"

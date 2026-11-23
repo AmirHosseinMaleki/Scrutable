@@ -6,6 +6,7 @@ name: "United States Senate elections 2024"
 status: past
 sample: false
 date: "2024-11-05"
+term_ongoing: true
 rounds:
   - round: 1
     date: "2024-11-05"
