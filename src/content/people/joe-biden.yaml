@@ -1,0 +1,13 @@
+name: "Joseph R. Biden"
+sort_name: "Biden Joseph R."
+sample: false
+photo:
+  file: joe-biden.jpg
+  author: "Adam Schultz (official White House photo)"
+  license: PDM-1.0
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  taken_year: 2021
+  source_url: https://commons.wikimedia.org/wiki/File:Joe_Biden_presidential_portrait.jpg
+  source_date: "2026-11-23"
+  last_checked: "2026-11-23"
+  source_date_is_retrieval: true

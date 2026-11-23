@@ -1,0 +1,11 @@
+election: us-presidential-2008
+person: barack-obama
+sample: false
+status: official
+promises:
+  - status: not_found
+    checked_on: "2026-11-22"
+  - status: not_found
+    checked_on: "2026-11-22"
+  - status: not_found
+    checked_on: "2026-11-22"

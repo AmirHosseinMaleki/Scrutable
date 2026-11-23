@@ -1,0 +1,13 @@
+name: "Donald J. Trump"
+sort_name: "Trump Donald J."
+sample: false
+photo:
+  file: donald-trump.jpg
+  author: "Daniel Torok (official White House photo)"
+  license: PDM-1.0
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  taken_year: 2025
+  source_url: https://commons.wikimedia.org/wiki/File:Official_Presidential_Portrait_of_President_Donald_J._Trump_(2025)_(3x4).jpg
+  source_date: "2026-11-23"
+  last_checked: "2026-11-23"
+  source_date_is_retrieval: true

@@ -1,0 +1,135 @@
+# Real result. Popular-vote shares and electoral votes as compiled by the Federal Election Commission from state election offices; turnout from the Census Bureau (see also_sources).
+country: us
+kind: presidential
+name: "United States presidential election 2020"
+status: past
+sample: false
+date: "2020-11-03"
+rounds:
+  - round: 1
+    date: "2020-11-03"
+    turnout: 66.8
+    candidates: 36
+    results:
+      - name: "Joseph R. Biden"
+        person: joe-biden
+        family: "Democratic"
+        share: 51.31
+        electoral_votes: 306
+      - name: "Donald J. Trump"
+        person: donald-trump
+        family: "Republican"
+        share: 46.85
+        electoral_votes: 232
+      - name: "Jo Jorgensen"
+        share: 1.18
+      - name: "Howie Hawkins"
+        share: 0.26
+      - name: "Roque \"Rocky\" De La Fuente"
+        share: 0.06
+      - name: "Gloria Estela La Riva"
+        share: 0.05
+      - name: "Kanye West"
+        share: 0.04
+      - name: "Don Blankenship"
+        share: 0.04
+      - name: "Brock Pierce"
+        share: 0.03
+      - name: "Brian Carroll"
+        share: 0.03
+      - name: "Jade Simmons"
+        share: 0.0
+      - name: "Alyson Kennedy"
+        share: 0.0
+      - name: "Bill Hammons"
+        share: 0.0
+      - name: "Jerome Segal"
+        share: 0.0
+      - name: "Dario Hunter"
+        share: 0.0
+      - name: "Phil Collins"
+        share: 0.0
+      - name: "James G. \"Jesse Ventura\" Janos"
+        share: 0.0
+      - name: "President Boddie"
+        share: 0.0
+      - name: "Mark Charles"
+        share: 0.0
+      - name: "Joe McHugh"
+        share: 0.0
+      - name: "Sheila \"Samm\" Tittle"
+        share: 0.0
+      - name: "C. L. Gammon"
+        share: 0.0
+      - name: "John Richard Myers"
+        share: 0.0
+      - name: "Tom Hoefling"
+        share: 0.0
+      - name: "H. Brooke Paige"
+        share: 0.0
+      - name: "Christopher LaFontaine"
+        share: 0.0
+      - name: "Kyle Kenley Kopitke"
+        share: 0.0
+      - name: "Ricki Sue King"
+        share: 0.0
+      - name: "Princess Khadijah Maryam Jacob-Fambro"
+        share: 0.0
+      - name: "Blake Huber"
+        share: 0.0
+      - name: "Joseph Kishore"
+        share: 0.0
+      - name: "Richard Duncan"
+        share: 0.0
+      - name: "Jordan \"Cancer\" Scott"
+        share: 0.0
+      - name: "Gary Swing"
+        share: 0.0
+      - name: "Keith McCormic"
+        share: 0.0
+      - name: "Zachary Scalf"
+        share: 0.0
+    source_url: https://www.fec.gov/resources/cms-content/documents/federalelections2020.pdf
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources:
+      - label: "Turnout: share of citizens aged 18 and over who reported voting (Census Bureau, Current Population Survey, table A-6)"
+        source_url: https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
+        source_date: "2025-04-24"
+        last_checked: "2026-11-22"
+winner:
+  name: "Joseph R. Biden"
+  person: joe-biden
+  family: "Democratic"
+term_facts:
+  - status: found
+    label: "Impeachments of the president by the House of Representatives"
+    items: []
+    source_url: https://history.house.gov/Institution/Impeachment/Impeachment-List/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Constitutional amendments ratified"
+    items: []
+    source_url: https://www.archives.gov/founding-docs/amendments-11-27
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "House of Representatives seats by party at the start of the term"
+    items:
+      - "Democrats: 222, Republicans: 212 (initial results for the 117th Congress, 2021–2023; one seat, New York's 22nd district, had no election certificate when the Congress opened)."
+    source_url: https://history.house.gov/Institution/Party-Divisions/Party-Divisions/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Senate seats by party at the start of the term"
+    items:
+      - "Democrats: 48, Republicans: 50, independents: 2 (117th Congress, as at 20 January 2021). The source states that both independents caucused with the Democrats and that Democrats held the majority with the vice president's tie-breaking vote."
+    source_url: https://www.senate.gov/about/parties-leadership/party-division.shtml
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true

@@ -1,0 +1,118 @@
+# Real result. Popular-vote shares and electoral votes as compiled by the Federal Election Commission from state election offices; turnout from the Census Bureau (see also_sources).
+country: us
+kind: presidential
+name: "United States presidential election 2012"
+status: past
+sample: false
+date: "2012-11-06"
+rounds:
+  - round: 1
+    date: "2012-11-06"
+    turnout: 61.8
+    candidates: 28
+    results:
+      - name: "Barack Obama"
+        person: barack-obama
+        family: "Democratic"
+        share: 51.06
+        electoral_votes: 332
+      - name: "Mitt Romney"
+        family: "Republican"
+        share: 47.2
+        electoral_votes: 206
+      - name: "Gary Johnson"
+        share: 0.99
+      - name: "Jill Stein"
+        share: 0.36
+      - name: "Virgil Goode"
+        share: 0.09
+      - name: "Roseann Barr"
+        share: 0.05
+      - name: "Ross C. \"Rocky\" Anderson"
+        share: 0.03
+      - name: "Tom Hoefling"
+        share: 0.03
+      - name: "Randall Terry"
+        share: 0.01
+      - name: "Richard Duncan"
+        share: 0.01
+      - name: "Peta Lindsay"
+        share: 0.01
+      - name: "Chuck Baldwin"
+        share: 0.0
+      - name: "Will Christensen"
+        share: 0.0
+      - name: "Stewart Alexander"
+        share: 0.0
+      - name: "James Harris"
+        share: 0.0
+      - name: "Thomas Robert Stevens"
+        share: 0.0
+      - name: "Jim Carlson"
+        share: 0.0
+      - name: "Jill Reed"
+        share: 0.0
+      - name: "Merlin Miller"
+        share: 0.0
+      - name: "Sheila \"Samm\" Tittle"
+        share: 0.0
+      - name: "Gloria La Riva"
+        share: 0.0
+      - name: "Jerry White"
+        share: 0.0
+      - name: "Dean Morstad"
+        share: 0.0
+      - name: "Jerry Litzel"
+        share: 0.0
+      - name: "Barbara Dale Washer"
+        share: 0.0
+      - name: "Jeff Boss"
+        share: 0.0
+      - name: "Andre Barnett"
+        share: 0.0
+      - name: "Jack Fellure"
+        share: 0.0
+    source_url: https://www.fec.gov/documents/1689/federalelections2012.pdf
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+    also_sources:
+      - label: "Turnout: share of citizens aged 18 and over who reported voting (Census Bureau, Current Population Survey, table A-6)"
+        source_url: https://www.census.gov/data/tables/time-series/demo/voting-and-registration/voting-historical-time-series.html
+        source_date: "2025-04-24"
+        last_checked: "2026-11-22"
+winner:
+  name: "Barack Obama"
+  person: barack-obama
+  family: "Democratic"
+term_facts:
+  - status: found
+    label: "Impeachments of the president by the House of Representatives"
+    items: []
+    source_url: https://history.house.gov/Institution/Impeachment/Impeachment-List/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Constitutional amendments ratified"
+    items: []
+    source_url: https://www.archives.gov/founding-docs/amendments-11-27
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "House of Representatives seats by party at the start of the term"
+    items:
+      - "Democrats: 201, Republicans: 234 (initial results for the 113th Congress, 2013–2015)."
+    source_url: https://history.house.gov/Institution/Party-Divisions/Party-Divisions/
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
+  - status: found
+    label: "Senate seats by party at the start of the term"
+    items:
+      - "Democrats: 53, Republicans: 45, independents: 2 (113th Congress, as at 20 January 2013)."
+    source_url: https://www.senate.gov/about/parties-leadership/party-division.shtml
+    source_date: "2026-11-22"
+    last_checked: "2026-11-22"
+    source_date_is_retrieval: true
