@@ -42,3 +42,33 @@ describe('election schema for more than one country', () => {
     expect(electionSchema.safeParse({ ...base, country: 'cz', term_facts: [{ status: 'not_found', label: 'X' }] }).success).toBe(false);
   });
 });
+
+describe('election date', () => {
+  const upcoming = {
+    country: 'cz',
+    kind: 'presidential',
+    name: 'Presidential election 2028',
+    status: 'upcoming',
+    sample: true,
+    key_dates: [{ label: 'The current term ends', date: '2028-03-09', ...src }],
+  };
+  it('lets an upcoming election have no date while the date is unannounced', () => {
+    const e = electionSchema.safeParse(upcoming);
+    expect(e.success).toBe(true);
+    expect(e.data!.date).toBeUndefined();
+  });
+  it('still accepts an upcoming election with a date', () => {
+    expect(electionSchema.safeParse({ ...upcoming, date: '2028-02-01' }).success).toBe(true);
+  });
+  it('requires a date for a past election', () => {
+    const { date: _date, ...undated } = base;
+    const r = electionSchema.safeParse({ ...undated, country: 'cz', term_facts: termFacts });
+    expect(r.success).toBe(false);
+    expect(r.error!.issues.some((i) => i.path.join('.') === 'date' && i.message === 'Past elections need a date')).toBe(true);
+  });
+  it('still requires key_dates for an upcoming election', () => {
+    const r = electionSchema.safeParse({ ...upcoming, key_dates: [] });
+    expect(r.success).toBe(false);
+    expect(r.error!.issues.some((i) => i.message === 'Upcoming elections need key_dates')).toBe(true);
+  });
+});

@@ -4,7 +4,7 @@ import ElectionCard from '../../components/ElectionCard.astro';
 import FactStrip from '../../components/FactStrip.astro';
 import { upperFirst } from '../../lib/display';
 import { oldestChecked } from '../../lib/sources';
-import { byDateDesc, groupByKind, kindInfo, storyFacts } from '../../lib/story';
+import { byDateDesc, groupByKind, kindInfo, pastElections, storyFacts } from '../../lib/story';
 import { getCandidates, getCountries, getElections, getUpcomingElection, getWinnerCandidacy } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const slug = Astro.params.country!;
-const past = byDateDesc((await getElections(slug)).filter((e) => e.status === 'past'));
+const past = byDateDesc(pastElections(await getElections(slug)));
 const groups = groupByKind(past);
 const upcoming = await getUpcomingElection(slug);
 const currentCandidates = new Set((await getCandidates(upcoming.slug)).map((c) => c.slug));

@@ -6,7 +6,7 @@ import StepList from '../../components/StepList.astro';
 import { formatDate } from '../../lib/dates';
 import { numberWord } from '../../lib/display';
 import { oldestChecked } from '../../lib/sources';
-import { groupByKind } from '../../lib/story';
+import { groupByKind, pastElections } from '../../lib/story';
 import { getCountries, getCountry, getElections, getUpcomingElection, hasCompare } from '../../lib/content';
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ const country = await getCountry(slug!);
 const election = await getUpcomingElection(slug!);
 const dates = [...election.key_dates].sort((a, b) => a.date.localeCompare(b.date));
 const compare = await hasCompare(slug!);
-const pastGroups = groupByKind((await getElections(slug!)).filter((e) => e.status === 'past'));
+const pastGroups = groupByKind(pastElections(await getElections(slug!)));
 const pastCount = pastGroups.reduce((n, g) => n + g.elections.length, 0);
 const storyText = pastGroups.length === 1 ? `The last ${numberWord(pastCount)} elections.` : 'Past elections, by type.';
 const links = [
