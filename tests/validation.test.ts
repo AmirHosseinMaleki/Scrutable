@@ -202,6 +202,27 @@ describe('validateContent', () => {
       });
       expect(e.filter((i) => i.message.includes('turnout') || i.message.includes('not first in the final round'))).toEqual([]);
     });
+    it('decides the winner of a presidential election with electoral votes by electoral votes, not share', () => {
+      const lines = (winnerName: string) => (c: ReturnType<typeof validContent>) => {
+        const d = c.elections[1]!.data as any;
+        d.rounds[0].results = [{ name: 'W', person: 'win-1', family: 'F', share: 46, electoral_votes: 304 }, { name: 'O', family: 'G', share: 48, electoral_votes: 227 }];
+        d.winner = { name: winnerName, person: 'win-1', family: 'F' };
+      };
+      expect(errors(lines('W'))).toEqual([]);
+      expect(errors(lines('O')).some((i) => i.message.includes('is not first in the final round'))).toBe(true);
+    });
+    it('still requires a share on every line of a presidential election', () => {
+      expect(errors((c) => delete (c.elections[1]!.data as any).rounds[0].results[1].share).some((i) => i.message.includes('needs a share'))).toBe(true);
+    });
+    it('lets a senate result have seats and no share', () => {
+      const e = errors((c) => {
+        const d = c.elections[1]!.data as any;
+        d.kind = 'senate';
+        delete d.rounds[0].turnout;
+        d.rounds[0].results = [{ name: 'Z', seats: 14 }, { name: 'W', seats: 20 }];
+      });
+      expect(e.filter((i) => i.message.includes('share'))).toEqual([]);
+    });
     it('still requires a term block for past elections', () => {
       expect(errors((c) => delete (c.elections[1]!.data as any).term).some((i) => i.message.includes('term block'))).toBe(true);
     });

@@ -22,10 +22,11 @@ const firstRound = election.rounds.find((r) => r.round === 1);
 const rounds = [...election.rounds].sort((a, b) => a.round - b.round);
 // Every result line is stored (so earlier runs are complete); the card shows round 1 candidates with at least 10% of valid votes.
 // The 10% display rule is for presidential first rounds; other election types show every stored line.
-const shown = (r: (typeof rounds)[number]) => (r.round === 1 && election.kind === 'presidential' ? r.results.filter((l) => l.share >= 10) : r.results);
+const shown = (r: (typeof rounds)[number]) => (r.round === 1 && election.kind === 'presidential' ? r.results.filter((l) => (l.share ?? 0) >= 10) : r.results);
 const kind = kindInfo(election.kind);
 const hasSeats = (r: (typeof rounds)[number]) => shown(r).some((l) => l.seats !== undefined);
 const hasElectoralVotes = (r: (typeof rounds)[number]) => shown(r).some((l) => l.electoral_votes !== undefined);
+const hasShare = (r: (typeof rounds)[number]) => shown(r).some((l) => l.share !== undefined);
 const year = election.date.slice(0, 4);
 ---
 
@@ -36,7 +37,7 @@ const year = election.date.slice(0, 4);
   </div>
   <p class="mt-1">
     {kind.winnerLabel}: {election.winner?.name}{election.winner?.family && ` (${election.winner.family})`}.
-    {firstRound?.turnout !== undefined && ` Turnout in round 1: ${firstRound.turnout}%.`}
+    {firstRound?.turnout !== undefined && ` Turnout${election.rounds.length > 1 ? ' in round 1' : ''}: ${firstRound.turnout}%.`}
   </p>
 
   <Expandable label="Results, promises and sources">
@@ -46,7 +47,7 @@ const year = election.date.slice(0, 4);
           <div>
             <table class="w-full text-left text-sm">
               <caption class="mb-1 text-left font-medium">
-                {election.rounds.length === 1 && election.kind !== 'presidential' ? 'Results' : `Round ${r.round}`} · {formatDate(r.date)}{r.turnout !== undefined && ` · turnout ${r.turnout}%`}
+                {election.rounds.length === 1 ? 'Results' : `Round ${r.round}`} · {formatDate(r.date)}{r.turnout !== undefined && ` · turnout ${r.turnout}%`}
               </caption>
               <thead class="text-muted">
                 <tr>
@@ -54,7 +55,7 @@ const year = election.date.slice(0, 4);
                   {shown(r).some((l) => l.family) && <th scope="col" class="py-1 pr-3 font-medium">Political family</th>}
                   {hasElectoralVotes(r) && <th scope="col" class="py-1 pr-3 text-right font-medium">Electoral votes</th>}
                   {hasSeats(r) && <th scope="col" class="py-1 pr-3 text-right font-medium">Seats</th>}
-                  <th scope="col" class="py-1 text-right font-medium">Share</th>
+                  {hasShare(r) && <th scope="col" class="py-1 text-right font-medium">Share</th>}
                 </tr>
               </thead>
               <tbody>
@@ -70,13 +71,19 @@ const year = election.date.slice(0, 4);
                     {shown(r).some((l) => l.family) && <td class="py-1.5 pr-3">{line.family}</td>}
                     {hasElectoralVotes(r) && <td class="py-1.5 pr-3 text-right tabular-nums">{line.electoral_votes}</td>}
                     {hasSeats(r) && <td class="py-1.5 pr-3 text-right tabular-nums">{line.seats}{r.seats_total ? ` of ${r.seats_total}` : ''}</td>}
-                    <td class="py-1.5 text-right tabular-nums">{line.share}%</td>
+                    {hasShare(r) && <td class="py-1.5 text-right tabular-nums">{line.share === undefined ? '' : `${line.share}%`}</td>}
                   </tr>
                 ))}
               </tbody>
             </table>
             {r.round === 1 && election.kind === 'presidential' && r.results.length > shown(r).length && <p class="mt-1 text-sm text-muted">Candidates with at least 10% of valid votes. {r.results.length} candidates stood.</p>}
             <div class="mt-1"><SourceLink source_url={r.source_url} source_date={r.source_date} last_checked={r.last_checked} source_date_is_retrieval={r.source_date_is_retrieval} /></div>
+            {r.also_sources.map((s) => (
+              <div class="mt-1">
+                {s.label && <p class="text-sm text-muted">{s.label}</p>}
+                <SourceLink source_url={s.source_url} source_date={s.source_date} last_checked={s.last_checked} source_date_is_retrieval={s.source_date_is_retrieval} />
+              </div>
+            ))}
           </div>
         ))
       }
@@ -136,7 +143,7 @@ const year = election.date.slice(0, 4);
       {
         election.term_facts && (
           <div>
-            <h3 class="font-semibold">During the term{election.term?.ongoing && ' (so far)'}</h3>
+            <h3 class="font-semibold">During the term{(election.term?.ongoing || election.term_ongoing) && ' (so far)'}</h3>
             <dl class="mt-2 space-y-3">
               {election.term_facts.map((f) => (
                 <div>
