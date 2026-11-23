@@ -99,3 +99,33 @@ describe('pastElections', () => {
     expect(() => pastElections([undated])).toThrow(/no date/);
   });
 });
+
+describe('storyFacts for elections with a single round', () => {
+  const single = (n: number) =>
+    pastElections([electionSchema.parse({
+      country: 'us',
+      kind: 'presidential',
+      name: `S${n}`,
+      status: 'past',
+      sample: true,
+      date: `${2000 + 4 * n}-11-05`,
+      rounds: [{ round: 1, date: `${2000 + 4 * n}-11-05`, turnout: 60 + n, results: [{ name: 'W', person: `w${n}`, family: 'F', share: 51 }, { name: 'X', family: 'G', share: 48 }], ...src }],
+      winner: { name: 'W', person: `w${n}`, family: 'F' },
+      term_facts: [{ status: 'not_found', label: 'Impeachments', checked_on: '2026-11-01' }],
+    })])[0]!;
+  it('drops the second-round fact and the "first round" wording when nobody has a run-off', () => {
+    const facts = storyFacts([single(1), single(2), single(3)]);
+    expect(facts.map((f) => f.id)).toEqual(['turnout', 'families']);
+    expect(facts[0]!.label).toBe('Turnout');
+  });
+  it('keeps both when there are run-offs, as for France', () => {
+    const ids = storyFacts(elections).map((f) => f.id);
+    expect(ids).toContain('runoffs');
+    expect(storyFacts(elections)[0]!.label).toBe('Turnout, first round');
+  });
+  it('records whether an earlier run had two rounds', () => {
+    const [run] = earlierRuns('w1', [single(1)]);
+    expect(run!.tworounds).toBe(false);
+    expect(earlierRuns('w1', [make(1, 'B', true, { person: 'w1' })])[0]!.tworounds).toBe(true);
+  });
+});

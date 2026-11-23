@@ -68,24 +68,29 @@ export function storyFacts(elections: DatedElection[]): StoryFact[] {
   const allHaveCandidates = past.every((e) => firstRound(e)?.candidates !== undefined);
 
   const runoffs = past.filter((e) => e.rounds.some((r) => r.round === 2)).length;
+  // Where no election has a second round (the US), "first round" and "decided in a second round" would only confuse.
+  const twoRounds = runoffs > 0;
 
   const facts: StoryFact[] = [];
   if (t0 !== undefined && t1 !== undefined) {
-    facts.push({ id: 'turnout', label: 'Turnout, first round', text: `${fmt(t0)} in ${year(oldest)}, ${fmt(t1)} in ${year(newest)}.` });
+    facts.push({ id: 'turnout', label: twoRounds ? 'Turnout, first round' : 'Turnout', text: `${fmt(t0)} in ${year(oldest)}, ${fmt(t1)} in ${year(newest)}.` });
   }
   if (allHaveFamily) {
     facts.push({ id: 'families', label: 'Winners by political family', text: `${families.map(([f, n]) => `${f}: ${n}`).join(', ')}.` });
   } else if (allHaveCandidates && c0 !== undefined && c1 !== undefined) {
-    facts.push({ id: 'candidates', label: 'Candidates, first round', text: `${c0} in ${year(oldest)}, ${c1} in ${year(newest)}.` });
+    facts.push({ id: 'candidates', label: twoRounds ? 'Candidates, first round' : 'Candidates', text: `${c0} in ${year(oldest)}, ${c1} in ${year(newest)}.` });
   }
-  facts.push({ id: 'runoffs', label: 'Decided in a second round', text: `${runoffs} of ${past.length} elections.` });
+  if (twoRounds) facts.push({ id: 'runoffs', label: 'Decided in a second round', text: `${runoffs} of ${past.length} elections.` });
   return facts;
 }
 
 export interface EarlierRun<E extends Election = Election> {
   election: DatedElection<E>;
   round: 1 | 2;
-  share: number;
+  /** Absent when the source publishes no vote share for this line. */
+  share?: number;
+  /** True when the election had a second round, so "round 1" or "round 2" is meaningful. */
+  tworounds: boolean;
   family?: string;
   won: boolean;
 }
@@ -99,7 +104,7 @@ export function earlierRuns<E extends Election>(person: string, elections: E[]):
     for (const r of rounds) {
       const line = r.results.find((x) => x.person === person);
       if (line) {
-        runs.push({ election, round: r.round, share: line.share, family: line.family, won: election.winner?.person === person });
+        runs.push({ election, round: r.round, share: line.share, tworounds: election.rounds.length > 1, family: line.family, won: election.winner?.person === person });
         break;
       }
     }

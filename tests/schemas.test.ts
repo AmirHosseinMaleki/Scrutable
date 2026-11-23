@@ -72,3 +72,25 @@ describe('election date', () => {
     expect(r.error!.issues.some((i) => i.message === 'Upcoming elections need key_dates')).toBe(true);
   });
 });
+
+describe('result lines and sources that are not France-shaped', () => {
+  const senate = { ...base, kind: 'senate', country: 'us', winner: { name: 'A' }, term_facts: termFacts };
+  const line = (l: object, extra: object = {}) => ({ ...senate, rounds: [{ ...base.rounds[0], ...extra, results: [l] }] });
+  it('allows a result line with seats and no share', () => {
+    expect(electionSchema.safeParse(line({ name: 'A', seats: 17 })).success).toBe(true);
+  });
+  it('still needs at least a share, seats or electoral votes on every line', () => {
+    const r = electionSchema.safeParse(line({ name: 'A' }));
+    expect(r.success).toBe(false);
+    expect(r.error!.issues.some((i) => i.message.includes('share, seats or electoral votes'))).toBe(true);
+  });
+  it('accepts further sources on a round, each needing its own source fields', () => {
+    const extra = { label: 'Turnout table', ...src };
+    expect(electionSchema.safeParse(line({ name: 'A', seats: 1 }, { also_sources: [extra] })).success).toBe(true);
+    expect(electionSchema.safeParse(line({ name: 'A', seats: 1 }, { also_sources: [{ ...extra, source_url: undefined }] })).success).toBe(false);
+  });
+  it('lets term facts say the term is still running, off by default', () => {
+    expect(electionSchema.parse({ ...senate }).term_ongoing).toBe(false);
+    expect(electionSchema.parse({ ...senate, term_ongoing: true }).term_ongoing).toBe(true);
+  });
+});

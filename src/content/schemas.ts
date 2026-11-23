@@ -71,13 +71,13 @@ const resultLine = z.strictObject({
   person: slug.optional(),
   /** Political family. Optional: only given when a reachable, citable source states it. */
   family: z.string().min(1).optional(),
-  /** Percentage of valid votes, 0–100. */
-  share: z.number().min(0).max(100),
+  /** Percentage of valid votes, 0–100. Optional only where no official figure exists (for example a senate cycle); required for presidential elections. */
+  share: z.number().min(0).max(100).optional(),
   /** Seats won, for parliamentary and senate elections. */
   seats: z.number().int().min(0).optional(),
   /** Electoral College votes, for US presidential elections. */
   electoral_votes: z.number().int().min(0).optional(),
-});
+}).refine((l) => l.share !== undefined || l.seats !== undefined || l.electoral_votes !== undefined, { message: 'A result line needs a share, seats or electoral votes' });
 
 const round = z.strictObject({
   round: z.union([z.literal(1), z.literal(2)]),
@@ -90,6 +90,8 @@ const round = z.strictObject({
   candidates: z.number().int().min(2).optional(),
   results: z.array(resultLine).min(1),
   ...sourceFields,
+  /** Further sources for this round (for example a turnout table, or a page for the run-off date). */
+  also_sources: z.array(z.strictObject({ label: z.string().min(1).optional(), ...sourceFields })).default([]),
 });
 
 const keyDate = z.strictObject({
@@ -174,6 +176,8 @@ export const electionSchema = z
     term: termFacts.optional(),
     /** Past elections outside France: other labelled facts about the term (see termListItem). */
     term_facts: z.array(termListItem).optional(),
+    /** True while the term of a past election is still running: the card says "so far". Applies to term_facts (France keeps `ongoing` inside `term`). */
+    term_ongoing: z.boolean().default(false),
   })
   .superRefine((e, ctx) => {
     if (e.status === 'past') {
