@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { countSentences, electionSchema } from '../src/content/schemas';
-import { earlierRuns, groupByKind, kindInfo, storyFacts } from '../src/lib/story';
+import { earlierRuns, groupByKind, kindInfo, pastElections, storyFacts } from '../src/lib/story';
 
 const src = { source_url: 'https://example.com/s', source_date: '2026-10-01', last_checked: '2026-11-01' };
 const make = (n: number, family: string | undefined, withRunoff: boolean, extra?: { person: string }, candidates?: number) =>
-  electionSchema.parse({
+  pastElections([electionSchema.parse({
     country: 'fr',
     kind: 'presidential',
     name: `E${n}`,
@@ -17,7 +17,7 @@ const make = (n: number, family: string | undefined, withRunoff: boolean, extra?
     ],
     winner: { name: 'W', person: `w${n}`, ...(family ? { family } : {}) },
     term: { ongoing: false, prime_ministers: { status: 'found', names: ['P'], ...src }, referendums: { status: 'found', held: [], ...src }, dissolutions: { status: 'found', dates: [], ...src } },
-  });
+  })])[0]!;
 
 const elections = [make(1, 'B', true), make(2, 'A', false), make(3, 'B', true, { person: 'cand' })];
 
@@ -62,7 +62,7 @@ describe('earlierRuns', () => {
 describe('groupByKind', () => {
   const termFacts = [{ status: 'not_found', label: 'Governments', checked_on: '2026-11-01' }];
   const other = (n: number, kind: 'parliamentary' | 'senate') =>
-    electionSchema.parse({
+    pastElections([electionSchema.parse({
       country: 'cz',
       kind,
       name: `O${n}`,
@@ -72,7 +72,7 @@ describe('groupByKind', () => {
       rounds: [{ round: 1, date: `${2000 + n}-10-01`, results: [{ name: 'P', seats: 80, share: 30 }, { name: 'Q', seats: 60, share: 20 }], ...src }],
       winner: { name: 'P' },
       term_facts: termFacts,
-    });
+    })])[0]!;
 
   it('keeps the order presidential, parliamentary, senate, each newest first', () => {
     const groups = groupByKind([other(5, 'senate'), elections[0]!, other(3, 'parliamentary'), other(7, 'parliamentary'), elections[2]!]);
@@ -86,5 +86,16 @@ describe('groupByKind', () => {
   it('has a label for every kind', () => {
     expect(kindInfo('parliamentary').winnerLabel).toBe('Largest party');
     expect(kindInfo('presidential').winnerLabel).toBe('Winner');
+  });
+});
+
+describe('pastElections', () => {
+  it('keeps past elections and leaves out an upcoming one without a date', () => {
+    const upcoming = electionSchema.parse({ country: 'cz', name: 'U', status: 'upcoming', key_dates: [{ label: 'End of term', date: '2028-03-09', ...src }] });
+    expect(pastElections([upcoming, ...elections])).toHaveLength(elections.length);
+  });
+  it('throws on a past election with no date, since the schema should have caught it', () => {
+    const undated = { ...elections[0]!, date: undefined };
+    expect(() => pastElections([undated])).toThrow(/no date/);
   });
 });

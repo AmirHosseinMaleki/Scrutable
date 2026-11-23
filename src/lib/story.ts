@@ -10,6 +10,19 @@ export interface StoryFact {
 
 export type ElectionKind = Election['kind'];
 
+/** An election with a known date. Every past election has one (the schema requires it); an upcoming one may not. */
+export type DatedElection<E extends Election = Election> = E & { date: string };
+
+/** Keeps the past elections, which always have a date. Throws if one does not, so a bad record cannot slip through. */
+export function pastElections<E extends Election>(elections: E[]): DatedElection<E>[] {
+  return elections
+    .filter((e) => e.status === 'past')
+    .map((e) => {
+      if (!e.date) throw new Error(`Past election "${e.name}" has no date`);
+      return e as DatedElection<E>;
+    });
+}
+
 /** Plural headings and the label for the result of each election type. Order is the order groups are shown in. */
 export const KINDS: { kind: ElectionKind; plural: string; winnerLabel: string; rowLabel: string }[] = [
   { kind: 'presidential', plural: 'presidential elections', winnerLabel: 'Winner', rowLabel: 'Candidate' },
@@ -19,11 +32,11 @@ export const KINDS: { kind: ElectionKind; plural: string; winnerLabel: string; r
 export const kindInfo = (kind: ElectionKind) => KINDS.find((k) => k.kind === kind)!;
 
 /** Past elections grouped by type in a fixed order (presidential, parliamentary, senate), each group newest first. */
-export function groupByKind<E extends Election>(elections: E[]): { kind: ElectionKind; elections: E[] }[] {
+export function groupByKind<E extends DatedElection>(elections: E[]): { kind: ElectionKind; elections: E[] }[] {
   return KINDS.map(({ kind }) => ({ kind, elections: byDateDesc(elections.filter((e) => e.kind === kind)) })).filter((g) => g.elections.length > 0);
 }
 
-const year = (e: Election) => e.date.slice(0, 4);
+const year = (e: DatedElection) => e.date.slice(0, 4);
 const fmt = (n: number) => `${Number.isInteger(n) ? n : n.toFixed(1)}%`;
 
 /** Newest first. */
@@ -36,7 +49,7 @@ export function byDateDesc<T extends { date: string }>(items: T[]): T[] {
  * The middle fact is the winners' political families when every winner has one, otherwise the number of
  * first-round candidates when every election states it. Families are listed alphabetically, never by size.
  */
-export function storyFacts(elections: Election[]): StoryFact[] {
+export function storyFacts(elections: DatedElection[]): StoryFact[] {
   const past = [...elections].filter((e) => e.status === 'past').sort((a, b) => a.date.localeCompare(b.date));
   if (past.length === 0) return [];
 
@@ -70,7 +83,7 @@ export function storyFacts(elections: Election[]): StoryFact[] {
 }
 
 export interface EarlierRun<E extends Election = Election> {
-  election: E;
+  election: DatedElection<E>;
   round: 1 | 2;
   share: number;
   family?: string;
@@ -80,8 +93,7 @@ export interface EarlierRun<E extends Election = Election> {
 /** Earlier runs of a person, newest first, taken from the result lines of past elections. Final round only. */
 export function earlierRuns<E extends Election>(person: string, elections: E[]): EarlierRun<E>[] {
   const runs: EarlierRun<E>[] = [];
-  for (const election of byDateDesc(elections)) {
-    if (election.status !== 'past') continue;
+  for (const election of byDateDesc(pastElections(elections))) {
     // Report the last round the person appeared in.
     const rounds = [...election.rounds].sort((a, b) => b.round - a.round);
     for (const r of rounds) {

@@ -5,10 +5,10 @@ import Expandable from './Expandable.astro';
 import SourceLink from './SourceLink.astro';
 import type { Candidacy, Election } from '../content/schemas';
 import { formatDate } from '../lib/dates';
-import { kindInfo } from '../lib/story';
+import { kindInfo, type DatedElection } from '../lib/story';
 
 interface Props {
-  election: Election & { slug: string };
+  election: DatedElection<Election & { slug: string }>;
   /** The winner's candidacy, which holds the 3 headline promises. */
   winner?: Candidacy;
   /** Slugs of people who are candidates today: their names link to their page. */

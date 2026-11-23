@@ -161,7 +161,8 @@ export const electionSchema = z
     name: z.string().min(1),
     status: z.enum(['upcoming', 'past']),
     sample: z.boolean().default(false),
-    date: isoDate,
+    /** Required for past elections. An upcoming election may have none while the date is unannounced. */
+    date: isoDate.optional(),
     /** Upcoming elections: dates readers need (register, round 1, round 2). */
     key_dates: z.array(keyDate).default([]),
     /** Upcoming elections: declared candidates who do not have a page yet. */
@@ -176,6 +177,7 @@ export const electionSchema = z
   })
   .superRefine((e, ctx) => {
     if (e.status === 'past') {
+      if (!e.date) ctx.addIssue({ code: 'custom', path: ['date'], message: 'Past elections need a date' });
       if (e.rounds.length === 0) ctx.addIssue({ code: 'custom', path: ['rounds'], message: 'Past elections need at least one round of results' });
       if (!e.winner) ctx.addIssue({ code: 'custom', path: ['winner'], message: 'Past elections need a winner' });
       if (e.country === 'fr' && !e.term) ctx.addIssue({ code: 'custom', path: ['term'], message: 'Past elections need a term block' });
